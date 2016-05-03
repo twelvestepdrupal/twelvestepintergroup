@@ -5,11 +5,12 @@ dependencies:
   config:
     - field.field.anonmeeting.anonmeeting.field_group
     - field.field.anonmeeting.anonmeeting.field_location
+    - field.field.anonmeeting.anonmeeting.field_time
   module:
     - anonmeetings
     - user
 _core:
-  default_config_hash: SymYfGHeGHB0w96ZKGnpHFvjDsy59L7609fGDV7OrFk
+  default_config_hash: EktT-A47hKwcO3e6W0SZvFrwQnI0ITesFQ7IcRUW3kw
 id: anonmeeting.anonmeeting.default
 targetEntityType: anonmeeting
 bundle: anonmeeting
@@ -42,4 +43,5 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_time: true

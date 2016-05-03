@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.anonmeeting.anonmeeting.field_group
     - field.field.anonmeeting.anonmeeting.field_location
+    - field.field.anonmeeting.anonmeeting.field_time
   module:
     - anonmeetings
+    - weeklytime
 _core:
-  default_config_hash: APhbTWofbgvVhNxaXFkp6L8SA-oAj5uoc8cFxnktM60
+  default_config_hash: OsJ3GOy9aNwISex1JITuJwQT3JhaqBrpBURqTRrvXYw
 id: anonmeeting.anonmeeting.default
 targetEntityType: anonmeeting
 bundle: anonmeeting
@@ -16,20 +18,25 @@ mode: default
 content:
   field_group:
     type: entity_reference_autocomplete_tags
-    weight: 4
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_location:
-    weight: 5
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_time:
+    type: weeklytime_widget
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
