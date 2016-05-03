@@ -1,0 +1,19 @@
+uuid: 453c27f6-1d10-42d5-8300-f1f1ce41bd4f
+langcode: en
+status: true
+dependencies:
+  module:
+    - anongroups
+    - text
+id: anongroup.field_about
+field_name: field_about
+entity_type: anongroup
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

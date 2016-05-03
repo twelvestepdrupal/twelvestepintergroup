@@ -1,0 +1,21 @@
+uuid: 3b252fb8-5e04-4be0-a752-82e80688f12a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonlocation.field_directions
+  module:
+    - anonlocations
+    - text
+id: anonlocation.anonlocation.field_directions
+field_name: field_directions
+entity_type: anonlocation
+bundle: anonlocation
+label: Directions
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

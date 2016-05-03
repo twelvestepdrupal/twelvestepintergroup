@@ -35,6 +35,13 @@ such as Acquia or Pantheon.
   - To create a new module, from docroot $ drupal generate:module
   - To create new entities, from docroot $ drupal generate:entity:content
 
+## Export and Import content
+
+  The content specific to this profile can be exported and imported, useful for creating a new Intergroup offices.
+
+  - $ drush anonintergroup-export mysite
+  - $ drush anonintergroup-import mysite
+
 ## See also
 
 * https://www.drupal.org/node/159730 Developing installation profiles and distributions

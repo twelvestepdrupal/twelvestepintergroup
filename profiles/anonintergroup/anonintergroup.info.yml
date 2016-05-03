@@ -1,15 +1,11 @@
-name: AAIntergroup
+name: AnonIntergroup
 type: profile
 description: 'Drupal distribution for AA (and other 12 Step organization) Intergroups (Central Offices).'
 core: 8.x
 
 # The distribution_name property is used in the installer and other places as
 # a label for the software being installed.
-distribution_name: AAintegroup
-
-# Mark this as an 'exclusive' profile, so if it's the only one, it gets auto-
-# selected by default.
-# exclusive: 1
+distribution_name: Anononymous 12 Step Integroup
 
 # Required modules
 dependencies:

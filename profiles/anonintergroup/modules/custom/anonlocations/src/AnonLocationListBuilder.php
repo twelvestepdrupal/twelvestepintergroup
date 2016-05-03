@@ -23,7 +23,7 @@ class AnonLocationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Anonymous 12 Step Location ID');
+    $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
     return $header + parent::buildHeader();
   }
