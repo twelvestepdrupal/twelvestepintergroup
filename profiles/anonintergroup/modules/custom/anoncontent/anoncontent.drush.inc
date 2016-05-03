@@ -36,12 +36,12 @@ function anoncontent_drush_command() {
  * @param
  *   $name - the directory name under anoncontent/data to serialize to.
  */
-function drush_anoncontent_anon_content_export($name = NULL) {
-  if (!$name) {
-    $name = 'test';
+function drush_anoncontent_anon_content_export($module = NULL) {
+  if (!$module) {
+    $module = 'anoncontent';
   }
 
-  $dir = drupal_get_path('module', 'anoncontent') . "/data/$name";
+  $dir = drupal_get_path('module', $module) . "/anoncontent";
   file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
 
   /** @var \Symfony\Component\Serializer\Serializer $serializer */
@@ -63,11 +63,11 @@ function drush_anoncontent_anon_content_export($name = NULL) {
 /**
  * Imports all anonymous content from this module.
  */
-function drush_anoncontent_anon_content_import($name = NULL) {
-  if (!$name) {
-    $name = 'test';
+function drush_anoncontent_anon_content_import($module = NULL) {
+  if (!$module) {
+    $module = 'anoncontent';
   }
-  $dir = drupal_get_path('module', 'anoncontent') . "/data/$name";
+  $dir = drupal_get_path('module', $module) . "/anoncontent";
 
   foreach (_anoncontent_types() as $entity_type_id) {
     $filepath = "$dir/$entity_type_id.json";
