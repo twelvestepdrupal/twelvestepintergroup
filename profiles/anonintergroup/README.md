@@ -16,14 +16,16 @@ such as Acquia or Pantheon.
 * Download latest Drupal 8
   - Install this profile in the profiles directory
   - Install composer $ curl -sS https://getcomposer.org/installer | php
-    - Alternatively $ drush dl composer, and then use drush composer instead of composer.phar
-  - Install address libraries, @todo: Figure out better way to do this:
-    - composer.phar require commerceguys/addressing master-dev
-    - composer.phar require commerceguys/intl master-dev
-    - composer.phar require commerceguys/zone master-dev
+    - Alternatively
+```
+$ drush dl composer, and then use drush composer instead of composer.phar
+```
 * Install a new site
   - From an empty install, select "Anonymous Intergroup"
-  - Or with $ drush -y si anonintergroup --site-name="Baltimore Central Service Office of Alcoholics Anonymous"
+  - Or with
+```
+$ drush -y si anonintergroup --site-name="Baltimore Central Service Office of Alcoholics Anonymous"
+```
 
 ## Create new entities, this was how anonmeetings and anongroups modules were created
 
@@ -35,11 +37,20 @@ such as Acquia or Pantheon.
 
   The content specific to this profile can be exported and imported, useful for creating a new Intergroup offices.
 
-  - Enable the anoncontent module $ drush en -y anoncontent
+  - Enable the anoncontent module
+```
+$ drush en -y anoncontent
+```
   - Create a new custom site module using $ drupal generate:module and put it in modules/custom. For example, call this module baltimoreaa.
-  - Export content using $ drush anon-content-export baltimoreaa
+  - Export content using
+```
+$ drush anon-content-export baltimoreaa
+```
     - This will create a subdirectory under modules/custom/baltimoreaa/anoncontent. This content can then be checked into the site repository.
-  - Import content using $ drush anon-content-import baltimoreaa
+  - Import content using
+```
+$ drush anon-content-import baltimoreaa
+```
     - You may need to create a fresh site install before importing. The import assumes that the content does not yet exist.
 
 ## See also

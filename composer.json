@@ -23,7 +23,8 @@
         ],
         "merge-plugin": {
             "include": [
-                "core/composer.json"
+                "core/composer.json",
+                "profiles/anonintergroup/composer.json"
             ],
             "recurse": false,
             "replace": false,
