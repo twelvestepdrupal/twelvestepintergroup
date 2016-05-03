@@ -1,0 +1,11 @@
+# AA Baltimore .gitignore
+
+# Ignore files and settings.
+sites/default/files/
+sites/default/settings.php
+
+.idea/
+
+# Ignore composer.lock. This is ignored because it's easy to create, and if it
+# were managed by git, it would be merges and rebases of Drupal core harder.
+composer*.lock
