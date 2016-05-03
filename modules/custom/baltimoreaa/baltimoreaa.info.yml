@@ -1,0 +1,8 @@
+name: Baltimore AA
+type: module
+description: Baltimore Alcoholics Anonymous Intergroup
+core: 8.x
+package: Other
+
+dependencies:
+  - anoncontent

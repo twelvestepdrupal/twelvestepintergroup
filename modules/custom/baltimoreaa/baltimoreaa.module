@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains baltimoreaa.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function baltimoreaa_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the baltimoreaa module.
+    case 'help.page.baltimoreaa':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Baltimore Alcoholics Anonymous Intergroup') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
