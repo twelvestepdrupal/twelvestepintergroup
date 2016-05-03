@@ -1,0 +1,23 @@
+uuid: 077f7dda-4541-4988-bc00-de82c77b23ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonmeeting.field_time
+  module:
+    - anonmeetings
+    - weeklytime
+_core:
+  default_config_hash: 9EEj_P3EYLgq_A7DeA7AU86-PvA0CqbaNeH8kZWGPv0
+id: anonmeeting.anonmeeting.field_time
+field_name: field_time
+entity_type: anonmeeting
+bundle: anonmeeting
+label: Time
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: weeklytime

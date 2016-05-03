@@ -49,6 +49,7 @@ dependencies:
   - telephone
   - rest
   - geolocation
+  - weeklytime
   - anongroups
   - anonmeetings
   - anonlocations
