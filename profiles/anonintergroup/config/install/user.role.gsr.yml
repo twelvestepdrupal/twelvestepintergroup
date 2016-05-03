@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: staff
-label: Staff
+id: gsr
+label: General Service Representative
 is_admin: false
 permissions:
   - 'edit anonymous 12 step meeting entities'
