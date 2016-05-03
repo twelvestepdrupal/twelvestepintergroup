@@ -3,6 +3,7 @@ anonmeeting.settings_tab:
   route_name: anonmeeting.settings
   title: 'Settings'
   base_route: anonmeeting.settings
+
 entity.anonmeeting.canonical:
   route_name: entity.anonmeeting.canonical
   base_route: entity.anonmeeting.canonical
@@ -11,11 +12,15 @@ entity.anonmeeting.canonical:
 entity.anonmeeting.edit_form:
   route_name: entity.anonmeeting.edit_form
   base_route: entity.anonmeeting.canonical
-  title: Edit
+  title: 'Edit'
 
 entity.anonmeeting.delete_form:
   route_name:  entity.anonmeeting.delete_form
   base_route:  entity.anonmeeting.canonical
-  title: Delete
+  title: 'Delete'
   weight: 10
 
+entity.anonmeeting.collection:
+  route_name: entity.anonmeeting.collection
+  title: 'Anonymous Meetings'
+  base_route: system.admin_content

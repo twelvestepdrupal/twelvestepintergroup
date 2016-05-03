@@ -1,7 +1,7 @@
 
 # AnonGroup routing definition
 entity.anongroup.canonical:
-  path: '/admin/structure/anongroup/{anongroup}'
+  path: '/anongroup/{anongroup}'
   defaults:
     _entity_view: 'anongroup'
     _title: 'Anonymous 12 Step Group'
@@ -11,7 +11,7 @@ entity.anongroup.canonical:
     _admin_route: TRUE
 
 entity.anongroup.collection:
-  path: '/admin/structure/anongroup'
+  path: '/admin/content/anongroup'
   defaults:
     _entity_list: 'anongroup'
     _title: 'Anonymous 12 Step Group list'
@@ -21,7 +21,7 @@ entity.anongroup.collection:
     _admin_route: TRUE
 
 entity.anongroup.add_form:
-  path: '/admin/structure/anongroup/add'
+  path: '/admin/content/anongroup/add'
   defaults:
     _entity_form: anongroup.add
     _title: 'Add Anonymous 12 Step Group'
@@ -31,7 +31,7 @@ entity.anongroup.add_form:
     _admin_route: TRUE
 
 entity.anongroup.edit_form:
-  path: '/admin/structure/anongroup/{anongroup}/edit'
+  path: '/anongroup/{anongroup}/edit'
   defaults:
     _entity_form: anongroup.edit
     _title: 'Edit Anonymous 12 Step Group'
@@ -41,7 +41,7 @@ entity.anongroup.edit_form:
     _admin_route: TRUE
 
 entity.anongroup.delete_form:
-  path: '/admin/structure/anongroup/{anongroup}/delete'
+  path: '/anongroup/{anongroup}/delete'
   defaults:
     _entity_form: anongroup.delete
     _title: 'Delete Anonymous 12 Step Group'

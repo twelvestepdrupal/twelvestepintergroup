@@ -1,7 +1,7 @@
 
 # AnonMeeting routing definition
 entity.anonmeeting.canonical:
-  path: '/admin/structure/anonmeeting/{anonmeeting}'
+  path: '/anonmeeting/{anonmeeting}'
   defaults:
     _entity_view: 'anonmeeting'
     _title: 'Anonymous 12 Step Meeting'
@@ -11,7 +11,7 @@ entity.anonmeeting.canonical:
     _admin_route: TRUE
 
 entity.anonmeeting.collection:
-  path: '/admin/structure/anonmeeting'
+  path: '/admin/content/anonmeeting'
   defaults:
     _entity_list: 'anonmeeting'
     _title: 'Anonymous 12 Step Meeting list'
@@ -21,7 +21,7 @@ entity.anonmeeting.collection:
     _admin_route: TRUE
 
 entity.anonmeeting.add_form:
-  path: '/admin/structure/anonmeeting/add'
+  path: '/admin/content/anonmeeting/add'
   defaults:
     _entity_form: anonmeeting.add
     _title: 'Add Anonymous 12 Step Meeting'
@@ -31,7 +31,7 @@ entity.anonmeeting.add_form:
     _admin_route: TRUE
 
 entity.anonmeeting.edit_form:
-  path: '/admin/structure/anonmeeting/{anonmeeting}/edit'
+  path: '/anonmeeting/{anonmeeting}/edit'
   defaults:
     _entity_form: anonmeeting.edit
     _title: 'Edit Anonymous 12 Step Meeting'
@@ -41,7 +41,7 @@ entity.anonmeeting.edit_form:
     _admin_route: TRUE
 
 entity.anonmeeting.delete_form:
-  path: '/admin/structure/anonmeeting/{anonmeeting}/delete'
+  path: '/anonmeeting/{anonmeeting}/delete'
   defaults:
     _entity_form: anonmeeting.delete
     _title: 'Delete Anonymous 12 Step Meeting'

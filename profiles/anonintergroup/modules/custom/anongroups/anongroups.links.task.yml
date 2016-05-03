@@ -3,6 +3,7 @@ anongroup.settings_tab:
   route_name: anongroup.settings
   title: 'Settings'
   base_route: anongroup.settings
+
 entity.anongroup.canonical:
   route_name: entity.anongroup.canonical
   base_route: entity.anongroup.canonical
@@ -11,11 +12,15 @@ entity.anongroup.canonical:
 entity.anongroup.edit_form:
   route_name: entity.anongroup.edit_form
   base_route: entity.anongroup.canonical
-  title: Edit
+  title: 'Edit'
 
 entity.anongroup.delete_form:
   route_name:  entity.anongroup.delete_form
   base_route:  entity.anongroup.canonical
-  title: Delete
+  title: 'Delete'
   weight: 10
 
+entity.anongroup.collection:
+  route_name: entity.anongroup.collection
+  title: 'Anonymous Groups'
+  base_route: system.admin_content

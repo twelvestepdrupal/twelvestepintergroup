@@ -2,12 +2,11 @@
 entity.anonmeeting.collection:
   title: 'Anonymous 12 Step Meeting list'
   route_name: entity.anonmeeting.collection
-  description: 'List Anonymous 12 Step Meeting entities'
-  parent: system.admin_structure
-  weight: 100
+  description: 'List Anonymous 12 Step Meetings'
+  parent: system.admin_content
 
 anonmeeting.admin.structure.settings:
-  title: Anonymous 12 Step Meeting settings
-  description: 'Configure Anonymous 12 Step Meeting entities'
+  title: 'Anonymous 12 Step Meeting settings'
+  description: 'Configure Anonymous 12 Step Meetings'
   route_name: anonmeeting.settings
   parent: system.admin_structure

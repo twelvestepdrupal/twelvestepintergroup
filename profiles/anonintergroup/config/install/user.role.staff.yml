@@ -5,4 +5,10 @@ id: staff
 label: Staff
 weight: 2
 is_admin: false
-permissions: {  }
+permissions:
+ - view anonymous 12 step meeting entities
+ - view anonymous 12 step group entities
+ - edit anonymous 12 step meeting entities
+ - edit anonymous 12 step group entities
+ - delete anonymous 12 step meeting entities
+ - delete anonymous 12 step group entities
