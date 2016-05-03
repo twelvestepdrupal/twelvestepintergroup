@@ -25,6 +25,7 @@ class AnonLocationListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
+    $header['address'] = $this->t('Address');
     return $header + parent::buildHeader();
   }
 
@@ -32,7 +33,7 @@ class AnonLocationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\anonlocations\Entity\AnonLocation */
+    /** @var \Drupal\anonlocations\Entity\AnonLocation $entity */
     $row['id'] = $entity->id();
     $row['name'] = $this->l(
       $entity->label(),
@@ -42,6 +43,8 @@ class AnonLocationListBuilder extends EntityListBuilder {
         )
       )
     );
+    // @todo: is there a better way to do this?
+    $row['address'] = drupal_render($entity->get('field_address')->view(['label' => 'hidden']));
     return $row + parent::buildRow($entity);
   }
 
