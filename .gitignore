@@ -2,7 +2,7 @@
 
 # Ignore files and settings.
 sites/default/files/
-sites/default/settings.php
+sites/default/settings.local.php
 
 .idea/
 
