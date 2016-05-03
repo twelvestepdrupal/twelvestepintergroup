@@ -1,0 +1,21 @@
+# Anonymous 12 Step Meeting routing definition
+anonmeeting.settings_tab:
+  route_name: anonmeeting.settings
+  title: 'Settings'
+  base_route: anonmeeting.settings
+entity.anonmeeting.canonical:
+  route_name: entity.anonmeeting.canonical
+  base_route: entity.anonmeeting.canonical
+  title: 'View'
+
+entity.anonmeeting.edit_form:
+  route_name: entity.anonmeeting.edit_form
+  base_route: entity.anonmeeting.canonical
+  title: Edit
+
+entity.anonmeeting.delete_form:
+  route_name:  entity.anonmeeting.delete_form
+  base_route:  entity.anonmeeting.canonical
+  title: Delete
+  weight: 10
+

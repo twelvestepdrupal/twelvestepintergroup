@@ -1,0 +1,5 @@
+name: Anonymous Groups
+type: module
+description: Anonymous 12 Step Group Entity
+core: 8.x
+package: anonintergroup

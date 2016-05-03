@@ -1,0 +1,5 @@
+name: Anonymous Meetings
+type: module
+description: Anonymous 12 Step Meetings Entity
+core: 8.x
+package: anonintergroup

@@ -1,0 +1,61 @@
+
+# AnonGroup routing definition
+entity.anongroup.canonical:
+  path: '/admin/structure/anongroup/{anongroup}'
+  defaults:
+    _entity_view: 'anongroup'
+    _title: 'Anonymous 12 Step Group'
+  requirements:
+    _entity_access: 'anongroup.view'
+  options:
+    _admin_route: TRUE
+
+entity.anongroup.collection:
+  path: '/admin/structure/anongroup'
+  defaults:
+    _entity_list: 'anongroup'
+    _title: 'Anonymous 12 Step Group list'
+  requirements:
+    _permission: 'view anonymous 12 step group entities'
+  options:
+    _admin_route: TRUE
+
+entity.anongroup.add_form:
+  path: '/admin/structure/anongroup/add'
+  defaults:
+    _entity_form: anongroup.add
+    _title: 'Add Anonymous 12 Step Group'
+  requirements:
+    _permission: 'add anonymous 12 step group entities'
+  options:
+    _admin_route: TRUE
+
+entity.anongroup.edit_form:
+  path: '/admin/structure/anongroup/{anongroup}/edit'
+  defaults:
+    _entity_form: anongroup.edit
+    _title: 'Edit Anonymous 12 Step Group'
+  requirements:
+    _permission: 'edit anonymous 12 step group entities'
+  options:
+    _admin_route: TRUE
+
+entity.anongroup.delete_form:
+  path: '/admin/structure/anongroup/{anongroup}/delete'
+  defaults:
+    _entity_form: anongroup.delete
+    _title: 'Delete Anonymous 12 Step Group'
+  requirements:
+    _permission: 'delete anonymous 12 step group entities'
+  options:
+    _admin_route: TRUE
+
+anongroup.settings:
+  path: '/admin/structure/anongroup/settings'
+  defaults:
+   _form: '\Drupal\anongroups\Form\AnonGroupSettingsForm'
+   _title: 'Anonymous 12 Step Group settings'
+  requirements:
+    _permission: 'administer anonymous 12 step group entities'
+  options:
+    _admin_route: TRUE

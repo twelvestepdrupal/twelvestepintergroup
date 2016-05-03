@@ -1,0 +1,7 @@
+office_hours:
+  version: VERSION
+  css:
+    theme:
+      css/office_hours.css: {}
+  js:
+    js/office_hours.js: {}

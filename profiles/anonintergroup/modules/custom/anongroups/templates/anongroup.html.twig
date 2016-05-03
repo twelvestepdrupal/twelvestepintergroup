@@ -1,0 +1,22 @@
+{#
+/**
+ * @file anongroup.html.twig
+ * Default theme implementation to present Anonymous 12 Step Group data.
+ *
+ * This template is used when viewing Anonymous 12 Step Group pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_anongroup()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('anongroup') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

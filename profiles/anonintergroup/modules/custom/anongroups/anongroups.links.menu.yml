@@ -1,0 +1,13 @@
+# Anonymous 12 Step Group menu items definition
+entity.anongroup.collection:
+  title: 'Anonymous 12 Step Group list'
+  route_name: entity.anongroup.collection
+  description: 'List Anonymous 12 Step Group entities'
+  parent: system.admin_structure
+  weight: 100
+
+anongroup.admin.structure.settings:
+  title: Anonymous 12 Step Group settings
+  description: 'Configure Anonymous 12 Step Group entities'
+  route_name: anongroup.settings
+  parent: system.admin_structure

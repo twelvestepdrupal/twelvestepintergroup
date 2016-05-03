@@ -1,0 +1,7 @@
+entity.anongroup.add_form:
+  route_name: entity.anongroup.add_form
+  title: 'Add Anonymous 12 Step Group'
+  appears_on:
+    - entity.anongroup.collection
+    - entity.anongroup.canonical
+
