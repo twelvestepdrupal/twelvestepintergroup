@@ -5,10 +5,8 @@ dependencies:
   config:
     - field.field.anonmeeting.anonmeeting.field_group
     - field.field.anonmeeting.anonmeeting.field_location
-    - field.field.anonmeeting.anonmeeting.field_time
   module:
     - anonmeetings
-    - office_hours
 _core:
   default_config_hash: Tqz8Ez9KIfHfF-lhyLnx5gYax5FhARn5fvWSgexaaIA
 id: anonmeeting.anonmeeting.default
@@ -32,12 +30,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_time:
-    type: office_hours_default
-    weight: 2
-    settings:
-      date_element_type: datelist
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0

@@ -5,10 +5,8 @@ dependencies:
   config:
     - field.field.anonmeeting.anonmeeting.field_group
     - field.field.anonmeeting.anonmeeting.field_location
-    - field.field.anonmeeting.anonmeeting.field_time
   module:
     - anonmeetings
-    - office_hours
     - user
 _core:
   default_config_hash: '-za81skzvZBNrftTxXz4A_97gSZEhYh_U_4zR5ZnUs4'
@@ -31,30 +29,6 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  field_time:
-    weight: 1
-    label: above
-    settings:
-      daysformat: long
-      time_type: G
-      compress: false
-      grouped: false
-      showclosed: all
-      closedformat: Closed
-      separator:
-        days: '<br />'
-        grouped_days: ' - '
-        day_hours: ': '
-        hours_hours: '-'
-        more_hours: ', '
-      current_status:
-        position: hide
-        open_text: 'Currently open!'
-        closed_text: 'Currently closed'
-      timezone_field: ''
-      office_hours_first_day: ''
-    third_party_settings: {  }
-    type: office_hours
   name:
     label: above
     type: string

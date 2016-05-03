@@ -52,7 +52,6 @@ dependencies:
   - address
   - telephone
   - rest
-  - office_hours
   - anongroups
   - anonmeetings
   - anonlocations
