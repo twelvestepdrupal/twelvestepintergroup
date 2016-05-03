@@ -3,20 +3,31 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.anongroup.anongroup.field_about
     - field.field.anongroup.anongroup.field_default_location
     - field.field.anongroup.anongroup.field_default_phone
+    - field.field.anongroup.anongroup.field_directions
     - field.field.anongroup.anongroup.field_website
   module:
     - anongroups
     - link
+    - telephone
+    - text
     - user
 _core:
-  default_config_hash: CibB7rGSoFVYxm7FrN9GqgWzdMa3dG1iaDsF3QKbf-k
+  default_config_hash: B_YadgUlIGkdzFRXFOKgDBhskw33bUPsrsQRl9dRxlg
 id: anongroup.anongroup.default
 targetEntityType: anongroup
 bundle: anongroup
 mode: default
 content:
+  field_about:
+    type: text_trimmed
+    weight: 6
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
   field_default_location:
     weight: 4
     label: above
@@ -27,9 +38,17 @@ content:
   field_default_phone:
     weight: 3
     label: above
-    settings: {  }
+    settings:
+      title: ''
     third_party_settings: {  }
-    type: basic_string
+    type: telephone_link
+  field_directions:
+    type: text_trimmed
+    weight: 5
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
   field_website:
     weight: 2
     label: above
@@ -44,14 +63,14 @@ content:
   name:
     label: above
     type: string
-    weight: -4
+    weight: 0
     settings:
       link_to_entity: false
     third_party_settings: {  }
   user_id:
     label: hidden
     type: author
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
 hidden: {  }

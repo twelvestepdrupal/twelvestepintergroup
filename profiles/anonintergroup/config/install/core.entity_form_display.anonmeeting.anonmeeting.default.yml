@@ -8,7 +8,7 @@ dependencies:
   module:
     - anonmeetings
 _core:
-  default_config_hash: Tqz8Ez9KIfHfF-lhyLnx5gYax5FhARn5fvWSgexaaIA
+  default_config_hash: APhbTWofbgvVhNxaXFkp6L8SA-oAj5uoc8cFxnktM60
 id: anonmeeting.anonmeeting.default
 targetEntityType: anonmeeting
 bundle: anonmeeting

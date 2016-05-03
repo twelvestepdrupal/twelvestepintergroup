@@ -4,32 +4,51 @@ status: true
 dependencies:
   config:
     - field.field.anonlocation.anonlocation.field_address
+    - field.field.anonlocation.anonlocation.field_coordinates
+    - field.field.anonlocation.anonlocation.field_directions
   module:
     - address
     - anonlocations
+    - geolocation
+    - text
     - user
+_core:
+  default_config_hash: xAdsA_D9E9m7-pQ1iO8gce2ULtPmhtNb_ZEf_aJIETA
 id: anonlocation.anonlocation.default
 targetEntityType: anonlocation
 bundle: anonlocation
 mode: default
 content:
   field_address:
-    weight: 1
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: address_default
+  field_coordinates:
+    type: geolocation_latlng
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_directions:
+    type: text_trimmed
+    weight: 3
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
   name:
     label: above
     type: string
-    weight: -4
+    weight: 0
     settings:
       link_to_entity: false
     third_party_settings: {  }
   user_id:
     label: hidden
     type: author
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
 hidden: {  }
