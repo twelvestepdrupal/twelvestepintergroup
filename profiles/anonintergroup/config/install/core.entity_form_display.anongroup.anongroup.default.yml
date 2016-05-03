@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.anongroup.anongroup.field_default_location
+    - field.field.anongroup.anongroup.field_default_phone
+    - field.field.anongroup.anongroup.field_website
+  module:
+    - address
+    - anongroups
+    - link
+    - telephone
+id: anongroup.anongroup.default
+targetEntityType: anongroup
+bundle: anongroup
+mode: default
+content:
+  field_default_location:
+    type: address_default
+    weight: 4
+    settings:
+      default_country: null
+    third_party_settings: {  }
+  field_default_phone:
+    type: telephone_default
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_website:
+    type: link_default
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

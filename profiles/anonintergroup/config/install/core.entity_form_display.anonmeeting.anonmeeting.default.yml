@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.anonmeeting.anonmeeting.field_group
+    - field.field.anonmeeting.anonmeeting.field_location
+    - field.field.anonmeeting.anonmeeting.field_time
+  module:
+    - address
+    - anonmeetings
+    - office_hours
+id: anonmeeting.anonmeeting.default
+targetEntityType: anonmeeting
+bundle: anonmeeting
+mode: default
+content:
+  field_group:
+    type: entity_reference_autocomplete_tags
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_location:
+    type: address_default
+    weight: 3
+    settings:
+      default_country: null
+    third_party_settings: {  }
+  field_time:
+    type: office_hours_default
+    weight: 2
+    settings:
+      date_element_type: datelist
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }
