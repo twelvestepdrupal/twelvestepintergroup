@@ -1,16 +1,17 @@
-uuid: ecdf966b-a607-4429-a400-ada7ec577af7
+uuid: 5ecdf13e-fd91-4697-a504-4cb0112e3f64
 langcode: en
 status: true
 dependencies:
   module:
-    - address
     - anongroups
+    - anonlocations
 id: anongroup.field_default_location
 field_name: field_default_location
 entity_type: anongroup
-type: address
-settings: {  }
-module: address
+type: entity_reference
+settings:
+  target_type: anonlocation
+module: core
 locked: false
 cardinality: 1
 translatable: true

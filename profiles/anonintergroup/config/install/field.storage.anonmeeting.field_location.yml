@@ -1,16 +1,17 @@
-uuid: 6e479441-19f0-4f02-8600-efe9c81fd693
+uuid: f4f04d7f-51d3-4f1a-ad62-98219147c8e0
 langcode: en
 status: true
 dependencies:
   module:
-    - address
+    - anonlocations
     - anonmeetings
 id: anonmeeting.field_location
 field_name: field_location
 entity_type: anonmeeting
-type: address
-settings: {  }
-module: address
+type: entity_reference
+settings:
+  target_type: anonlocation
+module: core
 locked: false
 cardinality: 1
 translatable: true

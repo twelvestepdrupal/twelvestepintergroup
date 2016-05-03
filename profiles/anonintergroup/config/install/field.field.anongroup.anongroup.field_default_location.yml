@@ -1,33 +1,25 @@
-uuid: 0a35e7b1-3107-4fa1-bc00-d73883fd1597
+uuid: ee4e2b23-bae5-416c-a729-41902847b41c
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.anongroup.field_default_location
   module:
-    - address
     - anongroups
 id: anongroup.anongroup.field_default_location
 field_name: field_default_location
 entity_type: anongroup
 bundle: anongroup
-label: 'Default Location'
+label: 'Default location'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  available_countries: {  }
-  fields:
-    locality: locality
-    dependentLocality: dependentLocality
-    postalCode: postalCode
-    sortingCode: sortingCode
-    addressLine1: addressLine1
-    addressLine2: addressLine2
-    administrativeArea: '0'
-    organization: '0'
-    recipient: '0'
-  langcode_override: ''
-field_type: address
+  handler: 'default:anonlocation'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+field_type: entity_reference

@@ -7,6 +7,8 @@ dependencies:
   module:
     - anonmeetings
     - office_hours
+_core:
+  default_config_hash: tlQVkh6NJ6qdykAlUZA9OHZxENOJwN-sDq6ru5Llouc
 id: anonmeeting.anonmeeting.field_time
 field_name: field_time
 entity_type: anonmeeting

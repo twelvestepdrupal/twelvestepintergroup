@@ -1,0 +1,14 @@
+{
+  "name": "drupal/anonlocations",
+  "type": "drupal-module",
+  "description": "Anonymous 12 Step Location Entity",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/anonlocations",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/anonlocations",
+    "source": "http://cgit.drupalcode.org/anonlocations"
+  },
+  "require": { }
+}

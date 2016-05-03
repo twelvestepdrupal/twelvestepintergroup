@@ -1,0 +1,12 @@
+# Anonymous 12 Step Location menu items definition
+entity.anonlocation.collection:
+  title: 'Anonymous 12 Step Location list'
+  route_name: entity.anonlocation.collection
+  description: 'List Anonymous 12 Step Locations'
+  parent: system.admin_content
+
+anonlocation.admin.structure.settings:
+  title: 'Anonymous 12 Step Location settings'
+  description: 'Configure Anonymous 12 Step Locations'
+  route_name: anonlocation.settings
+  parent: system.admin_structure

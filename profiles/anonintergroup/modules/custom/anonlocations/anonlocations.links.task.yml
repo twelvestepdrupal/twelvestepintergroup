@@ -1,0 +1,26 @@
+# Anonymous 12 Step Location routing definition
+anonlocation.settings_tab:
+  route_name: anonlocation.settings
+  title: 'Settings'
+  base_route: anonlocation.settings
+
+entity.anonlocation.canonical:
+  route_name: entity.anonlocation.canonical
+  base_route: entity.anonlocation.canonical
+  title: 'View'
+
+entity.anonlocation.edit_form:
+  route_name: entity.anonlocation.edit_form
+  base_route: entity.anonlocation.canonical
+  title: 'Edit'
+
+entity.anonlocation.delete_form:
+  route_name:  entity.anonlocation.delete_form
+  base_route:  entity.anonlocation.canonical
+  title: 'Delete'
+  weight: 10
+
+entity.anonlocation.collection:
+  route_name: entity.anonlocation.collection
+  title: 'Anonymous Locations'
+  base_route: system.admin_content

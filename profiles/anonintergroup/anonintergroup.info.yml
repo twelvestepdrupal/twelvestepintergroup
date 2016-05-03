@@ -55,6 +55,7 @@ dependencies:
   - office_hours
   - anongroups
   - anonmeetings
+  - anonlocations
 themes:
   - seven
 # - bartik

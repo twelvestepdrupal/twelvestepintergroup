@@ -1,0 +1,19 @@
+add anonymous 12 step location entities:
+  title: 'Create new Anonymous 12 Step Location entities'
+
+administer anonymous 12 step location entities:
+  title: 'Administer Anonymous 12 Step Location entities'
+  description: 'Allow to access the administration form to configure Anonymous 12 Step Location entities.'
+  restrict access: true
+
+delete anonymous 12 step location entities:
+  title: 'Delete Anonymous 12 Step Location entities'
+
+edit anonymous 12 step location entities:
+  title: 'Edit Anonymous 12 Step Location entities'
+
+view published anonymous 12 step location entities:
+  title: 'View published Anonymous 12 Step Location entities'
+
+view unpublished anonymous 12 step location entities:
+  title: 'View unpublished Anonymous 12 Step Location entities'

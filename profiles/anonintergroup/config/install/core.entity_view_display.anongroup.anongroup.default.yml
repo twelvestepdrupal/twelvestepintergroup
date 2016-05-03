@@ -1,3 +1,4 @@
+uuid: cc08957c-aa0c-4d24-b800-a3f6deb550c4
 langcode: en
 status: true
 dependencies:
@@ -6,21 +7,23 @@ dependencies:
     - field.field.anongroup.anongroup.field_default_phone
     - field.field.anongroup.anongroup.field_website
   module:
-    - address
     - anongroups
     - link
     - user
+_core:
+  default_config_hash: CibB7rGSoFVYxm7FrN9GqgWzdMa3dG1iaDsF3QKbf-k
 id: anongroup.anongroup.default
 targetEntityType: anongroup
 bundle: anongroup
 mode: default
 content:
   field_default_location:
-    weight: 1
+    weight: 4
     label: above
-    settings: {  }
+    settings:
+      link: true
     third_party_settings: {  }
-    type: address_default
+    type: entity_reference_label
   field_default_phone:
     weight: 3
     label: above

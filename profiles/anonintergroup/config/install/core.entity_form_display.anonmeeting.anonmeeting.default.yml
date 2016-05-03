@@ -1,3 +1,4 @@
+uuid: 65264609-686b-49cf-b700-b79b78ad1c29
 langcode: en
 status: true
 dependencies:
@@ -6,9 +7,10 @@ dependencies:
     - field.field.anonmeeting.anonmeeting.field_location
     - field.field.anonmeeting.anonmeeting.field_time
   module:
-    - address
     - anonmeetings
     - office_hours
+_core:
+  default_config_hash: Tqz8Ez9KIfHfF-lhyLnx5gYax5FhARn5fvWSgexaaIA
 id: anonmeeting.anonmeeting.default
 targetEntityType: anonmeeting
 bundle: anonmeeting
@@ -23,11 +25,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_location:
-    type: address_default
-    weight: 3
+    weight: 5
     settings:
-      default_country: null
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_time:
     type: office_hours_default
     weight: 2

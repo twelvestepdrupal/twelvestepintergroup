@@ -1,11 +1,10 @@
-uuid: 1bd50760-2c81-4cc2-b200-bb3068a302d0
+uuid: a06358a9-2302-4099-9c05-5ae339c472fb
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.anonmeeting.field_location
   module:
-    - address
     - anonmeetings
 id: anonmeeting.anonmeeting.field_location
 field_name: field_location
@@ -18,16 +17,9 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  available_countries: {  }
-  fields:
-    locality: locality
-    dependentLocality: dependentLocality
-    postalCode: postalCode
-    sortingCode: sortingCode
-    addressLine1: addressLine1
-    addressLine2: addressLine2
-    administrativeArea: '0'
-    organization: '0'
-    recipient: '0'
-  langcode_override: ''
-field_type: address
+  handler: 'default:anonlocation'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+field_type: entity_reference
