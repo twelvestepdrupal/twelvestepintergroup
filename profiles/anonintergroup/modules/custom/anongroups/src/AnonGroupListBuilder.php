@@ -25,6 +25,8 @@ class AnonGroupListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
+    $header['phone'] = $this->t('Phone');
+    $header['website'] = $this->t('Website');
     return $header + parent::buildHeader();
   }
 
@@ -42,6 +44,10 @@ class AnonGroupListBuilder extends EntityListBuilder {
         )
       )
     );
+    // @todo: is there a better way to do this?
+    $row['phone'] = drupal_render($entity->get('field_default_phone')->view(['label' => 'hidden']));
+    $row['website'] = drupal_render($entity->get('field_website')->view(['label' => 'hidden']));
+
     return $row + parent::buildRow($entity);
   }
 
