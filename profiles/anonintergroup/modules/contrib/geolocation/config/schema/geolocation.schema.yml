@@ -1,0 +1,27 @@
+views.style.maps_common:
+  type: views_style
+  label: 'Geolocation CommonMap'
+  mapping:
+    geolocation_field:
+      type: string
+      label: 'Geolocation Field'
+    title_field:
+      type: string
+      label: 'Title Field'
+    centre:
+      type: string
+      label: 'Centre Option'
+    centre_fixed_values:
+      type: mapping
+      label: 'Geodata'
+      mapping:
+        latitude:
+          type: string
+          label: 'Latitude'
+        longitude:
+          type: string
+          label: 'Longitude'
+
+views.field.geolocation_field:
+  type: views.field.field
+  label: 'Geolocation Field'

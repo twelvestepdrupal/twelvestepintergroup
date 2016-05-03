@@ -1,0 +1,21 @@
+uuid: ad0d76f7-4887-476d-b800-e451a450fd76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonlocation.field_coordinates
+  module:
+    - anonlocations
+    - geolocation
+id: anonlocation.anonlocation.field_coordinates
+field_name: field_coordinates
+entity_type: anonlocation
+bundle: anonlocation
+label: Coordinates
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geolocation

@@ -1,0 +1,19 @@
+uuid: 423ca4bc-e317-4a93-961d-297bf073ca3a
+langcode: en
+status: true
+dependencies:
+  module:
+    - anonlocations
+    - geolocation
+id: anonlocation.field_coordinates
+field_name: field_coordinates
+entity_type: anonlocation
+type: geolocation
+settings: {  }
+module: geolocation
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

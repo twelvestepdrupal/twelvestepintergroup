@@ -1,0 +1,8 @@
+<div id="{{ id }}" class="geolocation-common-map" data-centre-lat="{{ centre.lat }}" data-centre-lng="{{ centre.lng }}">
+    <div class="geolocation-common-map-locations">
+    {%  for location in locations %}
+        {{ location }}
+    {% endfor %}
+    </div>
+    <div class="geolocation-common-map-container"></div>
+</div>

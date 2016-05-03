@@ -48,6 +48,7 @@ dependencies:
   - address
   - telephone
   - rest
+  - geolocation
   - anongroups
   - anonmeetings
   - anonlocations
