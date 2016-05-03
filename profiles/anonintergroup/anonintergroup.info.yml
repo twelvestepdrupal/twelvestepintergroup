@@ -1,6 +1,6 @@
 name: AnonIntergroup
 type: profile
-description: 'Drupal distribution for AA (and other 12 Step organization) Intergroups (Central Offices).'
+description: 'Drupal distribution for Anonymous 12 Step program Intergroups (Central Offices).'
 core: 8.x
 
 # The distribution_name property is used in the installer and other places as
@@ -44,7 +44,7 @@ dependencies:
   - views_ui
   - tour
   - automated_cron
-# Required modules for AA Intergroup
+# Required modules for AnonIntergroup
   - address
   - telephone
   - rest

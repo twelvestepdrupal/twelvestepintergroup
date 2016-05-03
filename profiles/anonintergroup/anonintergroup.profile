@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Enables modules and site configuration for a aaintergroup site installation.
+ * Enables modules and site configuration for a anonintergroup site installation.
  */
 
 use Drupal\contact\Entity\ContactForm;
@@ -12,7 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * Allows the profile to alter the site configuration form.
  */
-function aaintergroup_form_install_configure_form_alter(&$form, FormStateInterface $form_state) {
+function anonintergroup_form_install_configure_form_alter(&$form, FormStateInterface $form_state) {
   // Add a placeholder as example that one can choose an arbitrary site name.
-  $form['site_information']['site_name']['#attributes']['placeholder'] = t('Alcoholics Anonymous of My City');
+  $form['site_information']['site_name']['#attributes']['placeholder'] = t('Anonymous Intergroup of My City');
 }

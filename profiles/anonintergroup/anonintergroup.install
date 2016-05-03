@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Install, update and uninstall functions for the AA Intergroup install profile.
+ * Install, update and uninstall functions for the AnonIntergroup install profile.
  */
 
 /**
@@ -11,7 +11,7 @@
  *
  * @see system_install()
  */
-function aaintergroup_install() {
+function anonintergroup_install() {
   // First, do everything in minimal profile.
   include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
   standard_install();
