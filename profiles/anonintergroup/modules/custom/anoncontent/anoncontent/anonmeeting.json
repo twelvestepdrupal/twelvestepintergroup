@@ -1,1 +1,54 @@
-[]
+{
+    "1": {
+        "id": [
+            {
+                "value": "1"
+            }
+        ],
+        "uuid": [
+            {
+                "value": "f8e37539-646c-4436-8301-1fdb6e90729d"
+            }
+        ],
+        "user_id": [
+            {
+                "target_id": "1"
+            }
+        ],
+        "name": [
+            {
+                "value": "Some meeting"
+            }
+        ],
+        "status": [
+            {
+                "value": "1"
+            }
+        ],
+        "langcode": [
+            {
+                "value": "en"
+            }
+        ],
+        "created": [
+            {
+                "value": "1451678452"
+            }
+        ],
+        "changed": [
+            {
+                "value": "1451678452"
+            }
+        ],
+        "field_group": [
+            {
+                "target_id": "1"
+            }
+        ],
+        "field_location": [
+            {
+                "target_id": "1"
+            }
+        ]
+    }
+}

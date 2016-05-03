@@ -12,8 +12,7 @@
         ],
         "user_id": [
             {
-                "target_id": "1",
-                "url": "\/user\/1"
+                "target_id": "1"
             }
         ],
         "name": [

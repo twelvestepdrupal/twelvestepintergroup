@@ -11,10 +11,6 @@ This project implements a Drupal 8.x install profile (also known as a distributi
 The intent is to have a complete package that can be downloaded from drupal.org or installed on hosting platforms
 such as Acquia or Pantheon.
 
-## Requirements
-
-* php5.6
-
 ## Steps used to create this profile and a new site
 
 * Download latest Drupal 8
@@ -39,8 +35,12 @@ such as Acquia or Pantheon.
 
   The content specific to this profile can be exported and imported, useful for creating a new Intergroup offices.
 
-  - $ drush anonintergroup-export mysite
-  - $ drush anonintergroup-import mysite
+  - Enable the anoncontent module $ drush en -y anoncustom
+  - Create a new custom site module using $ drupal generate:module and put it in modules/custom. For example, call this module baltimoreaa.
+  - Export content using $ drush anon-content-export baltimoreaa
+    - This will create a subdirectory under modules/custom/baltimoreaa/anoncontent. This content can then be checked into the site repository.
+  - Import content using $ drush anon-content-import baltimoreaa
+    - You may need to create a fresh site install before importing. The import assumes that the content does not yet exist.
 
 ## See also
 

@@ -5,7 +5,6 @@
  * Drush integration for the anoncontent module.
  */
 
-use Symfony\Component\Serializer\Serializer;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
@@ -33,35 +32,49 @@ function anoncontent_drush_command() {
 /**
  * Exports all anonymous content into export_content json.
  *
- * @param
- *   $name - the directory name under anoncontent/data to serialize to.
+ * @param $module
+ *   - The name of the module to export to.
+ *
+ * @todo: simplify by using existing serialize export.
  */
 function drush_anoncontent_anon_content_export($module = NULL) {
   if (!$module) {
     $module = 'anoncontent';
   }
 
+  // Ensure that the export directory exists.
   $dir = drupal_get_path('module', $module) . "/anoncontent";
   file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
 
-  /** @var \Symfony\Component\Serializer\Serializer $serializer */
-  $serializer = \Drupal::service('serializer');
-
+  // Export each type.
   foreach (_anoncontent_types() as $entity_type_id) {
+    // Gather all of the entities of the type.
     $entity_ids = \Drupal::entityQuery($entity_type_id)
       ->execute();
 
+    // Load the entities.
     $controller = \Drupal::entityManager()->getStorage($entity_type_id);
-
     $entities = $controller->loadMultiple($entity_ids);
 
-    $export = $serializer->serialize($entities, 'json', ['json_encode_options' => JSON_PRETTY_PRINT]);
-    file_put_contents("$dir/$entity_type_id.json", $export);
+    // Convert the entities to an export array.
+    $export = [];
+    foreach ($entities as $entity_id => $entity) {
+      $export[$entity_id] = $entity->toArray();
+    }
+
+    // Export the entities as JSON.
+    $export_json = json_encode($export, JSON_PRETTY_PRINT) . "\n";
+    file_put_contents("$dir/$entity_type_id.json", $export_json);
   }
 }
 
 /**
  * Imports all anonymous content from this module.
+ *
+ * @param $module
+ *   - The name of the module to import from.
+ *
+ * @todo: simplify by using existing serialize import.
  */
 function drush_anoncontent_anon_content_import($module = NULL) {
   if (!$module) {
@@ -71,28 +84,34 @@ function drush_anoncontent_anon_content_import($module = NULL) {
 
   foreach (_anoncontent_types() as $entity_type_id) {
     $filepath = "$dir/$entity_type_id.json";
-    $import = @file_get_contents($filepath);
-    if (!$import) {
+    $import_json = @file_get_contents($filepath);
+    if (!$import_json) {
       drush_print(dt('Cannot read !file', ['!file' => $filepath]));
       continue;
     }
 
-    $entities = json_decode($import);
-    if (!$entities) {
+    $import = json_decode($import_json, TRUE);
+    if (!$import) {
       continue;
     }
 
     // Find existing entities.
     $existing_ids = \Drupal::entityQuery($entity_type_id)
-      ->condition('id', array_keys((array) $entities))
+      ->condition('id', array_keys($import))
       ->execute();
 
-    foreach ($entities as $entity_id => $entity) {
+    foreach ($import as $entity_id => $values) {
       // Skip entities that already exist.
       if (in_array($entity_id, $existing_ids)) {
         drush_print(dt('Skipping !entity_type_id !entity_id that already exists', ['!entity_type_id' => $entity_type_id, '!entity_id' => $entity_id]));
         continue;
       }
+
+      // Import the new entity.
+      \Drupal::entityManager()
+        ->getStorage($entity_type_id)
+        ->create($values)
+        ->save();
     }
   }
 }
@@ -103,5 +122,7 @@ function drush_anoncontent_anon_content_import($module = NULL) {
  * @return array
  */
 function _anoncontent_types() {
+  // These are ordered correctly so that when importing, the dependent
+  // entities are created first.
   return ['anonlocation', 'anongroup', 'anonmeeting'];
 }
