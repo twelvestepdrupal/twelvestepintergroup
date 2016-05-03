@@ -1,0 +1,25 @@
+uuid: bec3a808-b4f7-46b6-b30b-113e3a19817a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonmeeting.field_group
+  module:
+    - anonmeetings
+id: anonmeeting.anonmeeting.field_group
+field_name: field_group
+entity_type: anonmeeting
+bundle: anonmeeting
+label: Group
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:anongroup'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+field_type: entity_reference

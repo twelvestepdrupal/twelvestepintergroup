@@ -1,0 +1,23 @@
+uuid: 98b961ca-94e7-447a-a33a-58b1dbe9f4b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anongroup.field_website
+  module:
+    - anongroups
+    - link
+id: anongroup.anongroup.field_website
+field_name: field_website
+entity_type: anongroup
+bundle: anongroup
+label: Website
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

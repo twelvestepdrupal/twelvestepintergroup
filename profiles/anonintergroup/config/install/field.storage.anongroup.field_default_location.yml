@@ -1,0 +1,19 @@
+uuid: ecdf966b-a607-4429-a400-ada7ec577af7
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - anongroups
+id: anongroup.field_default_location
+field_name: field_default_location
+entity_type: anongroup
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
