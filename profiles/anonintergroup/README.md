@@ -15,7 +15,10 @@ such as Acquia or Pantheon.
 
 * Download latest Drupal 8
   - Install this profile in the profiles directory
-  - Install composer $ curl -sS https://getcomposer.org/installer | php
+  - Install composer
+```
+$ curl -sS https://getcomposer.org/installer | php
+```
     - Alternatively
 ```
 $ drush dl composer, and then use drush composer instead of composer.phar
@@ -25,6 +28,11 @@ $ drush dl composer, and then use drush composer instead of composer.phar
   - Or with
 ```
 $ drush -y si anonintergroup --site-name="Baltimore Central Service Office of Alcoholics Anonymous"
+```
+  - After installing the new site, move the settings changes to settings.local.php, and then reset the changes.
+```
+$ git diff
+$ git reset --hard
 ```
 
 ## Create new entities, this was how anonmeetings and anongroups modules were created
