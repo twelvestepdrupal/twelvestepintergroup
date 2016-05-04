@@ -5,10 +5,8 @@ dependencies:
   config:
     - field.field.anonmeeting.anonmeeting.field_group
     - field.field.anonmeeting.anonmeeting.field_location
-    - field.field.anonmeeting.anonmeeting.field_open
-    - field.field.anonmeeting.anonmeeting.field_smoking
     - field.field.anonmeeting.anonmeeting.field_time
-    - field.field.anonmeeting.anonmeeting.field_type
+    - field.field.anonmeeting.anonmeeting.field_format
   module:
     - anonmeetings
     - options
@@ -35,25 +33,13 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-  field_open:
-    type: list_key
-    weight: 4
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-  field_smoking:
-    type: list_key
-    weight: 7
-    label: above
-    settings: {  }
-    third_party_settings: {  }
   field_time:
     type: weeklytime_widget
     weight: 6
     label: above
     settings: {  }
     third_party_settings: {  }
-  field_type:
+  field_format:
     type: list_key
     weight: 5
     label: above

@@ -1,0 +1,65 @@
+uuid: ec33e42c-d421-4658-a9cc-618b36de4747
+langcode: en
+status: true
+dependencies:
+  module:
+    - anonmeetings
+    - options
+_core:
+  default_config_hash: aXYG-GPKB9965T8pLWY75NSODEuAX2WUrzk7hONLl8E
+id: anonmeeting.field_format
+field_name: field_format
+entity_type: anonmeeting
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: discussion
+      label: discussion
+    -
+      value: bigbook
+      label: bigbook
+    -
+      value: steps
+      label: steps
+    -
+      value: beginner
+      label: beginner
+    -
+      value: traditions
+      label: traditions
+    -
+      value: literature
+      label: literature
+    -
+      value: speaker
+      label: speaker
+    -
+      value: open
+      label: open
+    -
+      value: closed
+      label: closed
+    -
+      value: mens
+      label: mens
+    -
+      value: womans
+      label: womans
+    -
+      value: non-smoking
+      label: non-smoking
+    -
+      value: smoking
+      label: smoking
+    -
+      value: young
+      label: 'young peoples'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
