@@ -50,8 +50,12 @@ class WeeklyTimeField extends FieldItemBase {
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties = [];
 
-    $properties['value'] = DataDefinition::create('integer')
+    $properties['time'] = DataDefinition::create('integer')
       ->setLabel(new TranslatableMarkup('Time'))
+      ->setRequired(TRUE);
+
+    $properties['length'] = DataDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Length'))
       ->setRequired(TRUE);
 
     foreach (WeeklyTimeField::weekDays() as $key => $label) {
@@ -70,7 +74,11 @@ class WeeklyTimeField extends FieldItemBase {
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     $schema = [
       'columns' => [
-        'value' => [
+        'time' => [
+          'type' => 'int',
+          'not null' => FALSE,
+        ],
+        'length' => [
           'type' => 'int',
           'not null' => FALSE,
         ],
@@ -93,7 +101,9 @@ class WeeklyTimeField extends FieldItemBase {
    * {@inheritdoc}
    */
   public static function generateSampleValue(FieldDefinitionInterface $field_definition) {
-    $values['value'] = mt_rand(0, 1440);
+    $values = [];
+    $values['time'] = mt_rand(0, 48) * 30;
+    $values['length'] = 60 + mt_rand(0, 2) * 15;
     foreach (WeeklyTimeField::weekDays() as $key => $label) {
       $values[$key] = mt_rand(0, 1);
     }
@@ -104,8 +114,8 @@ class WeeklyTimeField extends FieldItemBase {
    * {@inheritdoc}
    */
   public function isEmpty() {
-    $value = $this->get('value')->getValue();
-    return $value === NULL || $value === '';
+    $time = $this->get('time')->getValue();
+    return $time === NULL || $time === '';
   }
 
 }

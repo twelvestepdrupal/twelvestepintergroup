@@ -31,17 +31,17 @@ class WeeklyTimeWidget extends WidgetBase {
     $element = [];
 
     // Convert stored time to HH:MM
-    $value = NULL;
-    if ($items[$delta]->value) {
-      $hh = floor($items[$delta]->value / 60);
-      $mm = $items[$delta]->value % 60;
-      $value = sprintf("%02.2d:%02.2d", $hh, $mm);
+    $time = NULL;
+    if ($items[$delta]->time) {
+      $hh = floor($items[$delta]->time / 60);
+      $mm = $items[$delta]->time % 60;
+      $time = sprintf("%02.2d:%02.2d", $hh, $mm);
     }
 
-    $element['value'] = [
+    $element['time'] = [
       '#type' => 'textfield',
       '#title' => t('Time'),
-      '#default_value' => $value,
+      '#default_value' => $time,
       '#description' => t('Time of day in 24 hour clock HH:MM'),
       '#size' => 5,
       '#maxlength' => 5,
@@ -55,6 +55,18 @@ class WeeklyTimeWidget extends WidgetBase {
       ];
     }
 
+    $element['length'] = [
+      '#type' => 'select',
+      '#title' => t('Length'),
+      '#default_value' => $items[$delta]->length,
+      '#description' => t('Length of meeting'),
+      '#options' => [
+        60 => t('1 hour'),
+        90 => t('90 minutes'),
+        // @todo: support other meeting lengths. We'll want to do this in JS so that the 1 hour choice is easiest.
+      ],
+    ];
+
     return $element;
   }
 
@@ -65,9 +77,9 @@ class WeeklyTimeWidget extends WidgetBase {
     // @todo: where do we do validation in D8?
 
     foreach ($values as &$value) {
-      $hh = substr($value['value'], 0, 2);
-      $mm = substr($value['value'], 3, 2);
-      $value['value'] = $hh * 60 + $mm;
+      $hh = substr($value['time'], 0, 2);
+      $mm = substr($value['time'], 3, 2);
+      $value['time'] = $hh * 60 + $mm;
     }
 
     return $values;
