@@ -1,9 +1,17 @@
+uuid: 7d109201-fda4-439a-925e-c0b49be85977
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: ouUDixfn4iYlr4gNprBCCkn7GlD9zknbZV0yncu8Z5g
 id: anonymous
 label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
   - 'view published anonymous 12 step group entities'
+  - 'access content'
+  - 'use text format restricted_html'
+  - 'access comments'
+  - 'access site-wide contact form'
+  - 'search content'

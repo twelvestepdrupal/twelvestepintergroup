@@ -6,7 +6,7 @@ dependencies:
     - anongroups
     - link
 _core:
-  default_config_hash: lsJVfShUt6r6hlw-ap8LaERnYHEhIC-NA1M38MNn8mQ
+  default_config_hash: LpRgQ5jrg5hGFRtCDJKzhrnYH639rQQ9Lp4klWtMOVg
 id: anongroup.field_website
 field_name: field_website
 entity_type: anongroup

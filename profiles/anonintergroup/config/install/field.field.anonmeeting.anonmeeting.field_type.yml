@@ -1,0 +1,25 @@
+uuid: 3302e3d0-18b4-471f-af4d-3c81ed8e45ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonmeeting.field_type
+  module:
+    - anonmeetings
+    - options
+_core:
+  default_config_hash: 7aCPcuJ4NBLXPDg_IvLi3_26R9hSukQG0fpMEd6sCzI
+id: anonmeeting.anonmeeting.field_type
+field_name: field_type
+entity_type: anonmeeting
+bundle: anonmeeting
+label: Type
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: discussion
+default_value_callback: ''
+settings: {  }
+field_type: list_string

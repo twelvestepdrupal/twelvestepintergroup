@@ -1,3 +1,4 @@
+uuid: d7e25c41-999c-4292-8c34-be1759bac7e6
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - search
   theme:
     - bootstrap
+_core:
+  default_config_hash: xHtLAJZYV8pxzM5QmEAWZWjkDHwk7hYP7hgWEKL0YqM
 id: bootstrap_search
 theme: bootstrap
 region: sidebar_first

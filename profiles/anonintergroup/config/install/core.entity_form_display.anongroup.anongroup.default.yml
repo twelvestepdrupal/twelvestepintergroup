@@ -14,7 +14,7 @@ dependencies:
     - telephone
     - text
 _core:
-  default_config_hash: 5NOmJo8P7YwczScfhrs3Drh543dvWDPBsA18SROk6-s
+  default_config_hash: V3gVjqJNrV9V0nuYOwTg6HhSpliOySUZOSFt-9UdS3g
 id: anongroup.anongroup.default
 targetEntityType: anongroup
 bundle: anongroup

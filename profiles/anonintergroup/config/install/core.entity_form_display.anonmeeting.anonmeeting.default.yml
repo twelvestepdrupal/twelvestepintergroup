@@ -5,12 +5,15 @@ dependencies:
   config:
     - field.field.anonmeeting.anonmeeting.field_group
     - field.field.anonmeeting.anonmeeting.field_location
+    - field.field.anonmeeting.anonmeeting.field_open
+    - field.field.anonmeeting.anonmeeting.field_smoking
     - field.field.anonmeeting.anonmeeting.field_time
+    - field.field.anonmeeting.anonmeeting.field_type
   module:
     - anonmeetings
     - weeklytime
 _core:
-  default_config_hash: OsJ3GOy9aNwISex1JITuJwQT3JhaqBrpBURqTRrvXYw
+  default_config_hash: Ggg4_SOM-4nuzLg8J810CxYRVqkFs5A6WpZJ4pV2kcw
 id: anonmeeting.anonmeeting.default
 targetEntityType: anonmeeting
 bundle: anonmeeting
@@ -32,9 +35,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_open:
+    type: options_select
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+  field_smoking:
+    type: options_select
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
   field_time:
     type: weeklytime_widget
     weight: 4
+    settings: {  }
+    third_party_settings: {  }
+  field_type:
+    type: options_select
+    weight: 6
     settings: {  }
     third_party_settings: {  }
   name:

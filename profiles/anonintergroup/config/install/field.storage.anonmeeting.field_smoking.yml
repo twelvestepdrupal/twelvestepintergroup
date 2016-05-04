@@ -1,0 +1,32 @@
+uuid: c66c40cd-47ae-48b3-a842-fce394741116
+langcode: en
+status: true
+dependencies:
+  module:
+    - anonmeetings
+    - options
+_core:
+  default_config_hash: SK-ObkzgLdrhkccJ4ClbU5TZLYVUjl9yvuraVD4NQGY
+id: anonmeeting.field_smoking
+field_name: field_smoking
+entity_type: anonmeeting
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: none
+      label: 'no smoking'
+    -
+      value: never
+      label: 'no smoking anywhere, not even on the premises'
+    -
+      value: smoking
+      label: smoking
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

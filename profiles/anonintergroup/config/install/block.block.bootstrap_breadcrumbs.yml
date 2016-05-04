@@ -1,3 +1,4 @@
+uuid: bfece7e2-ee1a-408e-ad80-0e163375ff05
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - system
   theme:
     - bootstrap
+_core:
+  default_config_hash: pY8jklJBKeb2Zl6b4zLhVRL91KfFj3NTFLh65e2iIjo
 id: bootstrap_breadcrumbs
 theme: bootstrap
 region: breadcrumb

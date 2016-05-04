@@ -13,7 +13,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: xAdsA_D9E9m7-pQ1iO8gce2ULtPmhtNb_ZEf_aJIETA
+  default_config_hash: os6xFStT2wXmmagLJQRokeks_5z2H3w_Hoy4XNsqKHE
 id: anonlocation.anonlocation.default
 targetEntityType: anonlocation
 bundle: anonlocation

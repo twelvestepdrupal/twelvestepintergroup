@@ -1,8 +1,12 @@
+uuid: 46c9a8b5-71a9-4bf1-8f29-0631a022ed47
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: 0n4UehTbjjbjeyLS6gxE0CuxQFEBmUdYElDed_c7E1M
 id: csr
-label: Central Service Representative
+label: 'Central Service Representative'
+weight: 3
 is_admin: false
 permissions:
   - 'edit anonymous 12 step meeting entities'

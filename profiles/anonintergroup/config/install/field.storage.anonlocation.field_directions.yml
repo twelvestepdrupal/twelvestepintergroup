@@ -5,6 +5,8 @@ dependencies:
   module:
     - anonlocations
     - text
+_core:
+  default_config_hash: h6flOUfC9jUS8mBFVezbcWzAJX9tCoiWCTPUZy7mZYI
 id: anonlocation.field_directions
 field_name: field_directions
 entity_type: anonlocation

@@ -1,8 +1,12 @@
+uuid: 7c434b77-6d32-4590-8390-3db0bc6880d9
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: cX4ngHqbgjNmrM9vrRSdBcQD9hUn2Sbjcc1GX7z0Xsw
 id: gsr
-label: General Service Representative
+label: 'General Service Representative'
+weight: 4
 is_admin: false
 permissions:
   - 'edit anonymous 12 step meeting entities'

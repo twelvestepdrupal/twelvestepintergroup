@@ -6,7 +6,7 @@ dependencies:
     - anongroups
     - telephone
 _core:
-  default_config_hash: _yqEZtTSIiuoSs9tRhdClG-ePXDPH5WjgqZH0MkGMV4
+  default_config_hash: NyZZAmnK5TCT0fJI3bixNFcXisbwmQiNHPdvzHHWujM
 id: anongroup.field_default_phone
 field_name: field_default_phone
 entity_type: anongroup

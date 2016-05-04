@@ -1,0 +1,25 @@
+uuid: 1e75e878-7e23-4dcd-ac38-874fff1bd86e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonmeeting.field_smoking
+  module:
+    - anonmeetings
+    - options
+_core:
+  default_config_hash: oEb7g0CwBXoXwVYvu6zmMvV8SXULa8pyUDyLJl0efAg
+id: anonmeeting.anonmeeting.field_smoking
+field_name: field_smoking
+entity_type: anonmeeting
+bundle: anonmeeting
+label: Smoking
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: none
+default_value_callback: ''
+settings: {  }
+field_type: list_string

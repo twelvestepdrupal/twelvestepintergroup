@@ -1,0 +1,25 @@
+uuid: 062d6a08-7b98-45d8-9808-d83be80603a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.anonmeeting.field_open
+  module:
+    - anonmeetings
+    - options
+_core:
+  default_config_hash: k8P4r8fUSERGzuOTt16xqSNd_BOFrFyag7kTuC1YjWU
+id: anonmeeting.anonmeeting.field_open
+field_name: field_open
+entity_type: anonmeeting
+bundle: anonmeeting
+label: Open
+description: 'Anyone can attend an open meeting. Only people with a desire to stop drinking can attend a closed meeting.'
+required: false
+translatable: false
+default_value:
+  -
+    value: open
+default_value_callback: ''
+settings: {  }
+field_type: list_string

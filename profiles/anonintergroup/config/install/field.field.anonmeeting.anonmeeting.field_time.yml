@@ -8,7 +8,7 @@ dependencies:
     - anonmeetings
     - weeklytime
 _core:
-  default_config_hash: 9EEj_P3EYLgq_A7DeA7AU86-PvA0CqbaNeH8kZWGPv0
+  default_config_hash: EAtBwo9W2YXrtGsYYD-SfFZpOw3XtmFjJh_Qa5f6FeM
 id: anonmeeting.anonmeeting.field_time
 field_name: field_time
 entity_type: anonmeeting

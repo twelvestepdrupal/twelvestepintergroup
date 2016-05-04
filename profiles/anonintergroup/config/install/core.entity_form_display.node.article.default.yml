@@ -1,3 +1,4 @@
+uuid: ac709ebf-423c-4d22-bfa5-3fbdc8e702cc
 langcode: en
 status: true
 dependencies:
@@ -6,12 +7,15 @@ dependencies:
     - field.field.node.article.comment
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
+    - image.style.thumbnail
     - node.type.article
   module:
     - comment
     - image
     - path
     - text
+_core:
+  default_config_hash: DkPOnVPQ9REsJHWhMeK2-cBNeYS2xUAsawHndyeT9Kw
 id: node.article.default
 targetEntityType: node
 bundle: article

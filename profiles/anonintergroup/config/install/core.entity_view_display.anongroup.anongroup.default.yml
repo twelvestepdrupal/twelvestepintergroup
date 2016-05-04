@@ -15,7 +15,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: B_YadgUlIGkdzFRXFOKgDBhskw33bUPsrsQRl9dRxlg
+  default_config_hash: 6RptStV-fku3KCsIsbgT4pVneGj83NgH8qAHTsBx1rE
 id: anongroup.anongroup.default
 targetEntityType: anongroup
 bundle: anongroup

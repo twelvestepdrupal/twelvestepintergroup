@@ -7,6 +7,8 @@ dependencies:
   module:
     - anongroups
     - text
+_core:
+  default_config_hash: 2weSP6CaGGemW7OE0FsH2_nihs3goRHa77wFJi2F8Es
 id: anongroup.anongroup.field_directions
 field_name: field_directions
 entity_type: anongroup

@@ -6,7 +6,7 @@ dependencies:
     - anongroups
     - anonmeetings
 _core:
-  default_config_hash: '-mPIo0VVWljrNNQila2J0ncy3UqXKgRSakiNGXPsv9o'
+  default_config_hash: qzO4oUREHpCB7Pyme1hsiNpBojLW4uUNvAXpiIRp5eQ
 id: anonmeeting.field_group
 field_name: field_group
 entity_type: anonmeeting

@@ -12,7 +12,7 @@ dependencies:
     - geolocation
     - text
 _core:
-  default_config_hash: pTzFPaKCOzCgZa7GDNBTCHkvbnuAWgb1UGw3KkZIdbM
+  default_config_hash: b1wB2ymAJ0niu0PFIFh435bMj8Lj-pXc40mLOlqrp5I
 id: anonlocation.anonlocation.default
 targetEntityType: anonlocation
 bundle: anonlocation
