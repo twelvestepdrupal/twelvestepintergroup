@@ -6,8 +6,8 @@ package: Field types
 dependencies:
   - field
 
-# Information added by Drupal.org packaging script on 2015-11-25
-version: '8.x-1.4+11-dev'
+# Information added by Drupal.org packaging script on 2016-01-31
+version: '8.x-1.5'
 core: '8.x'
 project: 'geolocation'
-datestamp: 1448464935
+datestamp: 1454267041

@@ -9,6 +9,7 @@ namespace Drupal\geolocation\Plugin\views\style;
 
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Utility\SortArray;
 
 
 /**
@@ -67,7 +68,15 @@ class CommonMap extends StylePluginBase {
     ];
 
     foreach ($this->view->result as $row) {
-      $title = empty($title_field) ? '' : $this->view->field[$title_field]->theme($row);
+      if (!empty($title_field)) {
+        $title_field_handler = $this->view->field[$title_field];
+        $title_build = array(
+          '#theme' => $title_field_handler->themeFunctions(),
+          '#view' => $title_field_handler->view,
+          '#field' => $title_field_handler,
+          '#row' => $row,
+        );
+      }
 
       $geo_items = $this->view->field[$geo_field]->getItems($row);
       foreach ($geo_items as $delta => $item) {
@@ -80,32 +89,56 @@ class CommonMap extends StylePluginBase {
         $build['#locations'][] = [
           '#theme' => 'geolocation_common_map_location',
           '#content' => $this->view->rowPlugin->render($row),
-          '#title' => $title,
+          '#title' => empty($title_build) ? '' : $title_build,
           '#position' => $position,
         ];
+
+
       }
     }
 
-    $centre = [
-      'lat' => 0,
-      'lng' => 0,
-    ];
-    switch ($this->options['centre']) {
-      case 'fixed_value':
-        $centre = [
-          'lat' => (float)$this->options['centre_fixed_values']['latitude'],
-          'lng' => (float)$this->options['centre_fixed_values']['longitude'],
-        ];
-        break;
+    $centre = NULL;
+    foreach ($this->options['centre'] as $id => $option) {
+      if (empty($option['enable'])) {
+        continue;
+      }
 
-      case 'first_row':
-      default:
-        if (!empty($build['#locations'][0]['#position'])) {
-          $centre = $build['#locations'][0]['#position'];
-        }
+      switch ($id) {
+        case 'fixed_value':
+          $centre = [
+            'lat' => (float)$option['settings']['latitude'],
+            'lng' => (float)$option['settings']['longitude'],
+          ];
+          break;
+
+        case (preg_match('/proximity_filter_*/', $id) ? true : false) :
+          $filter_id = substr($id, 17);
+          $handler = $this->displayHandler->getHandler('filter', $filter_id);
+          if ($handler->value['lat'] && $handler->value['lng']) {
+            $centre = [
+              'lat' => (float) $handler->value['lat'],
+              'lng' => (float) $handler->value['lng'],
+            ];
+          }
+          break;
+
+        case 'first_row':
+          if (!empty($build['#locations'][0]['#position'])) {
+            $centre = $build['#locations'][0]['#position'];
+          }
+          break;
+
+      }
+
+      if (!empty($centre['lat']) || !empty($centre['lng']) || !empty($centre['locate'])) {
+        // We're done, no need for further options.
         break;
+      }
     }
-    $build['#centre'] = $centre;
+
+    if (!empty($centre)) {
+      $build['#centre'] = $centre;
+    }
 
     return $build;
   }
@@ -118,11 +151,7 @@ class CommonMap extends StylePluginBase {
 
     $options['geolocation_field'] = ['default' => ''];
     $options['title_field'] = ['default' => ''];
-    $options['centre'] = ['default' => 'first_row'];
-    $options['centre_fixed_values'] = ['default' => [
-      'latitude' => 0,
-      'longitude' => 0,
-    ]];
+    $options['centre'] = ['default' => ''];
 
     return $options;
   }
@@ -137,6 +166,7 @@ class CommonMap extends StylePluginBase {
     $fieldMap = \Drupal::entityManager()->getFieldMap();
     $geo_options = [];
     $title_options = [];
+    $filters = $this->displayHandler->getOption('filters');
     $fields = $this->displayHandler->getOption('fields');
     foreach ($fields as $field_name => $field) {
       if ($field['plugin_id'] == 'geolocation_field') {
@@ -174,40 +204,81 @@ class CommonMap extends StylePluginBase {
       '#options' => $title_options,
     ];
 
+    $options = [
+      'first_row' => $this->t('Use first row as centre.'),
+      'fixed_value' => $this->t('Provide fixed latitude and longitude.'),
+    ];
+
+    foreach ($filters as $filter_name => $filter) {
+      if (empty($filter['plugin_id']) || $filter['plugin_id'] != 'geolocation_filter_proximity') {
+        continue;
+      }
+      $options['proximity_filter_' . $filter_name] = $this->displayHandler->getHandler('filter', $filter_name)->adminLabel();
+    }
+
     $form['centre'] = [
-      '#title' => $this->t('Source for centre coordinates'),
-      '#type' => 'radios',
-      '#default_value' => $this->options['centre'],
-      '#description' => $this->t("How to determine the centre of the map."),
-      '#options' => [
-        'first_row' => $this->t('Use first row as centre.'),
-        'none' => $this->t('Solely rely on Google fitBounds function to include all locations.'),
-        'fixed_value' => $this->t('Provide fixed latitude and longitude.'),
+      '#type' => 'table',
+      '#header' => [ t('Enable'), t('Option'), t('settings'), array('data' => t('Settings'), 'colspan' => '1')],
+      '#attributes' => ['id' => 'geolocation-centre-options'],
+      '#tabledrag' => [
+        [
+          'action' => 'order',
+          'relationship' => 'sibling',
+          'group' => 'geolocation-centre-option-weight',
+        ],
       ],
     ];
-    $form['centre_fixed_values'] = [
+
+    foreach ($options as $id => $label) {
+      $weight = $this->options['centre'][$id]['weight'] ?: 0;
+      $form['centre'][$id]['#weight'] = $weight;
+
+      $form['centre'][$id]['enable'] = [
+        '#type' => 'checkbox',
+        '#default_value' => isset($this->options['centre'][$id]['enable']) ? $this->options['centre'][$id]['enable'] : TRUE,
+      ];
+
+      $form['centre'][$id]['option'] = [
+        '#markup' => $label,
+      ];
+
+      // Optionally, to add tableDrag support:
+      $form['centre'][$id]['#attributes']['class'][] = 'draggable';
+      $form['centre'][$id]['weight'] = [
+        '#type' => 'weight',
+        '#title' => t('Weight for @option', ['@option' => $label]),
+        '#title_display' => 'invisible',
+        '#size' => 4,
+        '#default_value' => $weight,
+        '#attributes' => ['class' => ['geolocation-centre-option-weight']],
+      ];
+    }
+
+    $form['centre']['fixed_value']['settings'] = [
       '#title' => $this->t('Fixed values for centre'),
       '#type' => 'container',
       'latitude' => [
         '#type' => 'textfield',
         '#title' => t('Latitude'),
-        '#default_value' => $this->options['centre_fixed_values']['latitude'],
+        '#default_value' => $this->options['centre']['fixed_value']['settings']['latitude'],
         '#size' => 60,
         '#maxlength' => 128,
       ],
       'longitude' => [
         '#type' => 'textfield',
         '#title' => t('Longitude'),
-        '#default_value' => $this->options['centre_fixed_values']['longitude'],
+        '#default_value' => $this->options['centre']['fixed_value']['settings']['longitude'],
         '#size' => 60,
         '#maxlength' => 128,
       ],
       '#description' => $this->t("The source of geodata for each entity. Must be string"),
       '#states' => [
         'visible' => [
-          ':input[name="style_options[centre]"]' => ['value' => 'fixed_value'],
+          ':input[name="style_options[centre][fixed_value][enable]"]' => ['checked' => TRUE],
         ],
       ],
     ];
+
+    uasort($form['centre'], 'Drupal\Component\Utility\SortArray::sortByWeightProperty');
   }
 }

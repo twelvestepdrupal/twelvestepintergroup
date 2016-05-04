@@ -1,4 +1,4 @@
-<div id="{{ id }}" class="geolocation-common-map" data-centre-lat="{{ centre.lat }}" data-centre-lng="{{ centre.lng }}">
+<div id="{{ id }}" class="geolocation-common-map" {% if centre.lat is not empty and centre.lng is not empty %} data-centre-lat="{{ centre.lat }}" data-centre-lng="{{ centre.lng }}" {% endif %}>
     <div class="geolocation-common-map-locations">
     {%  for location in locations %}
         {{ location }}

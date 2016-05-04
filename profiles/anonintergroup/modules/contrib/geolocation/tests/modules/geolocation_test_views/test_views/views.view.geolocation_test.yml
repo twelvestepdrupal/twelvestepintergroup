@@ -52,10 +52,16 @@ display:
         options:
           geolocation_field: field_geolocation_test
           title_field: title
-          centre: first_row
-          centre_fixed_values:
-            latitude: '0'
-            longitude: '0'
+          centre:
+             first_row:
+               enable: true
+               weight: '-9'
+             fixed_value:
+               weight: '-8'
+               settings:
+                 latitude: '0'
+                 longitude: '0'
+               enable: 0
       row:
         type: fields
       fields:

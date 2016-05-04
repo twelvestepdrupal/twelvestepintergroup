@@ -8,19 +8,23 @@
 
     Drupal.behaviors.geolocationCommonMap = {
         attach: function (context, settings) {
-            console.log("Triggered");
             var map = $('#' + drupalSettings.geolocation.commonMap.id, context);
             map.children('.geolocation-common-map-locations').hide();
+            var bounds = new google.maps.LatLngBounds();
             var container = map.children('.geolocation-common-map-container');
             container.show();
-            var center = new google.maps.LatLng(map.data('centre-lat'), map.data('centre-lng'));
+            if (map.data('centre-lat'), map.data('centre-lng')) {
+                var center = new google.maps.LatLng(map.data('centre-lat'), map.data('centre-lng'));
+                bounds.extend(center);
+            }
+            else {
+                var center = new google.maps.LatLng(0, 0);
+            }
+
             var googleMap = new google.maps.Map(container[0], {
                 center: center,
                 zoom: 12
             });
-
-            var bounds = new google.maps.LatLngBounds();
-            bounds.extend(center);
 
             map.find('.geolocation-common-map-locations .geolocation').each(function(index, item) {
                 item = $(item);

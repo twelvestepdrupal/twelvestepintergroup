@@ -144,9 +144,9 @@ class ProximityFilter extends NumericFilter implements ContainerFactoryPluginInt
     $value = &$input[$this->options['expose']['identifier']];
     $value = [
       'value' => $value,
-      'lat' => $input['lat'] ?: $this->value['lat'],
-      'lng' => $input['lng'] ?: $this->value['lng'],
-      'units' => $input['units'] ?: $this->value['units'],
+      'lat' => !empty($input['lat']) ? $input['lat'] : $this->value['lat'],
+      'lng' => !empty($input['lng']) ? $input['lng'] : $this->value['lng'],
+      'units' => !empty($input['units']) ? $input['units'] : $this->value['units'],
     ];
 
     $rc = parent::acceptExposedInput($input);
