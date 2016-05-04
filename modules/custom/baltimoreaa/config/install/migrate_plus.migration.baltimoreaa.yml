@@ -1,0 +1,21 @@
+id: baltimoreaa
+label: Import meetings
+migration_groups:
+  - AA
+source:
+  plugin: csv
+  path: '/Users/douggreen/src/aadrupal/docroot/modules/custom/baltimoreaa_migrate/baltimoreaa.csv'
+  header_row_count: 1
+  keys:
+    - mID
+
+process:
+  name: mName
+  open: mOpen
+  smoking: mSmoke
+  type: mType
+
+destination:
+  plugin: 'entity:anonmeeting'
+
+migration_dependencies: {  }
