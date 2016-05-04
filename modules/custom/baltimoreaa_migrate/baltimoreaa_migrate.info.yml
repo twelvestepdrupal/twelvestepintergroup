@@ -1,0 +1,9 @@
+name: Baltimare AA Migrate
+type: module
+description: Baltimore AA Migration
+core: 8.x
+package: Other
+
+dependencies:
+  - baltimoreaa
+  - migrate_source_csv
