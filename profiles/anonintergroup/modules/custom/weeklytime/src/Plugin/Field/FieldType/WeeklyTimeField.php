@@ -45,6 +45,15 @@ class WeeklyTimeField extends FieldItemBase {
   }
 
   /**
+   * Return the key representing today in WeeklyTimeField::weekDays().
+   *
+   * @return string
+   */
+  public static function today() {
+    return strtolower(date('D'));
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
@@ -114,8 +123,21 @@ class WeeklyTimeField extends FieldItemBase {
    * {@inheritdoc}
    */
   public function isEmpty() {
+    // This time is empty if there is no time-of-day value.
     $time = $this->get('time')->getValue();
-    return $time === NULL || $time === '';
+    if ($time === NULL || $time === '') {
+      return TRUE;
+    }
+
+    // Since there is a time, this time is NOT empty if it is assigned to a day.
+    foreach (array_keys(self::weekDays()) as $day) {
+      if ($this->get($day)->getValue()) {
+        return FALSE;
+      }
+    }
+
+    // And empty if it is not assigned to any day.
+    return TRUE;
   }
 
 }

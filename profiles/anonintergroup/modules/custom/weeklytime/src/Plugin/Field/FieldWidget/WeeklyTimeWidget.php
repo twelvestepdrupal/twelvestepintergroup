@@ -30,6 +30,24 @@ class WeeklyTimeWidget extends WidgetBase {
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element = [];
 
+    if (isset($items[$delta]->day)) {
+      $default_days = $items[$delta]->day;
+    }
+    else {
+      $today = WeeklyTimeField::today();
+      $default_days = [$today => $today];
+    }
+
+    $element['day'] = [
+      '#type' => 'select',
+      '#title' => t('Days of week'),
+      '#multiple' => TRUE,
+      '#default_value' => $default_days,
+      '#options' => WeeklyTimeField::weekDays(),
+      '#required' => TRUE,
+      '#chosen' => TRUE,
+    ];
+
     // Convert stored time to HH:MM
     $time = NULL;
     if ($items[$delta]->time) {
@@ -45,20 +63,13 @@ class WeeklyTimeWidget extends WidgetBase {
       '#description' => t('Time of day in 24 hour clock HH:MM'),
       '#size' => 5,
       '#maxlength' => 5,
+//    '#required' => TRUE,
     ];
-
-    foreach (WeeklyTimeField::weekDays() as $key => $label) {
-      $element[$key] = [
-        '#type' => 'checkbox',
-        '#title' => t($label),
-        '#default_value' => isset($items[$delta]->$key) ? $items[$delta]->$key : FALSE,
-      ];
-    }
 
     $element['length'] = [
       '#type' => 'select',
       '#title' => t('Length'),
-      '#default_value' => $items[$delta]->length,
+      '#default_value' => isset($items[$delta]->length) ? $items[$delta]->length : 60,
       '#description' => t('Length of meeting'),
       '#options' => [
         60 => t('1 hour'),
@@ -77,9 +88,15 @@ class WeeklyTimeWidget extends WidgetBase {
     // @todo: where do we do validation in D8?
 
     foreach ($values as &$value) {
+      // Save the time as a minute in the day.
       $hh = substr($value['time'], 0, 2);
       $mm = substr($value['time'], 3, 2);
       $value['time'] = $hh * 60 + $mm;
+
+      // Save the day of the week in each field.
+      foreach (array_keys(WeeklyTimeField::weekDays()) as $day) {
+        $value[$day] = in_array($day, $value['day']) ? 1 : 0;
+      }
     }
 
     return $values;

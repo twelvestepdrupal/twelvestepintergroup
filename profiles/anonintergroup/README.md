@@ -35,6 +35,13 @@ $ git diff
 $ git reset --hard
 ```
 
+* Download latest chosen jquery plugin to libraries/chosen.
+```
+$ drush chosenplugin
+```
+
+### @todo: install chosen with composer.
+
 ## Create new entities, this was how anonmeetings and anongroups modules were created
 
   - Install the drupal console, https://drupalconsole.com/
