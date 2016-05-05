@@ -1,0 +1,45 @@
+id: baltimoreaa.anonmeetings
+label: Import meetings
+migration_groups:
+  - aa
+source:
+  plugin: csv
+  path: '/Users/douggreen/src/aadrupal/docroot/modules/custom/baltimoreaa/baltimoreaa.csv'
+  header_row_count: 1
+  keys:
+    - mID
+process:
+  name: mName
+  field_format:
+    plugin: static_map
+    source
+      - mSmoke
+      - mType
+      - mOpen
+    map:
+      mOpen:
+        O: open
+        C: closed
+      mType:
+        D: discussion
+        O: open
+        Discussion: discussion
+        Speaker: speaker
+        Step: stepstudy
+        Beg. Step: stepstudy
+        Beginners: beginners
+        Literature: literature
+        Discusssion: discussion
+        Discuussion: discussion
+        Step Study: stepstudy
+        Big Book: bigbook
+        Traditions: traditions
+        BB: bigbook
+      mSmoke:
+        M: mens
+        W: womens
+        NSM: nonsmoking
+        YP: youngpeoples
+destination:
+  plugin: 'entity:anonmeeting'
+migration_dependencies: {  }
