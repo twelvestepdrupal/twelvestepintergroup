@@ -1,20 +1,17 @@
-# This migration demonstrates importing from multiple XML files.
-id: wine_variety_multi_xml
+# This migration demonstrates importing from an endpoint listing other endpoints
+# containing individual item data.
+id: wine_variety_list
 label: XML feed of varieties
-third_party_settings:
-  migrate_plus:
-    migration_group: wine
+migration_group: wine
 source:
   # We use the XML source plugin.
-  plugin: url
-  data_fetcher_plugin: http
-  data_parser_plugin: xml
+  plugin: xml
   # Normally, this is one or more fully-qualified URLs or file paths. Because
   # we can't hardcode your local URL, we provide a relative path here which
   # hook_install() will rewrite to a full URL for the current site.
-  urls:
-    - /migrate_example_advanced_variety_multiple/red?_format=xml
-    - /migrate_example_advanced_variety_multiple/white?_format=xml
+  urls: /migrate_example_advanced_variety_list?_format=xml
+  item_url: /migrate_example_advanced_variety_list/:id?_format=xml
+  id_selector: /response/items
   # Visit the URL above (relative to your site root) and look at it. You can see
   # that <response> is the outer element, and each item we want to import is a
   # <position> element. The item_xpath value is the xpath to use to query the
@@ -27,16 +24,13 @@ source:
   # an xpath for retrieving that value. It's important to note that this xpath
   # is relative to the elements retrieved by item_xpath.
   fields:
-    -
-      name: category_name
-      label: Name
+    category_name:
+      label:
       selector: name
-    -
-      name: category_details
-      label: Details
+    category_details:
+      label:
       selector: details
-    -
-      name: category_parent
+    category_parent:
       label: 'Unique position identifier'
       selector: parent
   # Under 'ids', we identify source fields populated above which will uniquely
@@ -58,5 +52,5 @@ process:
 destination:
   plugin: entity:taxonomy_term
 migration_dependencies:
-  required:
+  require:
     - wine_terms

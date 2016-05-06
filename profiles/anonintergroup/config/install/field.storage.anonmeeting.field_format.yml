@@ -55,6 +55,9 @@ settings:
     -
       value: young
       label: 'young peoples'
+    -
+      value: handicap
+      label: 'handicap accessible'
   allowed_values_function: ''
 module: options
 locked: false
