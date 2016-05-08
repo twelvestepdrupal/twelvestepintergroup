@@ -53,11 +53,20 @@ settings:
       value: smoking
       label: smoking
     -
-      value: young
+      value: youngpeoples
       label: 'young peoples'
     -
       value: handicap
       label: 'handicap accessible'
+    -
+      value: gay
+      label: gay
+    -
+      value: spanish
+      label: 'spanish speaking'
+    -
+      value: promises
+      label: promises
   allowed_values_function: ''
 module: options
 locked: false

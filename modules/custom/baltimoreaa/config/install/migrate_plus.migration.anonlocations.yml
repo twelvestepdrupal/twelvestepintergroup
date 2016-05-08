@@ -1,14 +1,15 @@
-id: anonmeetings
-label: Import meetings
+id: anonlocations
+label: Import locations
 #migration_group: baltimoreaa
 source:
   plugin: csv
   path: modules/custom/baltimoreaa/baltimoreaa.csv
   header_row_count: 1
   keys:
-    - mID
-    - mDayNo
-    - mTime
+    - mAdd1
+    - mAdd2
+    - mCity
+    - mZip
   column_names:
     0:
       mID: identifier
@@ -44,10 +45,21 @@ source:
       mSpecial: coordinates
 process:
   name: mName
-  field_format:
-    - plugin: meeting_format
+  field_address/address_line1: mAdd1
+  field_address/address_line2: mAdd2
+  field_address/locality: mCity
+  field_address/dependent_locality:
+    plugin: default_value
+    value: MD
+  field_address/postal_code: zipcode
+  field_coordinates/lat:
+    plugin: coordinate
+    source: mSpecial
+    position: 0
+  field_coordinates/long:
+    plugin: coordinate
+    source: mSpecial
+    position: 1
 destination:
-  plugin: 'entity:anonmeeting'
-migration_dependencies:
-  required:
-    - anonlocations
+  plugin: 'entity:anonlocation'
+migration_dependencies: {}

@@ -25,6 +25,9 @@ class AnonMeetingListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
+    $header['when'] = $this->t('When');
+    $header['where'] = $this->t('Where');
+    $header['format'] = $this->t('Format');
     return $header + parent::buildHeader();
   }
 
@@ -42,6 +45,10 @@ class AnonMeetingListBuilder extends EntityListBuilder {
         )
       )
     );
+    // @todo: is there a better way to do this?
+    $row['when'] = drupal_render($entity->get('field_time')->view(['label' => 'hidden']));
+    $row['where'] = drupal_render($entity->get('field_location')->view(['label' => 'hidden']));
+    $row['format'] = drupal_render($entity->get('field_format')->view(['label' => 'hidden']));
     return $row + parent::buildRow($entity);
   }
 
