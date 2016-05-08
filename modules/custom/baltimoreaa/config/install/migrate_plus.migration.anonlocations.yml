@@ -53,12 +53,14 @@ process:
     value: MD
   field_address/postal_code: zipcode
   field_coordinates/lat:
-    plugin: coordinate
+    plugin: explode_position
     source: mSpecial
+    delimiter: ,
     position: 0
   field_coordinates/long:
-    plugin: coordinate
+    plugin: explode_position
     source: mSpecial
+    delimiter: ,
     position: 1
 destination:
   plugin: 'entity:anonlocation'
