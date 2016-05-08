@@ -1,6 +1,6 @@
 id: anonlocations
 label: Import locations
-#migration_group: baltimoreaa
+migration_group: baltimoreaa
 source:
   plugin: csv
   path: modules/custom/baltimoreaa/baltimoreaa.csv

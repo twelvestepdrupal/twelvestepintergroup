@@ -1,6 +1,6 @@
 id: anonmeetings
 label: Import meetings
-#migration_group: baltimoreaa
+migration_group: baltimoreaa
 source:
   plugin: csv
   path: modules/custom/baltimoreaa/baltimoreaa.csv
@@ -48,6 +48,7 @@ process:
     - plugin: meeting_format
 destination:
   plugin: 'entity:anonmeeting'
-migration_dependencies:
-  required:
-    - anonlocations
+migration_dependencies: {}
+#migration_dependencies:
+#  required:
+#    - anonlocations
