@@ -1,0 +1,19 @@
+<?php
+/**
+ * Installation and update handlers for baltimoreaa module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * @todo: restore code once the migration is working better.
+function baltimoreaa_install() {
+  $migrations = \Drupal::service('plugin.manager.migration')
+    ->createInstancesByTag('baltimoreaa');
+
+  foreach ($migrations as $migration) {
+    $executable = new MigrateExecutable($migration, new MigrateMessage());
+    $executable->import();
+  }
+}
+ */
