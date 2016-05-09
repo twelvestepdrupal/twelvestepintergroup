@@ -4,6 +4,4 @@ description: Baltimore Alcoholics Anonymous Intergroup
 core: 8.x
 package: Other
 dependencies:
-  - migrate_plus
-  - migrate_tools
   - migrate_source_csv

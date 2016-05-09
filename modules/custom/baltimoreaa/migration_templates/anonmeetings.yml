@@ -1,0 +1,20 @@
+id: anonmeetings
+label: Import meetings
+migration_tags:
+  - baltimoreaa
+source:
+  plugin: baltimoreaa_csv
+  keys:
+    - mID
+    - mDayNo
+    - mTime
+process:
+  name: mName
+  field_format:
+    - plugin: meeting_format
+destination:
+  plugin: 'entity:anonmeeting'
+migration_dependencies: {}
+#migration_dependencies:
+#  required:
+#    - anonlocations
