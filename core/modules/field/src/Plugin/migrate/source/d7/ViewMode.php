@@ -5,7 +5,7 @@ namespace Drupal\field\Plugin\migrate\source\d7;
 use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
 /**
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *  id = "d7_view_mode"
  * )
  */

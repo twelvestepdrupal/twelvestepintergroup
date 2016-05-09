@@ -8,7 +8,7 @@ use Drupal\migrate\Row;
 /**
  * Drupal image styles source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_image_styles",
  *   source_provider = "image"
  * )

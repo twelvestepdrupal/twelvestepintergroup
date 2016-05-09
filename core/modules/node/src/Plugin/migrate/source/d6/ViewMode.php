@@ -5,7 +5,7 @@ namespace Drupal\node\Plugin\migrate\source\d6;
 /**
  * The view mode source.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_view_mode",
  *   source_provider = "content"
  * )

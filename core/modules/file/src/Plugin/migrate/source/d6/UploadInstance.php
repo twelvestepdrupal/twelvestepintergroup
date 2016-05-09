@@ -8,7 +8,7 @@ use Drupal\migrate\Plugin\migrate\source\DummyQueryTrait;
 /**
  * Drupal 6 upload instance source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_upload_instance",
  *   source_provider = "upload"
  * )

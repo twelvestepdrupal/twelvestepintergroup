@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal block source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "block",
  *   source_provider = "block"
  * )

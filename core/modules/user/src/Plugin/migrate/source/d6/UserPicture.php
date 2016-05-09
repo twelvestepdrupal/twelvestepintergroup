@@ -9,7 +9,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  *
  * @todo Support default picture?
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_user_picture"
  * )
  */

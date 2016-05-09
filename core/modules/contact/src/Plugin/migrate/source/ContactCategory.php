@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Contact category source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "contact_category",
  *   source_provider = "contact"
  * )

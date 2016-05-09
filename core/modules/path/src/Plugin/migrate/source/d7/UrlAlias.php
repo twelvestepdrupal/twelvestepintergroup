@@ -7,7 +7,7 @@ use Drupal\path\Plugin\migrate\source\UrlAliasBase;
 /**
  * URL aliases source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_url_alias",
  *   source_provider = "path"
  * )

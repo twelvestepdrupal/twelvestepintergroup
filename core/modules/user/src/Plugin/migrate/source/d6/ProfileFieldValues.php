@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 6 profile fields values source.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_profile_field_values",
  *   source_provider = "profile"
  * )

@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 7 shortcut_set_users source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_shortcut_set_users",
  *   source_provider = "shortcut"
  * )

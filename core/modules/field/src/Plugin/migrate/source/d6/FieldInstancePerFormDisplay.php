@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * The field instance per form display source class.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_field_instance_per_form_display",
  *   source_provider = "content"
  * )

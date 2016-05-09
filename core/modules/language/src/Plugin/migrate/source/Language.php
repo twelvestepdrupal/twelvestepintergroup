@@ -5,7 +5,7 @@ namespace Drupal\language\Plugin\migrate\source;
 use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 
 /**
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "language",
  *   source_provider = "locale"
  * )

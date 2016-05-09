@@ -5,7 +5,7 @@ namespace Drupal\taxonomy\Plugin\migrate\source\d6;
 /**
  * Gets all the vocabularies based on the node types that have Taxonomy enabled.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_taxonomy_vocabulary_per_type",
  *   source_provider = "taxonomy"
  * )

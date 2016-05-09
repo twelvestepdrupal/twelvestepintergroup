@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 6 block source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_box"
  * )
  */

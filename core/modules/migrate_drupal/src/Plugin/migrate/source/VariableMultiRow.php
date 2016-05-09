@@ -10,7 +10,7 @@ use Drupal\migrate\Row;
  * Unlike the variable source plugin, this one returns one row per
  * variable.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "variable_multirow"
  * )
  */

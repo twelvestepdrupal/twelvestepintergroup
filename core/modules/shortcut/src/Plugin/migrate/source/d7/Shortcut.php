@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 7 shortcut links source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_shortcut",
  *   source_provider = "shortcut"
  * )

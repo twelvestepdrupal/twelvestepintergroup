@@ -10,7 +10,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
  *
  * @todo Support term_relation, term_synonym table if possible.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "taxonomy_term",
  *   source_provider = "taxonomy"
  * )

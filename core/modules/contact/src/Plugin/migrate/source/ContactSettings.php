@@ -5,7 +5,7 @@ namespace Drupal\contact\Plugin\migrate\source;
 use Drupal\migrate_drupal\Plugin\migrate\source\Variable;
 
 /**
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "contact_settings",
  *   source_provider = "contact"
  * )

@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 6 user source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_user"
  * )
  */

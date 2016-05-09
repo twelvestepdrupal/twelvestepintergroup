@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 7 field instances source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_field_instance",
  *   source_provider = "field"
  * )

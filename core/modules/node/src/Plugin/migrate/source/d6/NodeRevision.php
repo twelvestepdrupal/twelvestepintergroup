@@ -5,7 +5,7 @@ namespace Drupal\node\Plugin\migrate\source\d6;
 /**
  * Drupal 6 node revision source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_node_revision"
  * )
  */

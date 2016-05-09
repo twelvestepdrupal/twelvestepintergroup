@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * The field instance per view mode source class.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_field_instance_per_view_mode",
  *   source_provider = "field"
  * )

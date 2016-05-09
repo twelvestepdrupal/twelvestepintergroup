@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\d7\FieldableEntity;
 /**
  * Drupal 7 user source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_user"
  * )
  */

@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Menu source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "menu",
  *   source_provider = "menu"
  * )

@@ -8,7 +8,7 @@ use Drupal\migrate\Row;
 /**
  * Profile field source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "profile_field",
  *   source_provider = "profile"
  * )

@@ -8,7 +8,7 @@ use Drupal\migrate\Row;
 /**
  * Drupal 6 filter source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_filter_format"
  * )
  */

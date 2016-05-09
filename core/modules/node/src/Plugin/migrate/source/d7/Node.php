@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\d7\FieldableEntity;
 /**
  * Drupal 7 node source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_node",
  *   source_provider = "node"
  * )

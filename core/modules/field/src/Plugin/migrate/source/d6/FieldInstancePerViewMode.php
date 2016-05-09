@@ -7,7 +7,7 @@ use Drupal\node\Plugin\migrate\source\d6\ViewModeBase;
 /**
  * The field instance per view mode source class.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_field_instance_per_view_mode",
  *   source_provider = "content"
  * )

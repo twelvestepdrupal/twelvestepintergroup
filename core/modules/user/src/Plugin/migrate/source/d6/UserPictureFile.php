@@ -8,7 +8,7 @@ use Drupal\migrate\Row;
 /**
  * Drupal 6 user picture source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_user_picture_file"
  * )
  */

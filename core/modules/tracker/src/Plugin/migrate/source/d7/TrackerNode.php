@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 7 tracker node source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_tracker_node",
  *   source_provider = "tracker"
  * )

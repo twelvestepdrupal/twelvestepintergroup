@@ -3,7 +3,7 @@
 namespace Drupal\comment\Plugin\migrate\source\d6;
 
 /**
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d6_comment_variable_per_comment_type"
  * )
  */

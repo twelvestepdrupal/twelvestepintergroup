@@ -14,11 +14,11 @@ use Drupal\KernelTests\KernelTestBase;
 class MigrationTest extends KernelTestBase {
 
   /**
-   * Enable field because we are using one of its source plugins.
+   * We only need migrate itself.
    *
    * @var array
    */
-  public static $modules = ['migrate', 'field'];
+  public static $modules = ['migrate'];
 
   /**
    * Tests Migration::set().
@@ -34,8 +34,17 @@ class MigrationTest extends KernelTestBase {
     $this->assertEqual('entity:entity_view_mode', $migration->getDestinationPlugin()->getPluginId());
 
     // Test the source plugin is invalidated.
-    $migration->set('source', ['plugin' => 'd6_field']);
-    $this->assertEqual('d6_field', $migration->getSourcePlugin()->getPluginId());
+    $data_rows = [
+      ['key' => '1', 'field1' => 'f1value1'],
+    ];
+    $ids = ['key' => ['type' => 'integer']];
+    $definition = [
+      'plugin' => 'embedded_data',
+      'data_rows' => $data_rows,
+      'ids' => $ids,
+    ];
+    $migration->set('source', $definition);
+    $this->assertEqual('embedded_data', $migration->getSourcePlugin()->getPluginId());
 
     // Test the destination plugin is invalidated.
     $migration->set('destination', ['plugin' => 'null']);

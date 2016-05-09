@@ -7,7 +7,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal aggregator item source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "aggregator_item",
  *   source_provider = "aggregator"
  * )

@@ -8,7 +8,7 @@ use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 /**
  * Drupal 7 Node types source from database.
  *
- * @MigrateSource(
+ * @MigrateDrupalSource(
  *   id = "d7_node_type",
  *   source_provider = "node"
  * )

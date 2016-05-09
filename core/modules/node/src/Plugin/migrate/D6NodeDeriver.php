@@ -9,6 +9,7 @@ use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
 use Drupal\migrate\Exception\RequirementsException;
 use Drupal\migrate\Plugin\MigrationDeriverTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 /**
  * Deriver for Drupal 6 node and node revision migrations based on node types.
@@ -54,10 +55,16 @@ class D6NodeDeriver extends DeriverBase implements ContainerDeriverInterface {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, $base_plugin_id) {
-    return new static(
-      $base_plugin_id,
-      $container->get('plugin.manager.migrate.cckfield')
-    );
+    try {
+      $cckfield_plugin_manager = $container->get('plugin.manager.migrate.cckfield');
+      return new static(
+        $base_plugin_id,
+        $cckfield_plugin_manager
+      );
+    }
+    catch (ServiceNotFoundException $e) {
+      return NULL;
+    }
   }
 
   /**
