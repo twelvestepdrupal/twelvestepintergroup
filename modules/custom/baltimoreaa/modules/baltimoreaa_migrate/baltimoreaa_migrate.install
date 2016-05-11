@@ -1,13 +1,15 @@
 <?php
 /**
- * Installation and update handlers for baltimoreaa module.
+ * Installation and update handlers for baltimoreaa migrate module.
  */
+
+use Drupal\migrate\MigrateExecutable;
+use Drupal\migrate\MigrateMessage;
 
 /**
  * Implements hook_install().
- *
- * @todo: restore code once the migration is working better.
-function baltimoreaa_install() {
+ */
+function baltimoreaa_migrate_install() {
   $migrations = \Drupal::service('plugin.manager.migration')
     ->createInstancesByTag('baltimoreaa');
 
@@ -16,4 +18,3 @@ function baltimoreaa_install() {
     $executable->import();
   }
 }
- */

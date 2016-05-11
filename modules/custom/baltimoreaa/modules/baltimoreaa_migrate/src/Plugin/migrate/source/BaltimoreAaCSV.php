@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\baltimoreaa\Plugin\migrate\source;
+namespace Drupal\baltimoreaa_migrate\Plugin\migrate\source;
 
 use Drupal\migrate_source_csv\Plugin\migrate\source\CSV;
 
@@ -15,7 +15,7 @@ use Drupal\migrate_source_csv\Plugin\migrate\source\CSV;
  * @code
  * source:
  *   plugin: csv
- *   path: modules/custom/baltimoreaa/baltimoreaa.csv
+ *   path: modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv
  *   header_row_count: 1
  *   column_names:
  *     0:
@@ -63,7 +63,7 @@ class BaltimoreAaCSV extends CSV {
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
     $configuration += [
-      'path' => 'modules/custom/baltimoreaa/baltimoreaa.csv',
+      'path' => 'modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv',
       'header_row_count' => '1',
       'column_names' => [
         ['mID' => 'identifier'],

@@ -1,0 +1,7 @@
+name: Baltimore AA Migration
+type: module
+description: Baltimore Alcoholics Anonymous Intergroup Migration
+core: 8.x
+package: baltimoreaa
+dependencies:
+  - migrate_source_csv

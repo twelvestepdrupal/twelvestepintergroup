@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\baltimoreaa\Plugin\migrate\process;
+namespace Drupal\baltimoreaa_migrate\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
