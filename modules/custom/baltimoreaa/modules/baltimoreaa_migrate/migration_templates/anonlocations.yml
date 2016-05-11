@@ -1,14 +1,9 @@
 id: anonlocations
 label: Import locations
-migration_tags:
-  - baltimoreaa
+migration_tags: [ baltimoreaa ]
 source:
   plugin: baltimoreaa_csv
-  keys:
-    - mAdd1
-    - mAdd2
-    - mCity
-    - mZip
+  keys: [ mAdd1, mAdd2, mCity, mZip ]
 process:
   name: mName
   field_address/country_code:
