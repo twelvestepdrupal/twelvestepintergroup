@@ -44,11 +44,25 @@ class AnonGroupListBuilder extends EntityListBuilder {
         )
       )
     );
-    // @todo: is there a better way to do this?
-    $row['phone'] = drupal_render($entity->get('field_default_phone')->view(['label' => 'hidden']));
-    $row['website'] = drupal_render($entity->get('field_website')->view(['label' => 'hidden']));
+    $row['phone'] = self::renderField($entity, 'field_default_phone');
+    $row['website'] = self::renderField($entity, 'field_website');
 
     return $row + parent::buildRow($entity);
+  }
+
+  /**
+   * Render the field.
+   *
+   * @todo: is there a better way to do this?
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param $field_name
+   *
+   * @return string
+   */
+  static protected function renderField(EntityInterface $entity, $field_name) {
+    $output = $entity->get($field_name)->view(['label' => 'hidden']);
+    return drupal_render($output);
   }
 
 }

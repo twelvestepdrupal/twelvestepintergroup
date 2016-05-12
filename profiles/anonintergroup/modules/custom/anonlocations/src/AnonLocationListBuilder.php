@@ -43,9 +43,23 @@ class AnonLocationListBuilder extends EntityListBuilder {
         )
       )
     );
-    // @todo: is there a better way to do this?
-    $row['address'] = drupal_render($entity->get('field_address')->view(['label' => 'hidden']));
+    $row['address'] = self::renderField($entity, 'field_address');
     return $row + parent::buildRow($entity);
+  }
+
+  /**
+   * Render the field.
+   *
+   * @todo: is there a better way to do this?
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param $field_name
+   *
+   * @return string
+   */
+  static protected function renderField(EntityInterface $entity, $field_name) {
+    $output = $entity->get($field_name)->view(['label' => 'hidden']);
+    return drupal_render($output);
   }
 
 }

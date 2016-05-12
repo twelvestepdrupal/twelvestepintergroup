@@ -45,11 +45,25 @@ class AnonMeetingListBuilder extends EntityListBuilder {
         )
       )
     );
-    // @todo: is there a better way to do this?
-    $row['when'] = drupal_render($entity->get('field_time')->view(['label' => 'hidden']));
-    $row['where'] = drupal_render($entity->get('field_location')->view(['label' => 'hidden']));
-    $row['format'] = drupal_render($entity->get('field_format')->view(['label' => 'hidden']));
+    $row['when'] = self::renderField($entity, 'field_time');
+    $row['where'] = self::renderField($entity, 'field_location');
+    $row['format'] = self::renderField($entity, 'field_format');
     return $row + parent::buildRow($entity);
+  }
+
+  /**
+   * Render the field.
+   *
+   * @todo: is there a better way to do this?
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param $field_name
+   *
+   * @return string
+   */
+  static protected function renderField(EntityInterface $entity, $field_name) {
+    $output = $entity->get($field_name)->view(['label' => 'hidden']);
+    return drupal_render($output);
   }
 
 }

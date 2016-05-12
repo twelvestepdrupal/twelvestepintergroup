@@ -15,7 +15,7 @@ process:
   field_address/address_line1: mAdd1
   field_address/address_line2: mAdd2
   field_address/locality: mCity
-  field_address/postal_code: zipcode
+  field_address/postal_code: mZip
   field_coordinates/lat:
     plugin: explode_position
     source: mSpecial

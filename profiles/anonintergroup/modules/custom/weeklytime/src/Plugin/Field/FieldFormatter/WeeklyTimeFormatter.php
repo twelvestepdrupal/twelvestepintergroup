@@ -12,6 +12,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField;
 
 /**
  * Plugin implementation of the 'weeklytime_widget' formatter.
@@ -76,9 +77,31 @@ class WeeklyTimeFormatter extends FormatterBase {
    *   The textual output generated.
    */
   protected function viewValue(FieldItemInterface $item) {
-    // The text value has no text format assigned to it, so the user input
-    // should equal the output, including newlines.
-    return nl2br(Html::escape($item->value));
+    // Create human readable time.
+    $hh = floor($item->time / 60);
+    $mm = $item->time % 60;
+    $time = sprintf("%02.2d:%02.2d", $hh, $mm);
+
+    // Create human readable days.
+    $days = [];
+    if ($item->sun && $item->mon && $item->tue && $item->wed && $item->thu && $item->fri && $item->sat) {
+      $days[] = 'every day';
+    }
+    elseif (!$item->sun && $item->mon && $item->tue && $item->wed && $item->thu && $item->fri && !$item->sat) {
+      $days[] = 'week days';
+    }
+    elseif ($item->sun && !$item->mon && !$item->tue && !$item->wed && !$item->thu && !$item->fri && $item->sat) {
+      $days[] = 'weekend days';
+    }
+    else {
+      foreach (WeeklyTimeField::weekDays() as $day => $text) {
+        if ($item->{$day}) {
+          $days[] = $text;
+        }
+      }
+    }
+    
+    return $this->t('%time %days', ['%time' => $time, '%days' => implode(', ', $days)]);
   }
 
 }

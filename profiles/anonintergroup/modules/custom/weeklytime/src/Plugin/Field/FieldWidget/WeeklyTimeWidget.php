@@ -24,6 +24,7 @@ use Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField;
  * )
  */
 class WeeklyTimeWidget extends WidgetBase {
+  
   /**
    * {@inheritdoc}
    */
@@ -63,7 +64,7 @@ class WeeklyTimeWidget extends WidgetBase {
       '#description' => t('Time of day in 24 hour clock HH:MM'),
       '#size' => 5,
       '#maxlength' => 5,
-//    '#required' => TRUE,
+      '#required' => TRUE,
     ];
 
     $element['length'] = [

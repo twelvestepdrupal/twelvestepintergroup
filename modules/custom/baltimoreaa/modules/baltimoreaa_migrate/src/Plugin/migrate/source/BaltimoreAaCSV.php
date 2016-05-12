@@ -2,7 +2,9 @@
 
 namespace Drupal\baltimoreaa_migrate\Plugin\migrate\source;
 
-use Drupal\migrate_source_csv\Plugin\migrate\source\CSV;
+use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
+use Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField;
+use Drupal\migrate\Row;
 
 /**
  * Source for Baltimore CSV.
@@ -16,75 +18,101 @@ use Drupal\migrate_source_csv\Plugin\migrate\source\CSV;
  * source:
  *   plugin: csv
  *   path: modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv
- *   header_row_count: 1
- *   column_names:
- *     0:
- *       mID: identifier
- *     1:
- *       mName: meeting name
- *     2:
- *       mAdd1: address line 1
- *     3:
- *       mAdd2: address line 2
- *     4:
- *       mCity: city
- *     5:
- *       mZip: zipcode
- *     6:
- *       mDayNo: numeric day number
- *     7:
- *       mDay: abbreviated day name
- *     8:
- *       mTime: meeting time
- *     9:
- *       mInternational: meeting time in 24 hour clock
- *     10:
- *       mOpen: open/closed
- *     11:
- *       mSmoke: meeting type (Mens, Womens, Nonsmoking, etc)
- *     12:
- *       mType: meeting format (Discussion, Speaker, Big Book, etc)
- *     13:
- *       mNotes: notes
- *     14:
- *       mAccess: handicaped access
- *     15:
- *       mSpecial: coordinates
  * @endcode
  *
  * @MigrateSource(
  *   id = "baltimoreaa_csv"
  * )
  */
-class BaltimoreAaCSV extends CSV {
+class BaltimoreAaCSV extends SourcePluginBase {
+
+  protected $header;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
-    $configuration += [
-      'path' => 'modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv',
-      'header_row_count' => '1',
-      'column_names' => [
-        ['mID' => 'identifier'],
-        ['mName' => 'meeting name'],
-        ['mAdd1' => 'address line 1'],
-        ['mAdd2' => 'address line 2'],
-        ['mCity' => 'city'],
-        ['mZip' => 'zipcode'],
-        ['mDayNo' => 'numeric day number'],
-        ['mDay' => 'abbreviated day name'],
-        ['mTime' => 'meeting time'],
-        ['mInternational' => 'meeting time in 24 hour clock'],
-        ['mOpen' => 'open/closed'],
-        ['mSmoke' => 'meeting type (Mens, Womens, Nonsmoking, etc)'],
-        ['mType' => 'meeting format (Discussion, Speaker, Big Book, etc)'],
-        ['mNotes' => 'notes'],
-        ['mAccess' => 'handicaped access'],
-        ['mSpecial' => 'coordinates'],
-      ],
-    ];
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
+  public function __toString() {
+    return 'BaltimoreAaCSV::' . $this->getFilePath();
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function fields() {
+    return $this->header;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIds() {
+    $ids = [];
+    foreach ($this->configuration['keys'] as $key) {
+      $ids[$key]['type'] = 'string';
+    }
+    return $ids;
+  }
+
+  /**
+   * Return the CSV file path
+   *
+   * @return string
+   */
+  protected function getFilePath() {
+    return !empty($this->configuration['path']) ? $this->configuration['path'] : 'modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function initializeIterator() {
+    // Open the file and read the header.
+    /** @var \SplFileObject $file */
+    $file = new \SplFileObject($this->getFilePath());
+    $file->rewind();
+    $this->header = $file->fgetcsv();
+    $header_count = count($this->header);
+
+    // Initialize days data.
+    $day_map = [
+      '1' => 'sun',
+      '2' => 'mon',
+      '3' => 'tue',
+      '4' => 'wed',
+      '5' => 'thu',
+      '6' => 'fri',
+      '7' => 'sat',
+    ];
+    $init_days = array_fill_keys($day_map, 0);
+
+    // Read the file, combining rows where the meeting id (mID) and
+    // meeting time are the same every day.
+    $rows = [];
+    while ($row = $file->fgetcsv()) {
+      // Skip empty rows.
+      // @todo: fill in missing values.
+      if (count($row) != $header_count) {
+        continue;
+      }
+
+      // Create the data from the header and this row's value.
+      $data = array_combine($this->header, $row);
+
+      $row_key = implode('|', [$data['mID'], $data['mTime']]);
+      if (isset($rows[$row_key])) {
+        $row_data = $rows[$row_key];
+      }
+      else {
+        $row_data = $data + $init_days;
+      }
+
+      $day_key = $day_map[$data['mDayNo']];
+      $row_data[$day_key] = 1;
+
+      $rows[$row_key] = $row_data;
+    }
+
+    // Turn the meeting rows into an iterator.
+    return (new \ArrayObject($rows))->getIterator();
+  }
 }
