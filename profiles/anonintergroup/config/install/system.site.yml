@@ -1,0 +1,14 @@
+uuid: 12391090-8e17-4967-bb54-4ebefd0b1b17
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /meetings
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: IWrwLxaOXFIWITrgceLL5PTCRMLQXS4VXuz4nFHUiFk
+name: 'Anonymous Intergroup'
+mail: admin@example.com
