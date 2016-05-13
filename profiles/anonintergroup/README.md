@@ -50,23 +50,7 @@ $ drush chosenplugin
 
 ## Export and Import content
 
-  The content specific to this profile can be exported and imported, useful for creating a new Intergroup offices.
-
-  - Enable the anoncontent module
-```
-$ drush en -y anoncontent
-```
-  - Create a new custom site module using $ drupal generate:module and put it in modules/custom. For example, call this module baltimoreaa.
-  - Export content using
-```
-$ drush anon-content-export baltimoreaa
-```
-    - This will create a subdirectory under modules/custom/baltimoreaa/anoncontent. This content can then be checked into the site repository.
-  - Import content using
-```
-$ drush anon-content-import baltimoreaa
-```
-    - You may need to create a fresh site install before importing. The import assumes that the content does not yet exist.
+  The content specific to this profile should be migrated. See baltimoreaa_migrate as an example.
 
 ## See also
 
