@@ -22,3 +22,12 @@ function weeklytime_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function weeklytime_views_data_alter(array &$data) {
+  $data['anonmeeting__field_time']['field_time']['filter'] = [
+    'title' => 'Weekly Time filter',
+    'id' => 'weeklytime', ];
+}

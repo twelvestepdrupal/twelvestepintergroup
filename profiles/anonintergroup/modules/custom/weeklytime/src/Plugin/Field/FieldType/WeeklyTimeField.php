@@ -27,6 +27,7 @@ use Drupal\Core\TypedData\DataDefinition;
  * )
  */
 class WeeklyTimeField extends FieldItemBase {
+  
   /**
    * Return keyed array of Days of the Week.
    *
@@ -51,6 +52,25 @@ class WeeklyTimeField extends FieldItemBase {
    */
   public static function today() {
     return strtolower(date('D'));
+  }
+
+  /**
+   * Return keyed array of all possible times.
+   */
+  public static function timeOptions() {
+    // @todo:
+    return [
+      '0800' => '08:00 am',
+      '0830' => '08:30 am',
+    ];
+  }
+
+  /**
+   * Return array of meeting times that are soon today.
+   */
+  public static function now() {
+    // @todo:
+    return [0800, 0830];
   }
 
   /**
