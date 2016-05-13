@@ -17,7 +17,7 @@ dependencies:
 _core:
   default_config_hash: 6vpLeywiBLVtI08Gk-ikVvCAojpw573LMY_vRjp_IN4
 id: meetings
-label: meetings
+label: Meetings
 module: views
 description: ''
 tag: ''
