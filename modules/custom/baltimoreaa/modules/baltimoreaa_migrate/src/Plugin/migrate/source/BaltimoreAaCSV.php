@@ -73,6 +73,9 @@ class BaltimoreAaCSV extends SourcePluginBase {
     $this->header = $file->fgetcsv();
     $header_count = count($this->header);
 
+    // Create array of keys useful in creating the unique row key below.
+    $keys = array_fill_keys($this->configuration['keys'], 1);
+
     // Initialize days data.
     $day_map = [
       '1' => 'sun',
@@ -98,7 +101,10 @@ class BaltimoreAaCSV extends SourcePluginBase {
       // Create the data from the header and this row's value.
       $data = array_combine($this->header, $row);
 
-      $row_key = implode('|', [$data['mID'], $data['mTime']]);
+      // Get the rows unique key.
+      $row_key = implode('|', array_intersect_key($data, $keys));
+
+      // Get the existing row, or start a new one.
       if (isset($rows[$row_key])) {
         $row_data = $rows[$row_key];
       }

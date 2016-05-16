@@ -27,7 +27,6 @@ process:
   field_time/sat: sat
 destination:
   plugin: 'entity:anonmeeting'
-migration_dependencies: {}
-#migration_dependencies:
-# required:
-#   - anonlocations
+migration_dependencies:
+ required:
+   - anonlocations
