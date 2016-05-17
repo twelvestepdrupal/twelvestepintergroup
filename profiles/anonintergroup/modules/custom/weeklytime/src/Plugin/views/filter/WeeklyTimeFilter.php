@@ -33,7 +33,8 @@ class WeeklyTimeFilter extends FilterPluginBase {
   public function query() {
     $table = $this->ensureMyTable();
     $operator = $this->operator == '=' ? 'IN' : 'NOT IN';
-    $value = implode(', ', $this->value);
+    $values = is_array($this->value) ? $this->value : [$this->value];
+    $value = implode(', ', $values);
     $this->query->addWhereExpression($this->options['group'], "{$table}.field_time_time {$operator} ({$value})");
   }
 

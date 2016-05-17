@@ -71,7 +71,7 @@ class WeeklyTimeField extends FieldItemBase {
 
   /**
    * Return the time of day formatted.
-   * 
+   *
    * @param $time
    *   Time of day in minutes past midnight.
    */

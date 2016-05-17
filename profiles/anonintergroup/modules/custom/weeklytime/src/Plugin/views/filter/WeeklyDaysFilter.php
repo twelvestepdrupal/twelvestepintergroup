@@ -32,7 +32,8 @@ class WeeklyDaysFilter extends FilterPluginBase {
    */
   public function query() {
     $table = $this->ensureMyTable();
-    foreach ($this->value as $day) {
+    $values = is_array($this->value) ? $this->value : [$this->value];
+    foreach ($values as $day) {
       if ($day == 'today') {
         $day = WeeklyTimeField::today();
       }

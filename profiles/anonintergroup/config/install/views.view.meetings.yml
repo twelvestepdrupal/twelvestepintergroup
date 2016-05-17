@@ -15,7 +15,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: 8QD3ur_UzGV-Hp6dSwMc_MAkklHvby_Su-CM9nIr4-I
+  default_config_hash: Ix0fCzd2SfkX8Xgv_9AQyOniqy46qy-zN7dMOrY1XLg
 id: meetings
 label: Meetings
 module: views
@@ -679,7 +679,50 @@ display:
       title: 'Today''s Meetings'
       defaults:
         title: false
+        filters: false
+        filter_groups: false
       display_description: ''
+      filters:
+        field_time_days:
+          id: field_time_days
+          table: anonmeeting__field_time
+          field: field_time_days
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: today
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: weeklydays
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: 0
       contexts:
