@@ -11,9 +11,9 @@ use Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField;
  *
  * @ingroup views_filter_handlers
  *
- * @ViewsFilter("weeklytime")
+ * @ViewsFilter("weeklydays")
  */
-class WeeklyTimeFilter extends FilterPluginBase {
+class WeeklyDaysFilter extends FilterPluginBase {
 
   /**
    * {@inheritdoc}
@@ -21,8 +21,8 @@ class WeeklyTimeFilter extends FilterPluginBase {
   protected function valueForm(&$form, FormStateInterface $form_state) {
     $form['value'] = [
       '#type' => 'select',
-      '#options' => WeeklyTimeField::timeOptions(),
-      '#default_value' => is_numeric($this->value) ? $this->value : [],
+      '#options' => ['today' => $this->t('Today')] + WeeklyTimeField::dayOptions(),
+      '#default_value' => is_array($this->value) ? $this->value : [],
       '#multiple' => $this->options['expose']['multiple'],
     ];
   }
@@ -32,9 +32,12 @@ class WeeklyTimeFilter extends FilterPluginBase {
    */
   public function query() {
     $table = $this->ensureMyTable();
-    $operator = $this->operator == '=' ? 'IN' : 'NOT IN';
-    $value = implode(', ', $this->value);
-    $this->query->addWhereExpression($this->options['group'], "{$table}.field_time_time {$operator} ({$value})");
+    foreach ($this->value as $day) {
+      if ($day == 'today') {
+        $day = WeeklyTimeField::today();
+      }
+      $value = ($this->operator == '=') ? '1' : '0';
+      $this->query->addWhereExpression($this->options['group'], "{$table}.field_time_{$day} {$this->operator} {$value}");
+    }
   }
-
 }

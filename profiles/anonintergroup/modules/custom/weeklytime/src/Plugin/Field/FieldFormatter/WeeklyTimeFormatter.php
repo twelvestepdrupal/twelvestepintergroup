@@ -94,7 +94,7 @@ class WeeklyTimeFormatter extends FormatterBase {
       $days[] = 'weekend days';
     }
     else {
-      foreach (WeeklyTimeField::weekDays() as $day => $text) {
+      foreach (WeeklyTimeField::dayOptions() as $day => $text) {
         if ($item->{$day}) {
           $days[] = $text;
         }

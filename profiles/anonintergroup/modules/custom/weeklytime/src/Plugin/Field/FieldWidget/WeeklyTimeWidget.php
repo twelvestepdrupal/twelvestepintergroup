@@ -44,7 +44,7 @@ class WeeklyTimeWidget extends WidgetBase {
       '#title' => t('Days of week'),
       '#multiple' => TRUE,
       '#default_value' => $default_days,
-      '#options' => WeeklyTimeField::weekDays(),
+      '#options' => WeeklyTimeField::dayOptions(),
       '#required' => TRUE,
       '#chosen' => TRUE,
     ];
@@ -95,7 +95,7 @@ class WeeklyTimeWidget extends WidgetBase {
       $value['time'] = $hh * 60 + $mm;
 
       // Save the day of the week in each field.
-      foreach (array_keys(WeeklyTimeField::weekDays()) as $day) {
+      foreach (array_keys(WeeklyTimeField::dayOptions()) as $day) {
         $value[$day] = in_array($day, $value['day']) ? 1 : 0;
       }
     }

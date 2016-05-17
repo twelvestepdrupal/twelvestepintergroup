@@ -15,11 +15,11 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: 6vpLeywiBLVtI08Gk-ikVvCAojpw573LMY_vRjp_IN4
+  default_config_hash: 8QD3ur_UzGV-Hp6dSwMc_MAkklHvby_Su-CM9nIr4-I
 id: meetings
 label: Meetings
 module: views
-description: ''
+description: 'Anonymous Intergroup 12 Step Meeting Lists'
 tag: ''
 base_table: anonmeeting
 base_field: id
@@ -322,7 +322,20 @@ display:
       title: 'Search finder'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No meetings found'
+            format: basic_html
+          plugin_id: text
       relationships:
         field_group:
           id: field_group
@@ -540,10 +553,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
-        field_time:
-          id: field_time
+        field_time_time:
+          id: field_time_time
           table: anonmeeting__field_time
-          field: field_time
+          field: field_time_time
           relationship: none
           group_type: group
           admin_label: ''
@@ -553,14 +566,14 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: When
+            label: Time
             description: ''
             use_operator: false
-            operator: field_time_op
-            identifier: when
+            operator: field_time_time_op
+            identifier: time
             required: false
             remember: false
-            multiple: false
+            multiple: true
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
@@ -581,6 +594,47 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: weeklytime
+        field_time_days:
+          id: field_time_days
+          table: anonmeeting__field_time
+          field: field_time_days
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Days
+            description: ''
+            use_operator: false
+            operator: field_time_days_op
+            identifier: days
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              csr: '0'
+              gsr: '0'
+              staff: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: weeklydays
       defaults:
         filters: false
         filter_groups: false

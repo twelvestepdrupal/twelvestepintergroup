@@ -27,13 +27,13 @@ use Drupal\Core\TypedData\DataDefinition;
  * )
  */
 class WeeklyTimeField extends FieldItemBase {
-  
+
   /**
    * Return keyed array of Days of the Week.
    *
    * @return array
    */
-  public static function weekDays() {
+  public static function dayOptions() {
     return [
       'sat' => 'Saturday',
       'sun' => 'Sunday',
@@ -46,7 +46,7 @@ class WeeklyTimeField extends FieldItemBase {
   }
 
   /**
-   * Return the key representing today in WeeklyTimeField::weekDays().
+   * Return the key representing today in WeeklyTimeField::dayOptions().
    *
    * @return string
    */
@@ -55,22 +55,28 @@ class WeeklyTimeField extends FieldItemBase {
   }
 
   /**
-   * Return keyed array of all possible times.
+   * Return keyed array of times of the day.
+   *
+   * @return array
    */
   public static function timeOptions() {
-    // @todo:
-    return [
-      '0800' => '08:00 am',
-      '0830' => '08:30 am',
-    ];
+    // @todo: use prettier code using array_map()?
+    $options = [];
+    foreach (range(0, 47) as $value) {
+      $time = $value * 30;
+      $options[$time] = self::formatTime($time);
+    }
+    return $options;
   }
 
   /**
-   * Return array of meeting times that are soon today.
+   * Return the time of day formatted.
+   * 
+   * @param $time
+   *   Time of day in minutes past midnight.
    */
-  public static function now() {
-    // @todo:
-    return [0800, 0830];
+  public static function formatTime($time) {
+    return date('h:i a', ($time - 60) * 60);
   }
 
   /**
@@ -87,7 +93,7 @@ class WeeklyTimeField extends FieldItemBase {
       ->setLabel(new TranslatableMarkup('Length'))
       ->setRequired(TRUE);
 
-    foreach (WeeklyTimeField::weekDays() as $key => $label) {
+    foreach (WeeklyTimeField::dayOptions() as $key => $label) {
       $properties[$key] = DataDefinition::create('boolean')
         // Prevent early t() calls by using the TranslatableMarkup.
         ->setLabel(new TranslatableMarkup($label))
@@ -113,7 +119,7 @@ class WeeklyTimeField extends FieldItemBase {
         ],
       ],
     ];
-    foreach (WeeklyTimeField::weekDays() as $key => $label) {
+    foreach (WeeklyTimeField::dayOptions() as $key => $label) {
       $schema['columns'][$key] = [
         'type' => 'int',
         'size' => 'tiny',
@@ -133,7 +139,7 @@ class WeeklyTimeField extends FieldItemBase {
     $values = [];
     $values['time'] = mt_rand(0, 48) * 30;
     $values['length'] = 60 + mt_rand(0, 2) * 15;
-    foreach (WeeklyTimeField::weekDays() as $key => $label) {
+    foreach (WeeklyTimeField::dayOptions() as $key => $label) {
       $values[$key] = mt_rand(0, 1);
     }
     return $values;
@@ -150,7 +156,7 @@ class WeeklyTimeField extends FieldItemBase {
     }
 
     // Since there is a time, this time is NOT empty if it is assigned to a day.
-    foreach (array_keys(self::weekDays()) as $day) {
+    foreach (array_keys(self::dayOptions()) as $day) {
       if ($this->get($day)->getValue()) {
         return FALSE;
       }
