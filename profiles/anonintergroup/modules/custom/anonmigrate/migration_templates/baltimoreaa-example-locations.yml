@@ -1,12 +1,12 @@
-id: baltimoreaa_locations
-label: Import Baltimore AA Locations
-migration_tags: [ baltimoreaa ]
+id: baltimoreaa_example_locations
+label: Import Baltimore AA Example Locations
+migration_tags: [ baltimoreaa-example ]
 source:
   plugin: anonintergroup
   keys:
     id: [ mAdd1, mAdd2, mCity, mZip ]
     day: mDayNo
-  path: modules/custom/baltimoreaa/baltimoreaa.csv
+  path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/baltimoreaa.csv
 process:
   name: mName
   field_address/country_code:

@@ -10,7 +10,13 @@ drush en -y baltimoreaa
 
 # Import CSV data
 
-* update the csv file. Then run:
+Because baltimoreaa is an example in anonmigrate, the migration_templates
+here don't need to exist. However, the example is just that, only an
+example. We maintain the actual migration templates here.
+
+The tag here is 'baltimoreaa'. The tag in the examples is 'baltimoreaa-example'.
+
+* update the CSV file. Then run:
 ```
 drush enable -y anonmigrate
 drush script 'anonmigrate_import("baltimoreaa")'

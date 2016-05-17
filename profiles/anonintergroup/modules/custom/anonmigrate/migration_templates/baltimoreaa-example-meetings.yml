@@ -1,12 +1,12 @@
-id: baltimoreaa_meetings
-label: Import Baltimore AA Meetings
-migration_tags: [ baltimoreaa ]
+id: baltimoreaa_example_meetings
+label: Import Baltimore AA Example Meetings
+migration_tags: [ 'baltimoreaa-example' ]
 source:
   plugin: anonintergroup
   keys:
     id: [ mAdd1, mAdd2, mCity, mZip ]
     day: mDayNo
-  path: modules/custom/baltimoreaa/baltimoreaa.csv
+  path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/baltimoreaa.csv
 process:
   name: mName
   field_format:
@@ -32,4 +32,4 @@ destination:
   plugin: 'entity:anonmeeting'
 migration_dependencies:
  required:
-   - baltimoreaa_locations
+   - baltimoreaa_example_locations
