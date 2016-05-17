@@ -1,12 +1,12 @@
 id: anonmeetings
 label: Import meetings
-migration_tags: [ anonintergroup ]
+migration_tags: [ baltimoreaa ]
 source:
   plugin: anonintergroup
   keys:
     id: [ mAdd1, mAdd2, mCity, mZip ]
     day: mDayNo
-  path: 'modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv'
+  path: 'modules/custom/baltimoreaa/meetings.csv'
 process:
   name: mName
   field_format:
