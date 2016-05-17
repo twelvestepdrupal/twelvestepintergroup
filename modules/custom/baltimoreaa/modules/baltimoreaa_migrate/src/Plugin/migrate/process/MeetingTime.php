@@ -18,11 +18,20 @@ class MeetingTime extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     if (preg_match('/^(\d+):(\d\d)\s*([AP]?)/', $value, $matches)) {
-      $hh = $value[1];
-      if (!empty($value[3]) && $value[3] == 'P') {
-        $hh += 12;
+      $hh = $matches[1];
+      if (!empty($matches[3])) {
+        if ($matches[3] == 'P') {
+          if ($hh != 12) {
+            $hh += 12;
+          }
+        }
+        elseif ($matches[3] == 'A') {
+          if ($hh == 12) {
+            $hh = 0;
+          }
+        }
       }
-      $mm = $value[2];
+      $mm = $matches[2];
       return $hh * 60 + $mm;
     }
 
