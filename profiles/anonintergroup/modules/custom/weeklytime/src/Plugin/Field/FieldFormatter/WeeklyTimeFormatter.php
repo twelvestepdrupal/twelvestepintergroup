@@ -78,9 +78,7 @@ class WeeklyTimeFormatter extends FormatterBase {
    */
   protected function viewValue(FieldItemInterface $item) {
     // Create human readable time.
-    $hh = floor($item->time / 60);
-    $mm = $item->time % 60;
-    $time = sprintf("%02.2d:%02.2d", $hh, $mm);
+    $time = WeeklyTimeField::formatTime($item->time);
 
     // Create human readable days.
     $days = [];
