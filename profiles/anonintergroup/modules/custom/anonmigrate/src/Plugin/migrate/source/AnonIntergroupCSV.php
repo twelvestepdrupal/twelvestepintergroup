@@ -1,30 +1,28 @@
 <?php
 
-namespace Drupal\baltimoreaa_migrate\Plugin\migrate\source;
+namespace Drupal\anonmigrate\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
 use Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField;
 use Drupal\migrate\Row;
 
 /**
- * Source for Baltimore CSV.
- *
- * This file could be defined configuration, but because it is used in multiple
- * migrations, it's defined in here once in code.
- *
- * Here is the configuration that could be used in migration_templates/anon*.yml.
+ * Generic source for AnonIntergroup CSV.
  *
  * @code
  * source:
- *   plugin: csv
- *   path: modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv
+ *   plugin: anonintergroup_csv
+ *   keys:
+ *     id: [ mAdd1, mAdd2, mCity, mZip ]
+ *     day: mDayNo
+ *   path: path/to/csv/meetings.csv
  * @endcode
  *
  * @MigrateSource(
- *   id = "baltimoreaa_csv"
+ *   id = "anonintergroup"
  * )
  */
-class BaltimoreAaCSV extends SourcePluginBase {
+class AnonIntergroupCSV extends SourcePluginBase {
 
   protected $header;
 
@@ -32,7 +30,7 @@ class BaltimoreAaCSV extends SourcePluginBase {
    * {@inheritdoc}
    */
   public function __toString() {
-    return 'BaltimoreAaCSV::' . $this->getFilePath();
+    return 'AnonIntergroupCSV::' . $this->configuration['path'];
   }
 
   /**
@@ -47,34 +45,33 @@ class BaltimoreAaCSV extends SourcePluginBase {
    */
   public function getIds() {
     $ids = [];
-    foreach ($this->configuration['keys'] as $key) {
+    foreach ($this->configuration['keys']['id'] as $key) {
       $ids[$key]['type'] = 'string';
     }
     return $ids;
   }
 
   /**
-   * Return the CSV file path
-   *
-   * @return string
-   */
-  protected function getFilePath() {
-    return !empty($this->configuration['path']) ? $this->configuration['path'] : 'modules/custom/baltimoreaa/modules/baltimoreaa_migrate/meetings.csv';
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function initializeIterator() {
+    // Validate keys.
+    if (empty($this->configuration['keys']['id'])) {
+      throw new MigrateException('Please define keys/id.');
+    }
+    if (empty($this->configuration['keys']['day'])) {
+      throw new MigrateException('Please define keys/day.');
+    }
+    
     // Open the file and read the header.
     /** @var \SplFileObject $file */
-    $file = new \SplFileObject($this->getFilePath());
+    $file = new \SplFileObject($this->configuration['path']);
     $file->rewind();
     $this->header = $file->fgetcsv();
     $header_count = count($this->header);
 
     // Create array of keys useful in creating the unique row key below.
-    $keys = array_fill_keys($this->configuration['keys'], 1);
+    $keys = array_fill_keys($this->configuration['keys']['id'], 1);
 
     // Initialize days data.
     $day_map = [
@@ -87,6 +84,7 @@ class BaltimoreAaCSV extends SourcePluginBase {
       '7' => 'sat',
     ];
     $init_days = array_fill_keys($day_map, 0);
+    $day_key = $this->configuration['keys']['day'];
 
     // Read the file, combining rows where the meeting id (mID) and
     // meeting time are the same every day.
@@ -112,8 +110,23 @@ class BaltimoreAaCSV extends SourcePluginBase {
         $row_data = $data + $init_days;
       }
 
-      $day_key = $day_map[$data['mDayNo']];
-      $row_data[$day_key] = 1;
+      // Set the meeting day.
+      $day_value = $data[$day_key];
+      $day_field = NULL;
+      if (is_numeric($day_value)) {
+        // The day is a week day number from the map above.
+        $day_field = $day_map[$day_value];
+      }
+      else {
+        // Check if the day value is the string value of the day of week.
+        $day_value = strtolower(substr($day_value, 0, 3));
+        if (in_array($day_value, $day_map)) {
+          $day_field = $day_value;
+        }
+      }
+      if ($day_field) {
+        $row_data[$day_field] = 1;
+      }
 
       $rows[$row_key] = $row_data;
     }

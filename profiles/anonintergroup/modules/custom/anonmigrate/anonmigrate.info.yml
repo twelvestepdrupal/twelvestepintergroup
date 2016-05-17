@@ -1,0 +1,11 @@
+name: Anonymous Migrate
+type: module
+description: Anonymous 12 Step Meetings Migration Helper
+core: 8.x
+package: anonintergroup
+
+dependencies:
+  - migrate
+  - anongroups
+  - anonmeetings
+  - anonlocations

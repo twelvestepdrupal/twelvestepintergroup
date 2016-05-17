@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains anonmigrate.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\MigrateExecutable;
+use Drupal\migrate\MigrateMessage;
+
+/**
+ * Implements hook_help().
+ */
+function anonmigrate_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the anonmigrate module.
+    case 'help.page.anonmigrate':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Anonymous 12 Step Migration Helper') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Migrate by tag.
+ */
+function anonmigrate_import($tag = 'anonintergroup') {
+  $migrations = \Drupal::service('plugin.manager.migration')
+    ->createInstancesByTag($tag);
+
+  foreach ($migrations as $migration) {
+    $executable = new MigrateExecutable($migration, new MigrateMessage());
+    $executable->import();
+  }
+}
