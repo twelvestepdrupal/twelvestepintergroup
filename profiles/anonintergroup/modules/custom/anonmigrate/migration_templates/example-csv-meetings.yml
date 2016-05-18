@@ -1,12 +1,12 @@
-id: baltimoreaa_meetings
-label: Import Baltimore AA Meetings
-migration_tags: [ baltimoreaa ]
+id: example_csv_meetings
+label: Import Example CSV Meetings
+migration_tags: [ example-csv ]
 source:
   plugin: anonintergroup_csv
   keys:
     id: [ mID, mTime ]
     day: mDayNo
-  path: modules/custom/baltimoreaa/baltimoreaa.csv
+  path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.csv
 process:
   name: mName
   field_format:
@@ -40,7 +40,7 @@ process:
        h: handicap
       mNotes:
         gay: gay
-        spanish: spanish
+        spanish: 'spanish'
         '12&12': [ traditions, study, literature ]
         'twelve&twelve': [ traditions, study, literature ]
   field_location:
@@ -64,4 +64,4 @@ destination:
   plugin: 'entity:anonmeeting'
 migration_dependencies:
  required:
-   - baltimoreaa_locations
+   - example_csv_locations

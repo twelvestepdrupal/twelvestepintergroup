@@ -2,7 +2,7 @@ id: baltimoreaa_locations
 label: Import Baltimore AA Locations
 migration_tags: [ baltimoreaa ]
 source:
-  plugin: anonintergroup
+  plugin: anonintergroup_csv
   keys:
     id: [ mAdd1, mAdd2, mCity, mZip ]
     day: mDayNo

@@ -1,0 +1,21 @@
+id: example_json_locations
+label: Import Example JSON Locations
+migration_tags: [ example-json ]
+source:
+  plugin: anonintergroup_json
+  keys:
+    id: [ location_id ]
+    day: day
+  path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.json
+process:
+  name: location
+  field_address/country_code: country
+  field_address/dependent_locality: state
+  field_address/address_line1: address
+  field_address/locality: city
+  field_address/postal_code: postal_code
+  field_coordinates/lat: latitude
+  field_coordinates/lng: longitude
+destination:
+  plugin: 'entity:anonlocation'
+migration_dependencies: {}

@@ -1,16 +1,17 @@
-# Import CSV data
+# Import CSV or JSON data
 
-* Create migration templates for each entity type. Copy any of the examples
-from here to a custom modules migration_templates/ directory.
+* Create migration templates for each entity type by copying the
+example-csv or example-json files here to a custom modules
+migration_templates/ directory.
 
 * Change the id, label, and migration_tags.
 
 For example, change:
 
 ```
-id: baltimoreaa_example_locations
-label: Import Baltimore AA Example Locations
-migration_tags: [ baltimoreaa-example ]
+id: example_csv_locations
+label: Import Example CSV Locations
+migration_tags: [ example-csv ]
 ```
 
 To:
@@ -28,14 +29,14 @@ the new id in your copied file.
 
 The source keys are what uniquely identifies the row for the entity.
 
-For example, in the Baltimore example data, a meeting is uniquely identified
+For example, in the csv example data, a meeting is uniquely identified
 by it's mID (group number) and meeting time. The 'anonintergroup' source
 knows that meetings are repeating, so the unique part is the meeting time
 and not the meeting time and day. If two different meetings were held in
 the same location at the same time, on different days, whatever key
 identifies these as unique meetings needs to be part of the source id key.
 
-In the Baltimore example data, the location is uniquely identified by
+In the csv example data, the location is uniquely identified by
 the four parts of an address.
 
 * Change the process.
@@ -46,6 +47,10 @@ You have access to all of Drupal 8's core migration process's.
 
 Additionally, if the process transformation is more complex, you can create
 a custom migration module, and implement custom process transformations.
+
+* Change the process format map.
+
+@todo: write something here
 
 * Run your import:
 
@@ -58,7 +63,7 @@ drush script 'anonmigrate_import("mycity")'
 data and shouldn't be done on a production server.
 
 ```
-drush script 'anonmigrate_import("baltimoreaa-example")'
+drush script 'anonmigrate_import("example-csv")'
 ```
 
 * Uninstall the migrate module now that it is no longer needed.

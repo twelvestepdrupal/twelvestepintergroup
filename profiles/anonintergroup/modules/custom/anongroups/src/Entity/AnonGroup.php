@@ -183,7 +183,7 @@ class AnonGroup extends ContentEntityBase implements AnonGroupInterface {
       ->setLabel(t('Name'))
       ->setDescription(t('The name of the Anonymous 12 Step Group entity.'))
       ->setSettings(array(
-        'max_length' => 50,
+        'max_length' => 255,
         'text_processing' => 0,
       ))
       ->setDefaultValue('')

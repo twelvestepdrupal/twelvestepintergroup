@@ -1,0 +1,44 @@
+id: example_json_meetings
+label: Import Example JSON Meetings
+migration_tags: [ example-json ]
+source:
+  plugin: anonintergroup_json
+  keys:
+    id: [ id, time ]
+    day: day
+  path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.json
+process:
+  name: mName
+  field_format:
+    plugin: map
+    map:
+      type:
+        o: open
+        c: closed
+        st: step
+        s: smoking
+        w: womens
+        m: mens
+        g: gay
+  field_location:
+    plugin: migration
+    migration: anonlocations
+    source: [ location_id ]
+  field_time/time:
+    plugin: meeting_time
+    source: time
+  field_time/length:
+    plugin: default_value
+    default_value: 60
+  field_time/sun: sun
+  field_time/mon: mon
+  field_time/tue: tue
+  field_time/wed: wed
+  field_time/thu: thu
+  field_time/fri: fri
+  field_time/sat: sat
+destination:
+  plugin: 'entity:anonmeeting'
+migration_dependencies:
+ required:
+   - example_json_locations

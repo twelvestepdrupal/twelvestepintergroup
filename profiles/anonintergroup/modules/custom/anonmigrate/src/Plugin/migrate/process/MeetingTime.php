@@ -7,6 +7,10 @@ use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
 /**
+ * Process a time in the format of HH:MM AM into the meeting time.
+ * 
+ * Meeting times are stored as minutes past midnight.
+ * 
  * @MigrateProcessPlugin(
  *   id = "meeting_time"
  * )

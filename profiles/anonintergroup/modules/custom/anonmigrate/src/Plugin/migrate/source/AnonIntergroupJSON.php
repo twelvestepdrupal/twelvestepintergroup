@@ -4,25 +4,26 @@ namespace Drupal\anonmigrate\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
 use Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField;
+use Drupal\Component\Serialization\Json;
 use Drupal\migrate\Row;
 
 /**
- * Generic source for AnonIntergroup CSV.
+ * Generic source for AnonIntergroup JSON.
  *
  * @code
  * source:
- *   plugin: anonintergroup_csv
+ *   plugin: anonintergroup_json
  *   keys:
- *     id: [ mAdd1, mAdd2, mCity, mZip ]
+ *     id: [ add1, add2, city, zip ]
  *     day: mDayNo
- *   path: path/to/csv/meetings.csv
+ *   path: https://example.org/wp-admin/admin-ajax.php?action=meetings
  * @endcode
  *
  * @MigrateSource(
- *   id = "anonintergroup_csv"
+ *   id = "anonintergroup_json"
  * )
  */
-class AnonIntergroupCSV extends SourcePluginBase {
+class AnonIntergroupJSON extends SourcePluginBase {
 
   protected $header;
 
@@ -30,7 +31,7 @@ class AnonIntergroupCSV extends SourcePluginBase {
    * {@inheritdoc}
    */
   public function __toString() {
-    return 'AnonIntergroupCSV::' . $this->configuration['path'];
+    return 'AnonIntergroupJSON::' . $this->configuration['path'];
   }
 
   /**
@@ -62,12 +63,11 @@ class AnonIntergroupCSV extends SourcePluginBase {
     if (empty($this->configuration['keys']['day'])) {
       throw new MigrateException('You must define keys/day.');
     }
-    
+
     // Open the file and read the header.
-    $file = new \SplFileObject($this->configuration['path']);
-    $file->rewind();
-    $this->header = $file->fgetcsv();
-    $header_count = count($this->header);
+    // @todo: read this in a more modern way.
+    $data = file_get_contents($this->configuration['path']);
+    $json = Json::decode($data);
 
     // Create array of keys useful in creating the unique row key below.
     $keys = array_fill_keys($this->configuration['keys']['id'], 1);
@@ -88,16 +88,7 @@ class AnonIntergroupCSV extends SourcePluginBase {
     // Read the file, combining rows where the meeting id (mID) and
     // meeting time are the same every day.
     $rows = [];
-    while ($row = $file->fgetcsv()) {
-      // Skip empty rows.
-      // @todo: fill in missing values.
-      if (count($row) != $header_count) {
-        continue;
-      }
-
-      // Create the data from the header and this row's value.
-      $data = array_combine($this->header, $row);
-
+    foreach ($json as $data) {
       // Get the rows unique key.
       $row_key = implode('|', array_intersect_key($data, $keys));
 
