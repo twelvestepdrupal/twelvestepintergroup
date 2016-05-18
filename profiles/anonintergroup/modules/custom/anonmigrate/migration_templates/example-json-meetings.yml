@@ -24,6 +24,10 @@ process:
     plugin: migration
     migration: anonlocations
     source: [ location_id ]
+  field_group:
+    plugin: migration
+    migration: anongroups
+    source: [ group ]
   field_time/time:
     plugin: meeting_time
     source: time
@@ -42,3 +46,4 @@ destination:
 migration_dependencies:
  required:
    - example_json_locations
+   - example_json_groups

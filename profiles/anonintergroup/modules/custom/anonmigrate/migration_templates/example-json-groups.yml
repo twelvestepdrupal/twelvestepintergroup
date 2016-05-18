@@ -1,0 +1,14 @@
+id: example_json_groups
+label: Import Example JSON Groups
+migration_tags: [ example-json ]
+source:
+  plugin: anonintergroup_json
+  keys:
+    id: [ group ]
+    day: day
+  path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.json
+process:
+  name: group
+destination:
+  plugin: 'entity:anongroup'
+migration_dependencies: {}

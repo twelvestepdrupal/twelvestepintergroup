@@ -90,6 +90,11 @@ class AnonIntergroupJSON extends SourcePluginBase {
     $rows = [];
     foreach ($json as $data) {
       // Get the rows unique key.
+      $key_values = array_intersect_key($data, $keys);
+      // @todo: check for other 'NULL' values?
+      if (!in_array('null', $key_values)) {
+        continue;
+      }
       $row_key = implode('|', array_intersect_key($data, $keys));
 
       // Get the existing row, or start a new one.
