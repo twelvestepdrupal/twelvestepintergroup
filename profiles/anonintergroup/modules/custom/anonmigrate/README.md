@@ -4,6 +4,8 @@
 example-csv or example-json files here to a custom modules
 migration_templates/ directory.
 
+The example-json migration understands https://meetingguide.org/api.
+
 * Change the id, label, and migration_tags.
 
 For example, change:

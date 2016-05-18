@@ -20,7 +20,7 @@ process:
         w: womens
         s: smoking
         m: mens
-        yp: youngpeoples
+        yp: young
         g: gay
       mType:
         discussion: discussion

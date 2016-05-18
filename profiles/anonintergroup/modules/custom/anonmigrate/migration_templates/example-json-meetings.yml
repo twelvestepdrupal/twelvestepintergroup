@@ -13,14 +13,39 @@ process:
     plugin: map
     map:
       types:
-        o: open
+        a: atheist
+        al: alateen
+        al-an: alanon
+        asl: asl
+        be: beginner
+        b: [ bigbook, literature ]
+        ba: babysitting
         c: closed
-        st: step
-        s: smoking
-        w: womens
-        m: mens
+        can: candlelight
+        cf: children
+        d: discussion
+        ff: fragrancefree
+        fr: french
         g: gay
+        gr: grapevine
+        h: chips
+        l: lesbian
+        lgbtq: ltbtq
+        lit: literature
+        m: mens
+        med: meditation
+        o: open
+        s: spanish
+        st: step
+        sm: smoking
+        sp: speaker
+        st: step
+        t: transgender
+        tr: traditions
+        w: womens
         x: wheelchair
+        xt: crosstalk
+        y: young
   field_location:
     plugin: migration
     migration: example_json_locations
