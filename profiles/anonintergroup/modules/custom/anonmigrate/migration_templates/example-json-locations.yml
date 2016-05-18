@@ -4,7 +4,7 @@ migration_tags: [ example-json ]
 source:
   plugin: anonintergroup_json
   keys:
-    id: [ location_id ]
+    id: [ address, city, state, postal_code, country ]
     day: day
   path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.json
 process:

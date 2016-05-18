@@ -25,6 +25,7 @@ class AnonGroupListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
+    $header['where'] = $this->t('Where');
     $header['phone'] = $this->t('Phone');
     $header['website'] = $this->t('Website');
     return $header + parent::buildHeader();
@@ -44,6 +45,7 @@ class AnonGroupListBuilder extends EntityListBuilder {
         )
       )
     );
+    $row['where'] = self::renderField($entity, 'field_default_location');
     $row['phone'] = self::renderField($entity, 'field_default_phone');
     $row['website'] = self::renderField($entity, 'field_website');
 

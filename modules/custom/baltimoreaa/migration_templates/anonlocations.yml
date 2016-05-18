@@ -5,7 +5,7 @@ source:
   plugin: anonintergroup_csv
   keys:
     id: [ mAdd1, mAdd2, mCity, mZip ]
-    day: mDayNo
+    day: mDayNo:1
   path: modules/custom/baltimoreaa/baltimoreaa.csv
 process:
   name: mName

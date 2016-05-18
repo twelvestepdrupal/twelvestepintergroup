@@ -8,11 +8,11 @@ source:
     day: day
   path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.json
 process:
-  name: mName
+  name: name
   field_format:
     plugin: map
     map:
-      type:
+      types:
         o: open
         c: closed
         st: step
@@ -22,11 +22,11 @@ process:
         g: gay
   field_location:
     plugin: migration
-    migration: anonlocations
-    source: [ location_id ]
+    migration: example_json_locations
+    source: [ address, city, state, postal_code, country ]
   field_group:
     plugin: migration
-    migration: anongroups
+    migration: example_json_groups
     source: [ group ]
   field_time/time:
     plugin: meeting_time

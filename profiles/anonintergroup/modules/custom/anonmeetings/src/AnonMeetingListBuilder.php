@@ -25,8 +25,8 @@ class AnonMeetingListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['id'] = $this->t('ID');
     $header['name'] = $this->t('Name');
-    $header['when'] = $this->t('When');
     $header['where'] = $this->t('Where');
+    $header['when'] = $this->t('When');
     $header['format'] = $this->t('Format');
     return $header + parent::buildHeader();
   }
@@ -45,8 +45,8 @@ class AnonMeetingListBuilder extends EntityListBuilder {
         )
       )
     );
-    $row['when'] = self::renderField($entity, 'field_time');
     $row['where'] = self::renderField($entity, 'field_location');
+    $row['when'] = self::renderField($entity, 'field_time');
     $row['format'] = self::renderField($entity, 'field_format');
     return $row + parent::buildRow($entity);
   }

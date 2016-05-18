@@ -5,7 +5,7 @@ source:
   plugin: anonintergroup_csv
   keys:
     id: [ mID, mTime ]
-    day: mDayNo
+    day: mDayNo:1
   path: modules/custom/baltimoreaa/baltimoreaa.csv
 process:
   name: mName
@@ -45,7 +45,7 @@ process:
         'twelve&twelve': [ traditions, study, literature ]
   field_location:
     plugin: migration
-    migration: anonlocations
+    migration: baltimoreaa_locations
     source: [ mAdd1, mAdd2, mCity, mZip ]
   field_time/time:
     plugin: meeting_time

@@ -39,6 +39,13 @@ identifies these as unique meetings needs to be part of the source id key.
 In the csv example data, the location is uniquely identified by
 the four parts of an address.
 
+* Change the day key
+
+The day field can have a numeric value or a string. If it's a numeric value,
+the assumption is that 0 is for sunday, 1 for monday, and so on. If 1 is for
+sunday, just add a :1.
+
+
 * Change the process.
 
 This is the critical part of your migration and depends on your input file.

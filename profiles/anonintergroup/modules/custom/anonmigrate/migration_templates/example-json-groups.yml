@@ -9,6 +9,10 @@ source:
   path: profiles/anonintergroup/modules/custom/anonmigrate/example-data/example.json
 process:
   name: group
+  field_location:
+    plugin: migration
+    migration: example_json_locations
+    source: [ address, city, state, postal_code, country ]
 destination:
   plugin: 'entity:anongroup'
 migration_dependencies: {}
