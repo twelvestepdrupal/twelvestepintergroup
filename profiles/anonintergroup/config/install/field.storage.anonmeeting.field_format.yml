@@ -56,8 +56,8 @@ settings:
       value: youngpeoples
       label: 'young peoples'
     -
-      value: handicap
-      label: 'handicap accessible'
+      value: wheelchair
+      label: 'wheelchair accessible'
     -
       value: gay
       label: gay

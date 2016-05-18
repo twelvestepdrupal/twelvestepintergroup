@@ -37,7 +37,7 @@ process:
         bb: [ literature, bigbook ]
         traditions: traditions
       mAccess:
-       h: handicap
+       h: wheelchair
       mNotes:
         gay: gay
         spanish: 'spanish'
