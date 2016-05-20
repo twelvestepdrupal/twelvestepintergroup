@@ -6,3 +6,6 @@ package: anonintergroup
 
 dependencies:
   - anongroups
+  - anonlocations
+  - weeklytime
+  - rest

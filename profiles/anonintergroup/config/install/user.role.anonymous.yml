@@ -10,6 +10,8 @@ weight: 0
 is_admin: false
 permissions:
   - 'view published anonymous 12 step group entities'
+  - 'view published anonymous 12 step location entities'
+  - 'view published anonymous 12 step meeting entities'
   - 'access content'
   - 'use text format restricted_html'
   - 'access comments'

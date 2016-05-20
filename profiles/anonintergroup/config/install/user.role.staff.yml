@@ -9,7 +9,6 @@ label: Staff
 weight: 5
 is_admin: false
 permissions:
-  - 'edit anonymous 12 step meeting entities'
   - 'edit anonymous 12 step group entities'
-  - 'delete anonymous 12 step meeting entities'
-  - 'delete anonymous 12 step group entities'
+  - 'edit anonymous 12 step location entities'
+  - 'edit anonymous 12 step meeting entities'

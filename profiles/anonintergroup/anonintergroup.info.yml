@@ -45,15 +45,8 @@ dependencies:
   - tour
   - automated_cron
 # Required modules for AnonIntergroup
-  - address
-  - telephone
-  - rest
-  - geolocation
   - chosen
-  - weeklytime
-  - anongroups
   - anonmeetings
-  - anonlocations
 themes:
   - seven
 # - bartik
