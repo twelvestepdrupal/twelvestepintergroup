@@ -12,10 +12,11 @@ dependencies:
     - anonlocations
     - anonmeetings
     - options
+    - rest
     - user
     - weeklytime
 _core:
-  default_config_hash: JNLOhg2I0LwXkWuug23r41C2FWClENWY4kOwFIU9zME
+  default_config_hash: qao748wSD_IcFy6DCWX05bwuh1xE6Ss1AD4mRpepH3c
 id: meetings
 label: Meetings
 module: views
@@ -36,7 +37,7 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: tag
+        type: none
         options: {  }
       query:
         type: views_query
@@ -311,6 +312,32 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.permissions
+      tags:
+        - 'config:field.storage.anonlocation.field_address'
+        - 'config:field.storage.anonmeeting.field_format'
+        - 'config:field.storage.anonmeeting.field_time'
+  rest_export:
+    display_plugin: rest_export
+    id: rest_export
+    display_title: 'REST export'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      row:
+        type: meeting_guide
+        options: {  }
+      path: meetings/export
+      pager:
+        type: none
+        options:
+          offset: 0
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
         - user.permissions
       tags:
         - 'config:field.storage.anonlocation.field_address'
