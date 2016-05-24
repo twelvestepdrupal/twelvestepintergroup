@@ -16,7 +16,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: qao748wSD_IcFy6DCWX05bwuh1xE6Ss1AD4mRpepH3c
+  default_config_hash: tZxd4fDTlH_js91TWN0Y7YIjwkr1OehsIfS6g3KPz40
 id: meetings
 label: Meetings
 module: views
@@ -268,7 +268,7 @@ display:
           plugin_id: field
       filters: {  }
       sorts: {  }
-      title: 'Search finder'
+      title: 'Export Meetings'
       header: {  }
       footer: {  }
       empty:
@@ -320,7 +320,7 @@ display:
   rest_export:
     display_plugin: rest_export
     id: rest_export
-    display_title: 'REST export'
+    display_title: Export
     position: 3
     display_options:
       display_extenders: {  }
@@ -332,6 +332,7 @@ display:
         type: none
         options:
           offset: 0
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:
