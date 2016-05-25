@@ -4,6 +4,8 @@ This will be a Drupal 8.x install profile for Alcoholics Anonymous (and other 12
 
 This project is new and a also work-in-progress. Should you wish to join the group developing this project, please contact me. We are having weekly meetings on Friday afternoons to collaborate on the tasks and stay on target for weekly progress.
 
+A sample site using the profile is available at http://anonintergroup.org/
+
 ## Drupal 8
 
 This project implements a Drupal 8.x install profile (also known as a distribution).
