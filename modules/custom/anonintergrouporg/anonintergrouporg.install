@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Contains anonintergrouporg.install.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function anonintergrouporg_install() {
+  anonmigrate_import("example-csv");
+  anonmigrate_import("example-json");
+}

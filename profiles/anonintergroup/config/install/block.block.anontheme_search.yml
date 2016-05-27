@@ -5,11 +5,11 @@ dependencies:
   module:
     - search
   theme:
-    - bootstrap
+    - anontheme
 _core:
   default_config_hash: xHtLAJZYV8pxzM5QmEAWZWjkDHwk7hYP7hgWEKL0YqM
-id: bootstrap_search
-theme: bootstrap
+id: anontheme_search
+theme: anontheme
 region: '-1'
 weight: -1
 provider: null

@@ -10,6 +10,6 @@ placeholder_text_single: 'Choose an option'
 no_results_text: 'No results match'
 disabled_themes:
   seven: '0'
-  bootstrap: '0'
+  anontheme: '0'
 _core:
   default_config_hash: GXk6IldMPgV09Ff0j9AF15gJsfHCOVDBQww8hKvf7zo

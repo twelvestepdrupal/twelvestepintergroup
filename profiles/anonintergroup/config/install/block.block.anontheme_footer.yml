@@ -7,11 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - bootstrap
+    - anontheme
 _core:
   default_config_hash: 9FEq9yykc6WWAtHrwCltNcmRnQ0yVr2pXIccGu2B48w
-id: bootstrap_footer
-theme: bootstrap
+id: anontheme_footer
+theme: anontheme
 region: footer_fifth
 weight: 0
 provider: null

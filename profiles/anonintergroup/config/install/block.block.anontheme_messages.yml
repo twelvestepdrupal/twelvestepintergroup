@@ -5,11 +5,11 @@ dependencies:
   module:
     - system
   theme:
-    - bootstrap
+    - anontheme
 _core:
   default_config_hash: IXbmieZBcArHg4Tcx8je-gFZHa17NG1MF0-FWjdRSY4
-id: bootstrap_messages
-theme: bootstrap
+id: anontheme_messages
+theme: anontheme
 region: highlighted
 weight: 0
 provider: null

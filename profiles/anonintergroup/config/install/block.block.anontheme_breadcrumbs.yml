@@ -5,11 +5,11 @@ dependencies:
   module:
     - system
   theme:
-    - bootstrap
+    - anontheme
 _core:
   default_config_hash: pY8jklJBKeb2Zl6b4zLhVRL91KfFj3NTFLh65e2iIjo
-id: bootstrap_breadcrumbs
-theme: bootstrap
+id: anontheme_breadcrumbs
+theme: anontheme
 region: breadcrumb
 weight: 0
 provider: null

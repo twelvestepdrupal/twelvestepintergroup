@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - bootstrap
+    - anontheme
 _core:
   default_config_hash: 0jOxrkcDBt1CB2BIWISeBL45HBaYOJYIqe0hoOG4EPg
-id: bootstrap_local_tasks
-theme: bootstrap
+id: anontheme_local_tasks
+theme: anontheme
 region: content
 weight: -40
 provider: null

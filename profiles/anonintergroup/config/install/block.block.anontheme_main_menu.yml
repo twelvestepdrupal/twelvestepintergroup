@@ -7,11 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - bootstrap
+    - anontheme
 _core:
   default_config_hash: vgagOnIGsy2GUVzK8qVcykMGj0OMwD0jLM3MtWajMF8
-id: bootstrap_main_menu
-theme: bootstrap
+id: anontheme_main_menu
+theme: anontheme
 region: primary_menu
 weight: 0
 provider: null

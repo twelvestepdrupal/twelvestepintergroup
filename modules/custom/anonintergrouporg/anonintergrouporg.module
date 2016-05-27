@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains anonintergrouporg.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function anonintergrouporg_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the anonintergrouporg module.
+    case 'help.page.anonintergrouporg':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Anonymous Intergroup .org demo site') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+

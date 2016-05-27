@@ -49,5 +49,4 @@ dependencies:
   - anonmeetings
 themes:
   - seven
-# - bartik
-  - bootstrap
+  - anontheme
