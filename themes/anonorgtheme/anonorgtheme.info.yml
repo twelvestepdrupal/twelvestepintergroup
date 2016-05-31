@@ -1,11 +1,12 @@
 core: 8.x
 type: theme
-base theme: bootstrap
+base theme: anontheme
 
-name: 'AnonIntergroup'
-description: 'AnonIntergroup theme, builds ontop of Bootstrap theme'
-package: 'anonintergroup'
+name: 'AnonIntergroup.org'
+description: 'AnonIntergroup.org theme, builds ontop of AnonIntergroup theme, which builds ontop of Bootstrap theme'
+package: 'anonintergrouporg'
 
+# Regions copied from anontheme.
 regions:
   navigation: 'Navigation'
   navigation_collapsible: 'Navigation (Collapsible)'
@@ -20,4 +21,4 @@ regions:
   page_bottom: 'Page bottom'
 
 libraries:
-  - 'anontheme/global-styling'
+  - 'anonorgtheme/global-styling'

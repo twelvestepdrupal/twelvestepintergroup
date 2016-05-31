@@ -1,14 +1,25 @@
 <?php
 /**
- * Installation and update handlers for baltimoreaa_migrate module.
+ * Installation and update handlers for baltimoreaa module.
  */
 
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
+use Drupal\anontheme\AnonThemeHelper;
 
 /**
  * Implements hook_install().
  */
-function baltimoreaa_migrate_install() {
-  anonmigrate_import();
+function baltimoreaa_install() {
+  // Change site name.
+  \Drupal::configFactory()->getEditable('system.site')
+    ->set('name', 'Baltimore AA')
+    ->save(TRUE);
+
+  // Change the default theme.
+  \Drupal::service('anonhelper.default')->changeTheme('anonorgtheme');
+
+  // Import content.
+  \Drupal::service('module_installer')->install(['anonmigrate']);
+  anonmigrate_import("baltimoreaa");
 }

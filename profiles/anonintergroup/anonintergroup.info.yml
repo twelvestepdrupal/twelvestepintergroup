@@ -47,6 +47,7 @@ dependencies:
 # Required modules for AnonIntergroup
   - chosen
   - anonmeetings
+  - anonhelper
 themes:
   - seven
   - anontheme
