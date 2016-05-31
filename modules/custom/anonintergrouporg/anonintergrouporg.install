@@ -29,8 +29,6 @@ function anonintergrouporg_install() {
   anonmigrate_import("example-csv");
   anonmigrate_import("example-json");
 
-  // @todo: Remove all navigation blocks.
-  
   // Create the 'About this site' header block.
   /** @var BlockContent $block */
   $block = BlockContent::create([
