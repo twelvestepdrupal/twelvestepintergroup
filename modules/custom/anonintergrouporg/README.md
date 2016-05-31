@@ -4,6 +4,6 @@ The site is a CI site recreated using:
 
 ```
 drush sql-drop -y
-drush -y si anonintergroup --site-name="Anonymous Intergroup Example Site"
+drush -y si anonintergroup
 drush en -y anonintergrouporg
 ```

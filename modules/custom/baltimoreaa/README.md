@@ -4,7 +4,7 @@
 
 ```
 drush sql-drop -y
-drush -y si anonintergroup --site-name="Baltimore Intergroup Council of Alcoholics Anonymous"
+drush -y si anonintergroup
 drush en -y baltimoreaa
 ```
 
@@ -16,11 +16,6 @@ example. We maintain the actual migration templates here.
 
 The tag here is 'baltimoreaa'. The tag in the examples is 'baltimoreaa-example'.
 
-* update the CSV file. Then run:
-```
-drush enable -y anonmigrate
-drush script 'anonmigrate_import("baltimoreaa")'
-```
 * uninstall the migrate module now that it is no longer needed.
 ```
 drush pmu -y anonmigrate
