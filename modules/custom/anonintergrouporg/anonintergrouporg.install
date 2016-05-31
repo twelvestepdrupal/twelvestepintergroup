@@ -22,12 +22,6 @@ function anonintergrouporg_install() {
     ->save(TRUE);
 
   // Change the default theme.
-  \Drupal::service('theme_installer')->install(['anonorgtheme'], FALSE);
-  \Drupal::configFactory()->getEditable('system.theme')
-    ->set('default', 'anonorgtheme')
-    ->save(TRUE);
-
-  // Change the default theme.
   \Drupal::service('anonhelper.default')->changeTheme('anonorgtheme');
   
   // Import content.

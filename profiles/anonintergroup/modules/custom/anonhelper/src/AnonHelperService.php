@@ -48,6 +48,7 @@ class AnonHelperService implements AnonHelperServiceInterface {
    * @param $default_theme
    */
   function changeTheme($default_theme) {
+    // Change the default theme.
     $this->theme_installer->install([$default_theme], FALSE);
     $this->config_factory->getEditable('system.theme')
       ->set('default', $default_theme)
