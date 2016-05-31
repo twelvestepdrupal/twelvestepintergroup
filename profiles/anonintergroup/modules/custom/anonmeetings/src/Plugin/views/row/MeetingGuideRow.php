@@ -51,22 +51,28 @@ class MeetingGuideRow extends DataEntityRow {
     }
 
     $location_id = $meeting->get('field_location')->target_id;
-    /** @var AnonLocation $location */
-    $location = entity_load('anonlocation', $location_id);
-    $output['location'] = $location->getName();
-//  $output['location_slug'] = $location->path->value;
-    /** @var FieldItemList $field_address */
-    $field_address = $location->get('field_address')->first();
-    $output['address'] = $field_address->address_line1;
-    $output['city'] = $field_address->locality;
-    $output['state'] = $field_address->dependent_locality;
-    $output['postal_code'] = $field_address->postal_code;
-    $output['country'] = $field_address->country_code;
+    if ($location_id) {
+      /** @var AnonLocation $location */
+      $location = entity_load('anonlocation', $location_id);
+      $output['location'] = $location->getName();
+//    $output['location_slug'] = $location->path->value;
+      /** @var FieldItemList $field_address */
+      $field_address = $location->get('field_address')->first();
+      if ($field_address) {
+        $output['address'] = $field_address->address_line1;
+        $output['city'] = $field_address->locality;
+        $output['state'] = $field_address->dependent_locality;
+        $output['postal_code'] = $field_address->postal_code;
+        $output['country'] = $field_address->country_code;
+      }
 
-    /** @var FieldItemList $field_coordinates */
-    $field_coordinates = $location->get('field_coordinates')->first();
-    $output['latitude'] = $field_coordinates->lat;
-    $output['longitude'] = $field_coordinates->lng;
+      /** @var FieldItemList $field_coordinates */
+      $field_coordinates = $location->get('field_coordinates')->first();
+      if ($field_coordinates) {
+        $output['latitude'] = $field_coordinates->lat;
+        $output['longitude'] = $field_coordinates->lng;
+      }
+    }
 
     return $output;
   }
