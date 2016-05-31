@@ -16,7 +16,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: tZxd4fDTlH_js91TWN0Y7YIjwkr1OehsIfS6g3KPz40
+  default_config_hash: YWbHe1YRkm3VzRTr9l__2jKzxpdCxZNnT7R8X-uGp1U
 id: meetings
 label: Meetings
 module: views
@@ -268,9 +268,22 @@ display:
           plugin_id: field
       filters: {  }
       sorts: {  }
-      title: 'Export Meetings'
+      title: 'Search Meetings'
       header: {  }
-      footer: {  }
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/meetings/export">Export</a> for <a href="https://meetingguide.org/api">Meeting Guide API</a>'
+            format: basic_html
+          plugin_id: text
       empty:
         area:
           id: area
