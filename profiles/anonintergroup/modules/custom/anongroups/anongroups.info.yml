@@ -8,3 +8,4 @@ dependencies:
   - anonlocations
   - telephone
   - link
+  - inline_entity_form

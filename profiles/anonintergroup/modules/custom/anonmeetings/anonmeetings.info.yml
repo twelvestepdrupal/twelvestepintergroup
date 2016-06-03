@@ -9,3 +9,4 @@ dependencies:
   - anonlocations
   - weeklytime
   - rest
+  - inline_entity_form
