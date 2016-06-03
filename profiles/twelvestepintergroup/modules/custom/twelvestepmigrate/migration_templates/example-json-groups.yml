@@ -1,0 +1,18 @@
+id: example_json_groups
+label: Import Example JSON Groups
+migration_tags: [ example-json ]
+source:
+  plugin: twelvestepintergroup_json
+  keys:
+    id: [ group ]
+    day: day
+  path: profiles/twelvestepintergroup/modules/custom/twelvestepmigrate/example-data/example.json
+process:
+  name: group
+  field_location:
+    plugin: migration
+    migration: example_json_locations
+    source: [ address, city, state, postal_code, country ]
+destination:
+  plugin: 'entity:twelvestepgroup'
+migration_dependencies: {}

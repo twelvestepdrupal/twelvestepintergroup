@@ -1,0 +1,12 @@
+# Twelve Step Location menu items definition
+entity.twelvesteplocation.collection:
+  title: 'Twelve Step Location list'
+  route_name: entity.twelvesteplocation.collection
+  description: 'List Twelve Step Locations'
+  parent: system.admin_content
+
+twelvesteplocation.admin.structure.settings:
+  title: 'Twelve Step Location settings'
+  description: 'Configure Twelve Step Locations'
+  route_name: twelvesteplocation.settings
+  parent: system.admin_structure

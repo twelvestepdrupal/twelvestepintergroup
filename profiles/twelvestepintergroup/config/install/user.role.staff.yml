@@ -1,0 +1,14 @@
+uuid: 0dea788e-a633-4baf-bcdd-502284d73a72
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: nsGkzVAzuma75RRXuuGndbRlei7sdEN-M22py5DQQwg
+id: staff
+label: Staff
+weight: 5
+is_admin: false
+permissions:
+  - 'edit twelve step group entities'
+  - 'edit twelve step location entities'
+  - 'edit twelve step meeting entities'

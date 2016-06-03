@@ -1,0 +1,10 @@
+{
+    "name": "anondrupal/twelvestepintergroup",
+    "description": "Twelve Step Group Central Office / Intergroup",
+    "type": "profile",
+    "require": {
+        "commerceguys/addressing": "master-dev",
+        "commerceguys/intl": "master-dev",
+        "commerceguys/zone": "master-dev"
+    }
+}

@@ -1,12 +1,12 @@
 core: 8.x
 type: theme
-base theme: anontheme
+base theme: twelvesteptheme
 
-name: 'Baltimore AA'
-description: 'Baltimore AA theme, builds ontop of TwelveStepIntergroup theme, which builds ontop of Bootstrap theme'
-package: 'baltimoreaa'
+name: 'TwelveStepIntergroup.org'
+description: 'TwelveStepIntergroup.org theme, builds ontop of TwelveStepIntergroup theme, which builds ontop of Bootstrap theme'
+package: 'twelvestepintergrouporg'
 
-# Regions copied from anontheme.
+# Regions copied from twelvesteptheme.
 regions:
   navigation: 'Navigation'
   navigation_collapsible: 'Navigation (Collapsible)'
@@ -21,4 +21,4 @@ regions:
   page_bottom: 'Page bottom'
 
 libraries:
-  - 'baltimoreaatheme/global-styling'
+  - 'twelvesteporgtheme/global-styling'

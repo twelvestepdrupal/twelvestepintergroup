@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains twelvestepintergrouporg.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function twelvestepintergrouporg_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the twelvestepintergrouporg module.
+    case 'help.page.twelvestepintergrouporg':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Twelve Step Intergroup .org demo site') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+

@@ -1,0 +1,61 @@
+uuid: 91e1866d-258a-4113-9007-7fa51b1f115a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_group
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_location
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_time
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_format
+  module:
+    - twelvestepmeetings
+    - options
+    - user
+    - weeklytime
+_core:
+  default_config_hash: q_5u-HgLUQ1cXk_XYR3CPVCCpC7_7e8LRcA-CnMj9NE
+id: twelvestepmeeting.twelvestepmeeting.default
+targetEntityType: twelvestepmeeting
+bundle: twelvestepmeeting
+mode: default
+content:
+  field_group:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_location:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_time:
+    type: weeklytime_widget
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_format:
+    type: list_key
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    label: above
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

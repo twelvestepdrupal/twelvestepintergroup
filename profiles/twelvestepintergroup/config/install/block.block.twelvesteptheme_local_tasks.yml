@@ -1,0 +1,22 @@
+uuid: 3e85d0f3-f357-4981-9014-396078b928e6
+langcode: en
+status: true
+dependencies:
+  theme:
+    - twelvesteptheme
+_core:
+  default_config_hash: 0jOxrkcDBt1CB2BIWISeBL45HBaYOJYIqe0hoOG4EPg
+id: twelvesteptheme_local_tasks
+theme: twelvesteptheme
+region: content
+weight: -40
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: e4be3c8e-9e9d-4921-a3ff-249cb18ac063
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - twelvesteptheme
+_core:
+  default_config_hash: UQRcUf-kKQ6LD2-hiMtTE95ddss_0w1A9LCUzHSRJLk
+id: twelvesteptheme_help
+theme: twelvesteptheme
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,34 @@
+id: example_csv_locations
+label: Import Example CSV Locations
+migration_tags: [ example-csv ]
+source:
+  plugin: twelvestepintergroup_csv
+  keys:
+    id: [ mAdd1, mAdd2, mCity, mZip ]
+    day: mDayNo:1
+  path: profiles/twelvestepintergroup/modules/custom/twelvestepmigrate/example-data/example.csv
+process:
+  name: mName
+  field_address/country_code:
+    plugin: default_value
+    default_value: US
+  field_address/dependent_locality:
+    plugin: default_value
+    default_value: MD
+  field_address/address_line1: mAdd1
+  field_address/address_line2: mAdd2
+  field_address/locality: mCity
+  field_address/postal_code: mZip
+  field_coordinates/lat:
+    plugin: explode_position
+    source: mSpecial
+    delimiter: ,
+    position: 0
+  field_coordinates/lng:
+    plugin: explode_position
+    source: mSpecial
+    delimiter: ,
+    position: 1
+destination:
+  plugin: 'entity:twelvesteplocation'
+migration_dependencies: {}

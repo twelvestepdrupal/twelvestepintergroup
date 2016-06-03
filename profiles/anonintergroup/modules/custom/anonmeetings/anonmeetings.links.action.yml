@@ -1,7 +1,0 @@
-entity.anonmeeting.add_form:
-  route_name: entity.anonmeeting.add_form
-  title: 'Add Anonymous 12 Step Meeting'
-  appears_on:
-    - entity.anonmeeting.collection
-    - entity.anonmeeting.canonical
-

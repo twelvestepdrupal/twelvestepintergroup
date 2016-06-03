@@ -1,0 +1,20 @@
+uuid: ef4f531c-2e31-4b5b-bbac-e124fdc5f813
+langcode: en
+status: true
+dependencies:
+  theme:
+    - twelvesteptheme
+_core:
+  default_config_hash: 5MTjTlRINRjbnSny_IHwa4SlUIKQuvlh4-mT9ZCzZIc
+id: twelvesteptheme_page_title
+theme: twelvesteptheme
+region: content
+weight: -50
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

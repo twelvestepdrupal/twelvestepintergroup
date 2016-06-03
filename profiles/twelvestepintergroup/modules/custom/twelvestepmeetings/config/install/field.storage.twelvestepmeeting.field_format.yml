@@ -1,0 +1,104 @@
+uuid: ec33e42c-d421-4658-a9cc-618b36de4747
+langcode: en
+status: true
+dependencies:
+  module:
+    - twelvestepmeetings
+    - options
+_core:
+  default_config_hash: TzCnKEFFQ1ZDzci9FY4Wd8iU_mDmjfcbBmZ1QGguis8
+id: twelvestepmeeting.field_format
+field_name: field_format
+entity_type: twelvestepmeeting
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: alanon
+      label: 'concurrent with Al-Anon'
+    -
+      value: alateen
+      label: 'concurrent with Alateen'
+    -
+      value: asl
+      label: 'american sign language'
+    -
+      value: beginner
+      label: beginner
+    -
+      value: bigbook
+      label: bigbook
+    -
+      value: candlelight
+      label: candlelight
+    -
+      value: closed
+      label: closed
+    -
+      value: crosstalk
+      label: 'cross talk permitted'
+    -
+      value: discussion
+      label: discussion
+    -
+      value: fragrancefree
+      label: 'fragrance free'
+    -
+      value: gay
+      label: gay
+    -
+      value: grapevine
+      label: grapevine
+    -
+      value: handicap
+      label: 'handicap accessible'
+    -
+      value: literature
+      label: literature
+    -
+      value: meditation
+      label: meditation
+    -
+      value: mens
+      label: mens
+    -
+      value: non-smoking
+      label: non-smoking
+    -
+      value: open
+      label: open
+    -
+      value: promises
+      label: promises
+    -
+      value: smoking
+      label: smoking
+    -
+      value: spanish
+      label: 'spanish speaking'
+    -
+      value: speaker
+      label: speaker
+    -
+      value: steps
+      label: steps
+    -
+      value: traditions
+      label: traditions
+    -
+      value: transgender
+      label: transgender
+    -
+      value: womans
+      label: womans
+    -
+      value: young
+      label: 'young peoples'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

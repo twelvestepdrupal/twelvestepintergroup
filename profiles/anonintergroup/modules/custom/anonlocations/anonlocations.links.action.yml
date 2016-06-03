@@ -1,7 +1,0 @@
-entity.anonlocation.add_form:
-  route_name: entity.anonlocation.add_form
-  title: 'Add Anonymous 12 Step Location'
-  appears_on:
-    - entity.anonlocation.collection
-    - entity.anonlocation.canonical
-

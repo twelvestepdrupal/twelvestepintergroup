@@ -1,0 +1,27 @@
+uuid: a06358a9-2302-4099-9c05-5ae339c472fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.twelvestepmeeting.field_location
+  module:
+    - twelvestepmeetings
+_core:
+  default_config_hash: bejTZfDE4W8OxYTY9Ebwl5XmuPzjsgPmF2ICA6MdlR4
+id: twelvestepmeeting.twelvestepmeeting.field_location
+field_name: field_location
+entity_type: twelvestepmeeting
+bundle: twelvestepmeeting
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:twelvesteplocation'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+field_type: entity_reference

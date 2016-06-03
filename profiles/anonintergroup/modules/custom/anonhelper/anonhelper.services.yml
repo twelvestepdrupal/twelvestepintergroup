@@ -1,4 +1,0 @@
-services:
-  anonhelper.default:
-    class: Drupal\anonhelper\AnonHelperService
-    arguments: ['@config.factory', '@entity.manager', '@theme_installer']

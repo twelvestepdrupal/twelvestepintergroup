@@ -1,0 +1,26 @@
+# Twelve Step Meeting routing definition
+twelvestepmeeting.settings_tab:
+  route_name: twelvestepmeeting.settings
+  title: 'Settings'
+  base_route: twelvestepmeeting.settings
+
+entity.twelvestepmeeting.canonical:
+  route_name: entity.twelvestepmeeting.canonical
+  base_route: entity.twelvestepmeeting.canonical
+  title: 'View'
+
+entity.twelvestepmeeting.edit_form:
+  route_name: entity.twelvestepmeeting.edit_form
+  base_route: entity.twelvestepmeeting.canonical
+  title: 'Edit'
+
+entity.twelvestepmeeting.delete_form:
+  route_name:  entity.twelvestepmeeting.delete_form
+  base_route:  entity.twelvestepmeeting.canonical
+  title: 'Delete'
+  weight: 10
+
+entity.twelvestepmeeting.collection:
+  route_name: entity.twelvestepmeeting.collection
+  title: 'Twelve Step Meetings'
+  base_route: system.admin_content

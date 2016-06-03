@@ -1,9 +1,0 @@
-name: Anonymous Locations
-type: module
-description: Anonymous 12 Step Location Entity
-core: 8.x
-package: anonintergroup
-
-dependencies:
-  - geolocation
-  - address

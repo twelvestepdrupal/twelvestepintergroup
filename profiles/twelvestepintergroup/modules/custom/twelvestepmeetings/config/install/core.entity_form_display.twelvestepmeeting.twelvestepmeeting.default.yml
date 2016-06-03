@@ -1,0 +1,70 @@
+uuid: 65264609-686b-49cf-b700-b79b78ad1c29
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_format
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_group
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_location
+    - field.field.twelvestepmeeting.twelvestepmeeting.field_time
+  module:
+    - twelvestepmeetings
+    - inline_entity_form
+    - weeklytime
+_core:
+  default_config_hash: JofweKAL-jryiFSfgYPBY2UWmL8IElatRvu-AzA7Wvk
+id: twelvestepmeeting.twelvestepmeeting.default
+targetEntityType: twelvestepmeeting
+bundle: twelvestepmeeting
+mode: default
+content:
+  field_format:
+    type: options_select
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+  field_group:
+    type: inline_entity_form_complex
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+    third_party_settings: {  }
+  field_location:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+  field_time:
+    type: weeklytime_widget
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

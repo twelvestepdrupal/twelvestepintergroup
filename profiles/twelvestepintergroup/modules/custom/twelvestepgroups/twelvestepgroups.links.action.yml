@@ -1,0 +1,7 @@
+entity.twelvestepgroup.add_form:
+  route_name: entity.twelvestepgroup.add_form
+  title: 'Add Twelve Step Group'
+  appears_on:
+    - entity.twelvestepgroup.collection
+    - entity.twelvestepgroup.canonical
+

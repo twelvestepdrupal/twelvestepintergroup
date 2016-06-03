@@ -1,0 +1,27 @@
+uuid: bec3a808-b4f7-46b6-b30b-113e3a19817a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.twelvestepmeeting.field_group
+  module:
+    - twelvestepmeetings
+_core:
+  default_config_hash: fqKGF9MGg-fG56XEOZPe4ZbpkeDVk1DqnZcKuHgurro
+id: twelvestepmeeting.twelvestepmeeting.field_group
+field_name: field_group
+entity_type: twelvestepmeeting
+bundle: twelvestepmeeting
+label: Group
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:twelvestepgroup'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+field_type: entity_reference

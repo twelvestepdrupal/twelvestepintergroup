@@ -1,0 +1,22 @@
+uuid: af41bd8e-9bb0-4ff8-a58b-8304ebbc1c26
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - twelvesteptheme
+_core:
+  default_config_hash: fNNLN48MSGSLiqwIFywCuxH2Dk_IxDbaP0kYhg_IPrg
+id: twelvesteptheme_content
+theme: twelvesteptheme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

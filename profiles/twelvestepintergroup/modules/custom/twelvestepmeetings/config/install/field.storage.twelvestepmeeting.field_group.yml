@@ -1,0 +1,22 @@
+uuid: 927f7bce-440c-4240-b306-6e180f63628b
+langcode: en
+status: true
+dependencies:
+  module:
+    - twelvestepgroups
+    - twelvestepmeetings
+_core:
+  default_config_hash: qzO4oUREHpCB7Pyme1hsiNpBojLW4uUNvAXpiIRp5eQ
+id: twelvestepmeeting.field_group
+field_name: field_group
+entity_type: twelvestepmeeting
+type: entity_reference
+settings:
+  target_type: twelvestepgroup
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

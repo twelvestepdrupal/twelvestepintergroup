@@ -1,0 +1,12 @@
+# Twelve Step Group menu items definition
+entity.twelvestepgroup.collection:
+  title: 'Twelve Step Group list'
+  route_name: entity.twelvestepgroup.collection
+  description: 'List Twelve Step Groups'
+  parent: system.admin_content
+
+twelvestepgroup.admin.structure.settings:
+  title: 'Twelve Step Group settings'
+  description: 'Configure Twelve Step Groups'
+  route_name: twelvestepgroup.settings
+  parent: system.admin_structure

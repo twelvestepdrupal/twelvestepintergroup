@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains twelvestepmigrate.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\MigrateExecutable;
+use Drupal\migrate\MigrateMessage;
+
+/**
+ * Implements hook_help().
+ */
+function twelvestepmigrate_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the twelvestepmigrate module.
+    case 'help.page.twelvestepmigrate':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Twelve Step Migration Helper') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Migrate by tag.
+ */
+function twelvestepmigrate_import($tag = 'twelvestepintergroup') {
+  $migrations = \Drupal::service('plugin.manager.migration')
+    ->createInstancesByTag($tag);
+
+  foreach ($migrations as $migration) {
+    $executable = new MigrateExecutable($migration, new MigrateMessage());
+    $executable->import();
+  }
+}

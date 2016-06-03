@@ -1,0 +1,75 @@
+id: example_json_meetings
+label: Import Example JSON Meetings
+migration_tags: [ example-json ]
+source:
+  plugin: twelvestepintergroup_json
+  keys:
+    id: [ id, time ]
+    day: day
+  path: profiles/twelvestepintergroup/modules/custom/twelvestepmigrate/example-data/example.json
+process:
+  name: name
+  field_format:
+    plugin: map
+    map:
+      types:
+        a: atheist
+        al: alateen
+        al-an: alanon
+        asl: asl
+        be: beginner
+        b: [ bigbook, literature ]
+        ba: babysitting
+        c: closed
+        can: candlelight
+        cf: children
+        d: discussion
+        ff: fragrancefree
+        fr: french
+        g: gay
+        gr: grapevine
+        h: chips
+        l: lesbian
+        lgbtq: ltbtq
+        lit: literature
+        m: mens
+        med: meditation
+        o: open
+        s: spanish
+        st: step
+        sm: smoking
+        sp: speaker
+        st: step
+        t: transgender
+        tr: traditions
+        w: womens
+        x: wheelchair
+        xt: crosstalk
+        y: young
+  field_location:
+    plugin: migration
+    migration: example_json_locations
+    source: [ address, city, state, postal_code, country ]
+  field_group:
+    plugin: migration
+    migration: example_json_groups
+    source: [ group ]
+  field_time/time:
+    plugin: meeting_time
+    source: time
+  field_time/length:
+    plugin: default_value
+    default_value: 60
+  field_time/sun: sun
+  field_time/mon: mon
+  field_time/tue: tue
+  field_time/wed: wed
+  field_time/thu: thu
+  field_time/fri: fri
+  field_time/sat: sat
+destination:
+  plugin: 'entity:twelvestepmeeting'
+migration_dependencies:
+ required:
+   - example_json_locations
+   - example_json_groups

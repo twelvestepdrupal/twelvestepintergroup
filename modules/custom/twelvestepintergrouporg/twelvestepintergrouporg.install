@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Contains twelvestepintergrouporg.install.
+ */
+
+use Drupal\Core\Extension\ThemeInstaller;
+use Drupal\Core\Extension\ModuleInstaller;
+use Drupal\block_content\Entity\BlockContent;
+use Drupal\block\Entity\Block;
+use Drupal\twelvesteptheme\TwelveStepThemeHelper;
+
+/**
+ * Implements hook_install().
+ */
+function twelvestepintergrouporg_install() {
+  // Change site name and slogan.
+  \Drupal::configFactory()->getEditable('system.site')
+    ->set('name', 'Twelve Step Intergroup Example Site')
+    ->set('slogan', 'Create your own Intergroup site, free and easy')
+    ->save(TRUE);
+
+  // Change the default theme.
+  \Drupal::service('twelvestephelper.default')->changeTheme('twelvesteporgtheme');
+
+  // Import content.
+  \Drupal::service('module_installer')->install(['twelvestepmigrate']);
+  twelvestepmigrate_import("example-csv");
+  twelvestepmigrate_import("example-json");
+
+  // Create the 'About this site' header block.
+  /** @var BlockContent $block */
+  $block = BlockContent::create([
+    'type' => 'basic',
+    'info' => 'About this site',
+    'body' => [
+      'format' => 'basic_html',
+      'value' => 'This is an example site of the Twelve Step Intergroup meeting Drupal profile <a href="https://github.com/anondrupal/twelvestepintergroup/tree/develop/profiles/twelvestepintergroup">TwelveStepIntergroup</a>. The meetings listed here are mostly of an example nature, while they were imported from a real site, they are not actively updated. This site is updated nightly from the develop branch.',
+    ],
+  ]);
+  $block->save();
+  Block::create([
+    'id' => 'aboutthissite',
+    'theme' => 'twelvesteporgtheme',
+    'weight' => -3,
+    'status' => TRUE,
+    'region' => 'highlighted',
+    'plugin' => 'block_content:' . $block->uuid(),
+    'settings' => [
+      'label' => 'About this site',
+      'label_display' => FALSE,
+    ],
+  ])->save();
+}

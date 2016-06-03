@@ -1,0 +1,22 @@
+{#
+/**
+ * @file twelvestepgroup.html.twig
+ * Default theme implementation to present Twelve Step Group data.
+ *
+ * This template is used when viewing Twelve Step Group pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_twelvestepgroup()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('twelvestepgroup') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

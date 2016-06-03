@@ -1,0 +1,23 @@
+uuid: 077f7dda-4541-4988-bc00-de82c77b23ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.twelvestepmeeting.field_time
+  module:
+    - twelvestepmeetings
+    - weeklytime
+_core:
+  default_config_hash: EAtBwo9W2YXrtGsYYD-SfFZpOw3XtmFjJh_Qa5f6FeM
+id: twelvestepmeeting.twelvestepmeeting.field_time
+field_name: field_time
+entity_type: twelvestepmeeting
+bundle: twelvestepmeeting
+label: Time
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: weeklytime

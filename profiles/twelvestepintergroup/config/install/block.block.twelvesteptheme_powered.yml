@@ -1,0 +1,22 @@
+uuid: 23fdb34d-3ca1-4ab3-98b0-28f0f383b465
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - twelvesteptheme
+_core:
+  default_config_hash: TT7XXHWOt8nQgDypSXwS4hdzRm8srBFZF1OcOXd6ask
+id: twelvesteptheme_powered
+theme: twelvesteptheme
+region: footer_fifth
+weight: 10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

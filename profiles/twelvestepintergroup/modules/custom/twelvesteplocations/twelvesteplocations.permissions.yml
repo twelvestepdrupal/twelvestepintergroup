@@ -1,0 +1,19 @@
+add twelve step location entities:
+  title: 'Create new Twelve Step Location entities'
+
+administer twelve step location entities:
+  title: 'Administer Twelve Step Location entities'
+  description: 'Allow to access the administration form to configure Twelve Step Location entities.'
+  restrict access: true
+
+delete twelve step location entities:
+  title: 'Delete Twelve Step Location entities'
+
+edit twelve step location entities:
+  title: 'Edit Twelve Step Location entities'
+
+view published twelve step location entities:
+  title: 'View published Twelve Step Location entities'
+
+view unpublished twelve step location entities:
+  title: 'View unpublished Twelve Step Location entities'
