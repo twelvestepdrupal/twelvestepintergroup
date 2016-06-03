@@ -45,7 +45,12 @@ class AnonMeetingListBuilder extends EntityListBuilder {
         )
       )
     );
-    $row['where'] = self::renderField($entity, 'field_location');
+    $location_id = $entity->get('field_location')->target_id;
+    if ($location_id) {
+      /** @var AnonLocation $location */
+      $location = entity_load('anonlocation', $location_id);
+      $row['where'] = self::renderField($location, 'field_address');
+    }
     $row['when'] = self::renderField($entity, 'field_time');
     $row['format'] = self::renderField($entity, 'field_format');
     return $row + parent::buildRow($entity);
