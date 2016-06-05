@@ -29,16 +29,18 @@ class TwelveStepHelperService implements TwelveStepHelperServiceInterface {
   protected $config_factory;
 
   /**
-   * @var Drupal\Core\Entity\EntityManager
+   * The block storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $entity_manager;
-
+  protected $storage;
+  
   /**
    * Constructor.
    */
   public function __construct(ConfigFactory $config_factory, EntityManager $entity_manager, ThemeInstaller $theme_installer) {
     $this->config_factory = $config_factory;
-    $this->entity_manager = $entity_manager;
+    $this->storage = $entity_manager->getStorage('block');
     $this->theme_installer = $theme_installer;
   }
 
@@ -57,13 +59,15 @@ class TwelveStepHelperService implements TwelveStepHelperServiceInterface {
     // Remove navigation header blocks.
     // @todo: why do we need to do this? Shouldn't the default blocks be
     // picked up from twelvesteptheme.
-    $blocks = $this->entity_manager->getStorage('block')->loadMultiple($block_ids);
+    $block_ids = $this->storage->getQuery()
+      ->condition('theme', $default_theme)
+      ->condition('region', 'navigation')
+      ->execute();
+    /** @var $block \Drupal\block\BlockInterface[] */
+    $blocks = $this->storage->loadMultiple($block_ids);
     foreach ($blocks as $block) {
-      /** @var $block \Drupal\block\BlockInterface */
-      if ($block->getTheme() == $default_theme && $block->getRegion() == 'navigation') {
-        $block->setStatus(FALSE);
-        $block->save();
-      }
+      $block->setStatus(FALSE);
+      $block->save();
     }
   }
 

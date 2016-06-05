@@ -49,8 +49,7 @@ class WeeklyTimeFormatter extends FormatterBase {
    */
   public function settingsSummary() {
     $summary = [];
-    // Implement settings summary.
-
+    // @todo: Implement settings summary.
     return $summary;
   }
 
