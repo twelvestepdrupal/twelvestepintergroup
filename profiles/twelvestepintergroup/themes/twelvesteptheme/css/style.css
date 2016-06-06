@@ -1,3 +1,61 @@
 /**
  * Place your custom styles here.
  */
+
+div.view-meetings #view-field-time-table-column {
+  width: 20%;
+}
+div.view-meetings #view-field-format-table-column {
+  width: 30%;
+}
+
+/**
+ * Make the meeting table responsive.
+ *
+ * Copied from https://css-tricks.com/examples/ResponsiveTables/responsive.php.
+ *
+ * @todo: have a themer review this. Something in tables.less is interfering
+ * around 600-760px.
+ */
+@media only screen and (max-width: 600px) {
+
+  /* Force table to not be like tables anymore */
+  div.view-meetings table,
+  div.view-meetings thead,
+  div.view-meetings tbody,
+  div.view-meetings th,
+  div.view-meetings td,
+  div.view-meetings tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  div.view-meetings thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  div.view-meetings tr {
+    border: 1px solid #ccc;
+  }
+
+  div.view-meetings td {
+    /* Behave like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  div.view-meetings td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}
