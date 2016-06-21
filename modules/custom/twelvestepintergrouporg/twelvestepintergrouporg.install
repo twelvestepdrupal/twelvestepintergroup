@@ -27,7 +27,8 @@ function twelvestepintergrouporg_install() {
   // Import content.
   \Drupal::service('module_installer')->install(['twelvestepmigrate']);
   twelvestepmigrate_import("example-csv");
-  twelvestepmigrate_import("example-json");
+  // Don't import JSON because map data is then too geographically disperse.
+//twelvestepmigrate_import("example-json");
 
   // Create the 'About this site' header block.
   /** @var BlockContent $block */

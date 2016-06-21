@@ -5,7 +5,7 @@
 
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
-use Drupal\anontheme\AnonThemeHelper;
+use Drupal\twelvesteptheme\TwelveStepThemeHelper;
 
 /**
  * Implements hook_install().
@@ -17,9 +17,9 @@ function baltimoreaa_install() {
     ->save(TRUE);
 
   // Change the default theme.
-  \Drupal::service('anonhelper.default')->changeTheme('anonorgtheme');
+  \Drupal::service('twelvestephelper.default')->changeTheme('baltimoreaatheme');
 
   // Import content.
-  \Drupal::service('module_installer')->install(['anonmigrate']);
-  anonmigrate_import("baltimoreaa");
+  \Drupal::service('module_installer')->install(['twelvestepmigrate']);
+  twelvestepmigrate_import("baltimoreaa");
 }

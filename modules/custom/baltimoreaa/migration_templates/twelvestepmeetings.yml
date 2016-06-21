@@ -2,7 +2,7 @@ id: baltimoreaa_meetings
 label: Import Baltimore AA Meetings
 migration_tags: [ baltimoreaa ]
 source:
-  plugin: anonintergroup_csv
+  plugin: twelvestepintergroup_csv
   keys:
     id: [ mID, mTime ]
     day: mDayNo:1
@@ -61,7 +61,7 @@ process:
   field_time/fri: fri
   field_time/sat: sat
 destination:
-  plugin: 'entity:anonmeeting'
+  plugin: 'entity:twelvestepmeeting'
 migration_dependencies:
  required:
    - baltimoreaa_locations

@@ -1,12 +1,12 @@
 core: 8.x
 type: theme
-base theme: anontheme
+base theme: twelvesteptheme
 
 name: 'Baltimore AA'
 description: 'Baltimore AA theme, builds ontop of TwelveStepIntergroup theme, which builds ontop of Bootstrap theme'
 package: 'baltimoreaa'
 
-# Regions copied from anontheme.
+# Regions copied from twelvesteptheme.
 regions:
   navigation: 'Navigation'
   navigation_collapsible: 'Navigation (Collapsible)'
