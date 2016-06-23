@@ -6,6 +6,7 @@
 drush sql-drop -y
 drush -y si twelvestepintergroup
 drush en -y baltimoreaa
+drush queue-run geolocation
 ```
 
 # Import CSV data

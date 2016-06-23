@@ -24,7 +24,7 @@
         "merge-plugin": {
             "include": [
                 "core/composer.json",
-                "profiles/anonintergroup/composer.json"
+                "profiles/twelvestepintergroup/composer.json"
             ],
             "recurse": false,
             "replace": false,

@@ -18,7 +18,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: lDXfykoKMqpYGDSjnijlNx5ovc3EfTtNB9N7VhG8hFc
+  default_config_hash: 6chibwNa54kuDHGtfxDI1jGp3C1Hb6OpO_QcsBKjxYM
 id: meetings
 label: Meetings
 module: views
@@ -80,6 +80,14 @@ display:
               enable: false
       row:
         type: fields
+        options:
+          default_field_elements: true
+          inline:
+            field_address: field_address
+            field_time: field_time
+            field_format: field_format
+          separator: ''
+          hide_empty: false
       fields:
         field_address:
           id: field_address
@@ -500,9 +508,9 @@ display:
     position: 2
     display_options:
       display_extenders: {  }
-      path: meetings/search
+      path: meetings
       menu:
-        type: tab
+        type: none
         title: Search
         description: ''
         expanded: false
@@ -727,7 +735,8 @@ display:
           group_type: group
           admin_label: ''
           operator: '='
-          value: ''
+          value:
+            today: today
           group: 1
           exposed: true
           expose:
@@ -773,86 +782,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user.permissions
-      tags:
-        - 'config:field.storage.twelvesteplocation.field_address'
-        - 'config:field.storage.twelvesteplocation.field_coordinates'
-        - 'config:field.storage.twelvestepmeeting.field_format'
-        - 'config:field.storage.twelvestepmeeting.field_time'
-  today:
-    display_plugin: page
-    id: today
-    display_title: Today
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: meetings
-      menu:
-        type: 'default tab'
-        title: Today
-        description: ''
-        expanded: false
-        parent: ''
-        weight: -1
-        context: '0'
-        menu_name: main
-      tab_options:
-        type: none
-        title: ''
-        description: ''
-        weight: 0
-      title: 'Today''s Meetings'
-      defaults:
-        title: false
-        filters: false
-        filter_groups: false
-      display_description: ''
-      filters:
-        field_time_days:
-          id: field_time_days
-          table: twelvestepmeeting__field_time
-          field: field_time_days
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: today
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: weeklydays
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
         - user.permissions
       tags:
         - 'config:field.storage.twelvesteplocation.field_address'

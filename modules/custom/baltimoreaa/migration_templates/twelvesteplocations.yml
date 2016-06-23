@@ -12,7 +12,7 @@ process:
   field_address/country_code:
     plugin: default_value
     default_value: US
-  field_address/dependent_locality:
+  field_address/administrative_area:
     plugin: default_value
     default_value: MD
   field_address/address_line1: mAdd1

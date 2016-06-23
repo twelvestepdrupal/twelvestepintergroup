@@ -14,6 +14,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\twelvesteplocations\TwelveStepLocationInterface;
 use Drupal\user\UserInterface;
+use Drupal\address\Plugin\Field\FieldType\AddressField;
 
 /**
  * Defines the Twelve Step Location entity.
@@ -219,4 +220,41 @@ class TwelveStepLocation extends ContentEntityBase implements TwelveStepLocation
     return $fields;
   }
 
+  /**
+   * @{inheritdoc}
+   */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    if (!$update || $this->isAddressChanged()) {
+      geolocationqueue_additem($this, 'field_address', 'field_coordinates');
+    }
+
+    parent::postSave($storage, $update);
+  }
+
+  /**
+   * Return TRUE if the address changed.
+   *
+   * @return bool
+   */
+  public function isAddressChanged() {
+    if (!$this->original) {
+      return TRUE;
+    }
+    /** var AddressField $original */
+    if (!$original = $this->original->get('field_address')->first()) {
+      return FALSE;
+    }
+    /** var AddressField $current */
+    if (!$current = $this->get('field_address')->first()) {
+      return FALSE;
+    }
+    if ( $current->address_line1 != $original->address_line1
+      || $current->locality != $original->locality
+      || $current->administrative_area != $original->administrative_area
+      || $current->postal_code != $original->postal_code
+      || $current->country != $original->country) {
+      return TRUE;
+    }
+    return FALSE;
+  }
 }

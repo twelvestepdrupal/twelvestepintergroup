@@ -61,7 +61,7 @@ class MeetingGuideRow extends DataEntityRow {
       if ($field_address) {
         $output['address'] = $field_address->address_line1;
         $output['city'] = $field_address->locality;
-        $output['state'] = $field_address->dependent_locality;
+        $output['state'] = $field_address->administrative_area;
         $output['postal_code'] = $field_address->postal_code;
         $output['country'] = $field_address->country_code;
       }

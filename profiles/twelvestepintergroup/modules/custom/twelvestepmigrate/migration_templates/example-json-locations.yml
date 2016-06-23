@@ -10,7 +10,7 @@ source:
 process:
   name: location
   field_address/country_code: country
-  field_address/dependent_locality: state
+  field_address/administrative_area: state
   field_address/address_line1: address
   field_address/locality: city
   field_address/postal_code: postal_code

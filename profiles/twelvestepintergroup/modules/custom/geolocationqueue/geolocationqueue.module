@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains geolocationqueue.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function geolocationqueue_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the geolocationqueue module.
+    case 'help.page.geolocationqueue':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Geo Location Queue Worker') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * @param $entity
+ * @param string $field_address
+ * @param string $field_coord
+ */
+function geolocationqueue_additem($entity, $field_address, $field_coordinates) {
+  $item = new stdClass;
+  $item->entity_id = $entity->id();
+  $item->entity_type = $entity->getEntityTypeId();
+  $item->field_address = $field_address;
+  $item->field_coordinates = $field_coordinates;
+  
+  \Drupal::queue('geolocation')->createItem($item);
+}

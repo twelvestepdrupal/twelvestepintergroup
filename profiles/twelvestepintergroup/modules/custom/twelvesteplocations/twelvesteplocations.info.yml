@@ -6,4 +6,5 @@ package: twelvestepintergroup
 
 dependencies:
   - geolocation
+  - geolocationqueue
   - address

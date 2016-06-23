@@ -6,4 +6,5 @@ The site is a CI site recreated using:
 drush sql-drop -y
 drush -y si twelvestepintergroup
 drush en -y twelvestepintergrouporg
+drush queue-run geolocation
 ```

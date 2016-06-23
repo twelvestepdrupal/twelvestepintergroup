@@ -47,6 +47,15 @@ The day field can have a numeric value or a string. If it's a numeric value,
 the assumption is that 0 is for sunday, 1 for monday, and so on. If 1 is for
 sunday, just add a :1.
 
+* Geolocation
+
+You do not need to import geolocation coordinates. All addresses are passed
+through to Google's Map API for geolocating. This is done through a Drupal
+queue, usually on cron. After importing a large set of new data, you should
+manually run the queue with
+```
+drush queue-run geolocation
+```
 
 * Change the process.
 
