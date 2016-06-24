@@ -79,16 +79,19 @@ class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactory
 
     // Save the coordinates.
     $field_name = $data->field_coordinates;
-    if ($entity->{$field_name}->lat != $coordinates->lat || $entity->{$field_name}->lng != $coordinates->lng) {
+    $lat = $entity->{$field_name}->lat;
+    $lng = $entity->{$field_name}->lng;
+    if ($lat != $coordinates->lat || $lng != $coordinates->lng) {
       $entity->{$field_name}->lat = $coordinates->lat;
       $entity->{$field_name}->lng = $coordinates->lng;
       $entity->save();
-      \Drupal::logger('geolocationqueue')->notice('{%entity_type:%entity_id} %field_name changed from {%original_lat, %original_lng} to {%lat, %lng}', [
-        '%entity_type' => $entity_type,
-        '%entity_id' => $entity_id,
-        '%field_name' => $field_name,
-        '%original_lat' => $entity->original->{$field_name}->lat,
-        '%original_lng' => $entity->original->{$field_name}->lng,
+
+      \Drupal::logger('geolocationqueue')->notice('{%entity_type:%entity_id} %field_name (%original_lat,%original_lng) => (%lat,%lng)', [
+        '%entity_type' => $data->entity_type,
+        '%entity_id' => $data->entity_id,
+        '%field_name' => $data->field_name,
+        '%original_lat' => $lat,
+        '%original_lng' => $lng,
         '%lat' => $coordinates->lat,
         '%lng' => $coordinates->lng,
       ]);

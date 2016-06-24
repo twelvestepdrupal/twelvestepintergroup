@@ -46,7 +46,7 @@ process:
   field_location:
     plugin: migration
     migration: example_csv_locations
-    source: [ mAdd1, mAdd2, mCity, mZip ]
+    source: [ mAdd2, mAdd1, mCity, mZip ]
   field_time/time:
     plugin: meeting_time
     source: mTime
