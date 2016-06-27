@@ -18,7 +18,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
-
   /**
    * @var \GuzzleHttp\Client
    */
@@ -48,23 +47,23 @@ class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactory
       // @todo: throw exception?
       return;
     }
-    
+
     // Get the entities address field.
     if (!$address = $entity->get($data->field_address)->first()) {
       // @todo: throw exception?
       return;
     }
     
-    // Get the address's geo coordinates from Google APIs.
-    $url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode(implode(', ', [
+    // Get the address's geo coordinates from Google APIs. Don't send the second
+    // line of the address, which causes too many APPROXIMATE matches.
+    $googlemap_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode(implode(', ', [
       $address->address_line1,
-      $address->address_line2,
       $address->locality,
       $address->administrative_area,
       $address->postal_code,
       $address->country_code,
     ]));
-    $response = $this->httpClient->get($url);
+    $response = $this->httpClient->get($googlemap_url);
     if ($response->getStatusCode() != 200) {
       // @todo: throw exception?
       return;
@@ -75,23 +74,26 @@ class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactory
       return;
     }
     $result = reset($json->results);
+    $match = $result->geometry->location_type;
     $coordinates = $result->geometry->location;
 
     // Save the coordinates.
+    // Save any match if no coordinates exist.
+    // Save changed matches on exact 'ROOFTOP' match.
     $field_name = $data->field_coordinates;
     $lat = $entity->{$field_name}->lat;
     $lng = $entity->{$field_name}->lng;
-    if ($lat != $coordinates->lat || $lng != $coordinates->lng) {
+    if (($match != 'ROOFTOP' && (!$lat || !$lng)) || ($match == 'ROOFTOP' && ($lat != $coordinates->lat || $lng != $coordinates->lng))) {
       $entity->{$field_name}->lat = $coordinates->lat;
       $entity->{$field_name}->lng = $coordinates->lng;
       $entity->save();
 
-      \Drupal::logger('geolocationqueue')->notice('{%entity_type:%entity_id} %field_name (%original_lat,%original_lng) => (%lat,%lng)', [
-        '%entity_type' => $data->entity_type,
-        '%entity_id' => $data->entity_id,
-        '%field_name' => $data->field_name,
+      \Drupal::logger('geolocationqueue')->notice('%entity_url (%original_lat,%original_lng) %match (%lat,%lng) %googlemap_url', [
+        '%entity_url' => $entity->toUrl()->toString(),
+        '%googlemap_url' => $googlemap_url,
         '%original_lat' => $lat,
         '%original_lng' => $lng,
+        '%match' => $match,
         '%lat' => $coordinates->lat,
         '%lng' => $coordinates->lng,
       ]);

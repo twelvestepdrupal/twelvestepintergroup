@@ -18,7 +18,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: QeWeKpgE63ltYG_Hn68KiO3D2B8PzaeTzzRLXkjHrpk
+  default_config_hash: lXeYPpJKZRGBaMR31Y4zH5ZKyi_rreLdclKUhdaGij4
 id: meetings
 label: Meetings
 module: views
@@ -98,22 +98,22 @@ display:
       row:
         type: fields
         options:
-          default_field_elements: true
+          default_field_elements: false
           inline:
             field_address: field_address
             field_time: field_time
             field_format: field_format
           separator: ''
-          hide_empty: false
+          hide_empty: true
       fields:
-        field_address:
-          id: field_address
-          table: twelvesteplocation__field_address
-          field: field_address
-          relationship: field_location
+        name:
+          id: name
+          table: twelvestepmeeting
+          field: name
+          relationship: none
           group_type: group
           admin_label: ''
-          label: Address
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -146,7 +146,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -154,10 +154,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: langcode
-          type: address_default
-          settings: {  }
-          group_column: ''
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -167,6 +168,8 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: twelvestepmeeting
+          entity_field: name
           plugin_id: field
         field_time:
           id: field_time
@@ -175,7 +178,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Time
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -208,7 +211,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -237,7 +240,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Type
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -270,7 +273,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -292,14 +295,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_coordinates:
-          id: field_coordinates
-          table: twelvesteplocation__field_coordinates
-          field: field_coordinates
+        field_address:
+          id: field_address
+          table: twelvesteplocation__field_address
+          field: field_address
           relationship: field_location
           group_type: group
           admin_label: ''
-          label: Coordinates
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -332,7 +335,69 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: langcode
+          type: address_default
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_coordinates:
+          id: field_coordinates
+          table: twelvesteplocation__field_coordinates
+          field: field_coordinates
+          relationship: field_location
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -361,71 +426,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: geolocation_field
-        name:
-          id: name
-          table: twelvestepmeeting
-          field: name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Name
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: twelvestepmeeting
-          entity_field: name
-          plugin_id: field
       filters: {  }
       sorts: {  }
       title: 'Search Meetings'
