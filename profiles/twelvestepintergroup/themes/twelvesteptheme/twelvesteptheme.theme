@@ -5,3 +5,16 @@
  *
  * Place your custom PHP code in this file.
  */
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function twelvesteptheme_library_info_alter(&$libraries, $extension) {
+  if ($extension == 'geolocation') {
+    // Replace the geolocation JS with our own.
+    $old_path = 'js/geolocation-common-map.js';
+    unset($libraries['geolocation.commonmap']['js'][$old_path]);
+    $new_path = base_path() . drupal_get_path('theme', 'twelvesteptheme') . '/' . $old_path;
+    $libraries['geolocation.commonmap']['js'][$new_path] = [];
+  }
+}
