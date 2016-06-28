@@ -1,0 +1,15 @@
+@media only screen and (min-width: 600px) {
+
+  .geolocation-common-map .geolocation-common-map-container {
+    float: left;
+    overflow: hidden;
+    width: 75%;
+  }
+
+  .geolocation-common-map .geolocation-common-map-locations {
+    overflow: hidden;
+    width: 25%;
+    padding-left: 10px;
+  }
+}
+
