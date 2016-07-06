@@ -1,0 +1,182 @@
+# TwelveStepMeeting routing definition
+entity.twelvestepmeeting.canonical:
+  path: '/twelvestepmeeting/{twelvestepmeeting}'
+  defaults:
+    _entity_view: 'twelvestepmeeting'
+    _title: 'Twelve Step Meeting'
+  requirements:
+    _entity_access: 'twelvestepmeeting.view'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepmeeting.collection:
+  path: '/admin/content/twelvestepmeeting'
+  defaults:
+    _entity_list: 'twelvestepmeeting'
+    _title: 'Twelve Step Meeting list'
+  requirements:
+    _permission: 'view twelve step meeting entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepmeeting.add_form:
+  path: '/admin/content/twelvestepmeeting/add'
+  defaults:
+    _entity_form: twelvestepmeeting.add
+    _title: 'Add Twelve Step Meeting'
+  requirements:
+    _permission: 'add twelve step meeting entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepmeeting.edit_form:
+  path: '/twelvestepmeeting/{twelvestepmeeting}/edit'
+  defaults:
+    _entity_form: twelvestepmeeting.edit
+    _title: 'Edit Twelve Step Meeting'
+  requirements:
+    _permission: 'edit twelve step meeting entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepmeeting.delete_form:
+  path: '/twelvestepmeeting/{twelvestepmeeting}/delete'
+  defaults:
+    _entity_form: twelvestepmeeting.delete
+    _title: 'Delete Twelve Step Meeting'
+  requirements:
+    _permission: 'delete twelve step meeting entities'
+  options:
+    _admin_route: TRUE
+
+twelvestepmeeting.settings:
+  path: '/admin/structure/twelvestepmeeting/settings'
+  defaults:
+   _form: '\Drupal\twelvestepmodule\Form\TwelveStepMeetingSettingsForm'
+   _title: 'Twelve Step Meeting settings'
+  requirements:
+    _permission: 'administer twelve step meeting entities'
+  options:
+    _admin_route: TRUE
+
+# TwelveStepLocation routing definition
+entity.twelvesteplocation.canonical:
+  path: '/twelvesteplocation/{twelvesteplocation}'
+  defaults:
+    _entity_view: 'twelvesteplocation'
+    _title: 'Twelve Step Location'
+  requirements:
+    _entity_access: 'twelvesteplocation.view'
+  options:
+    _admin_route: TRUE
+
+entity.twelvesteplocation.collection:
+  path: '/admin/content/twelvesteplocation'
+  defaults:
+    _entity_list: 'twelvesteplocation'
+    _title: 'Twelve Step Location list'
+  requirements:
+    _permission: 'view twelve step location entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvesteplocation.add_form:
+  path: '/admin/content/twelvesteplocation/add'
+  defaults:
+    _entity_form: twelvesteplocation.add
+    _title: 'Add Twelve Step Location'
+  requirements:
+    _permission: 'add twelve step location entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvesteplocation.edit_form:
+  path: '/twelvesteplocation/{twelvesteplocation}/edit'
+  defaults:
+    _entity_form: twelvesteplocation.edit
+    _title: 'Edit Twelve Step Location'
+  requirements:
+    _permission: 'edit twelve step location entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvesteplocation.delete_form:
+  path: '/twelvesteplocation/{twelvesteplocation}/delete'
+  defaults:
+    _entity_form: twelvesteplocation.delete
+    _title: 'Delete Twelve Step Location'
+  requirements:
+    _permission: 'delete twelve step location entities'
+  options:
+    _admin_route: TRUE
+
+twelvesteplocation.settings:
+  path: '/admin/structure/twelvesteplocation/settings'
+  defaults:
+   _form: '\Drupal\twelvestepmodule\Form\TwelveStepLocationSettingsForm'
+   _title: 'Twelve Step Location settings'
+  requirements:
+    _permission: 'administer twelve step location entities'
+  options:
+    _admin_route: TRUE
+
+# TwelveStepGroup routing definition
+entity.twelvestepgroup.canonical:
+  path: '/twelvestepgroup/{twelvestepgroup}'
+  defaults:
+    _entity_view: 'twelvestepgroup'
+    _title: 'Twelve Step Group'
+  requirements:
+    _entity_access: 'twelvestepgroup.view'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepgroup.collection:
+  path: '/admin/content/twelvestepgroup'
+  defaults:
+    _entity_list: 'twelvestepgroup'
+    _title: 'Twelve Step Group list'
+  requirements:
+    _permission: 'view twelve step group entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepgroup.add_form:
+  path: '/admin/content/twelvestepgroup/add'
+  defaults:
+    _entity_form: twelvestepgroup.add
+    _title: 'Add Twelve Step Group'
+  requirements:
+    _permission: 'add twelve step group entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepgroup.edit_form:
+  path: '/twelvestepgroup/{twelvestepgroup}/edit'
+  defaults:
+    _entity_form: twelvestepgroup.edit
+    _title: 'Edit Twelve Step Group'
+  requirements:
+    _permission: 'edit twelve step group entities'
+  options:
+    _admin_route: TRUE
+
+entity.twelvestepgroup.delete_form:
+  path: '/twelvestepgroup/{twelvestepgroup}/delete'
+  defaults:
+    _entity_form: twelvestepgroup.delete
+    _title: 'Delete Twelve Step Group'
+  requirements:
+    _permission: 'delete twelve step group entities'
+  options:
+    _admin_route: TRUE
+
+twelvestepgroup.settings:
+  path: '/admin/structure/twelvestepgroup/settings'
+  defaults:
+   _form: '\Drupal\twelvestepmodule\Form\TwelveStepGroupSettingsForm'
+   _title: 'Twelve Step Group settings'
+  requirements:
+    _permission: 'administer twelve step group entities'
+  options:
+    _admin_route: TRUE

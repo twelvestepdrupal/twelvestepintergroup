@@ -1,0 +1,15 @@
+name: Twelve Step Module
+type: module
+description: Twelve Step Module
+core: 8.x
+package: twelvestepintergroup
+
+dependencies:
+  - address
+  - geolocation
+  - geolocationqueue
+  - inline_entity_form
+  - link
+  - rest
+  - telephone
+  - weeklytime

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+_core:
+  default_config_hash: LpRgQ5jrg5hGFRtCDJKzhrnYH639rQQ9Lp4klWtMOVg
+id: twelvestepgroup.field_website
+field_name: field_website
+entity_type: twelvestepgroup
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

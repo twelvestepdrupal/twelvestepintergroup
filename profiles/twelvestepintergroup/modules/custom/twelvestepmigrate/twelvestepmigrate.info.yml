@@ -6,6 +6,4 @@ package: twelvestepintergroup
 
 dependencies:
   - migrate
-  - twelvestepgroups
-  - twelvestepmeetings
-  - twelvesteplocations
+  - twelvestepmodule

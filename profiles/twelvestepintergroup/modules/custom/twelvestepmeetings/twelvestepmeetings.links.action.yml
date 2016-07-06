@@ -1,7 +1,0 @@
-entity.twelvestepmeeting.add_form:
-  route_name: entity.twelvestepmeeting.add_form
-  title: 'Add Twelve Step Meeting'
-  appears_on:
-    - entity.twelvestepmeeting.collection
-    - entity.twelvestepmeeting.canonical
-

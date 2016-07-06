@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Contains twelvestepmodule.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function twelvestepmodule_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the twelvestepmodule module.
+    case 'help.page.twelvestepmodule':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Twelve Step Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function twelvestepmodule_theme() {
+  $theme = [];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function twelvestepmodule_library_info_alter(&$libraries, $extension) {
+  if ($extension == 'geolocation') {
+    // Replace the geolocation JS with our own.
+    $old_path = 'js/geolocation-common-map.js';
+    unset($libraries['geolocation.commonmap']['js'][$old_path]);
+    $base_module = base_path() . drupal_get_path('module', 'twelvestepmodule');
+    $libraries['geolocation.commonmap']['js']["$base_module/$old_path"] = [];
+    $libraries['geolocation.commonmap']['css']['theme']["$base_module/css/meetings.css"] = [];
+  }
+}

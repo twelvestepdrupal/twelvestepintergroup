@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - text
+_core:
+  default_config_hash: i0F4WISiOHEbjTrS9GeAxqssImFLb2m2M2KKSAudwbk
+id: twelvestepgroup.field_about
+field_name: field_about
+entity_type: twelvestepgroup
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

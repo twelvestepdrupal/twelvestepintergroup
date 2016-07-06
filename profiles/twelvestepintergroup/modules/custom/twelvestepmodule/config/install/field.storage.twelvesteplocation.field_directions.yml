@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - text
+_core:
+  default_config_hash: h6flOUfC9jUS8mBFVezbcWzAJX9tCoiWCTPUZy7mZYI
+id: twelvesteplocation.field_directions
+field_name: field_directions
+entity_type: twelvesteplocation
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

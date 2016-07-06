@@ -1,7 +1,0 @@
-entity.twelvesteplocation.add_form:
-  route_name: entity.twelvesteplocation.add_form
-  title: 'Add Twelve Step Location'
-  appears_on:
-    - entity.twelvesteplocation.collection
-    - entity.twelvesteplocation.canonical
-

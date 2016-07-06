@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+_core:
+  default_config_hash: 3n7yHQ4uv3VpOoIVHiQ43Y5wycRlS7qChxdt3Gsgpes
+id: twelvesteplocation.field_address
+field_name: field_address
+entity_type: twelvesteplocation
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

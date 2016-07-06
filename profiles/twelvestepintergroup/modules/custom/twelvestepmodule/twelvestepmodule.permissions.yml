@@ -1,0 +1,59 @@
+add twelve step meeting entities:
+  title: 'Create new Twelve Step Meeting entities'
+
+administer twelve step meeting entities:
+  title: 'Administer Twelve Step Meeting entities'
+  description: 'Allow to access the administration form to configure Twelve Step Meeting entities.'
+  restrict access: true
+
+delete twelve step meeting entities:
+  title: 'Delete Twelve Step Meeting entities'
+
+edit twelve step meeting entities:
+  title: 'Edit Twelve Step Meeting entities'
+
+view published twelve step meeting entities:
+  title: 'View published Twelve Step Meeting entities'
+
+view unpublished twelve step meeting entities:
+  title: 'View unpublished Twelve Step Meeting entities'
+
+add twelve step location entities:
+  title: 'Create new Twelve Step Location entities'
+
+administer twelve step location entities:
+  title: 'Administer Twelve Step Location entities'
+  description: 'Allow to access the administration form to configure Twelve Step Location entities.'
+  restrict access: true
+
+delete twelve step location entities:
+  title: 'Delete Twelve Step Location entities'
+
+edit twelve step location entities:
+  title: 'Edit Twelve Step Location entities'
+
+view published twelve step location entities:
+  title: 'View published Twelve Step Location entities'
+
+view unpublished twelve step location entities:
+  title: 'View unpublished Twelve Step Location entities'
+
+add twelve step group entities:
+  title: 'Create new Twelve Step Group entities'
+
+administer twelve step group entities:
+  title: 'Administer Twelve Step Group entities'
+  description: 'Allow to access the administration form to configure Twelve Step Group entities.'
+  restrict access: true
+
+delete twelve step group entities:
+  title: 'Delete Twelve Step Group entities'
+
+edit twelve step group entities:
+  title: 'Edit Twelve Step Group entities'
+
+view published twelve step group entities:
+  title: 'View published Twelve Step Group entities'
+
+view unpublished twelve step group entities:
+  title: 'View unpublished Twelve Step Group entities'

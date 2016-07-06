@@ -17,7 +17,7 @@ function baltimoreaa_install() {
     ->save(TRUE);
 
   // Change the default theme.
-  \Drupal::service('twelvestephelper.default')->changeTheme('baltimoreaatheme');
+  \Drupal::service('twelvestepmodule.default')->changeTheme('baltimoreaatheme');
 
   // Import content.
   \Drupal::service('module_installer')->install(['twelvestepmigrate']);

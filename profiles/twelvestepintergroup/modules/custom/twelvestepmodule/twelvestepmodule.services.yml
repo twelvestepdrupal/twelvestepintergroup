@@ -1,0 +1,4 @@
+services:
+  twelvestepmodule.default:
+    class: Drupal\twelvestepmodule\TwelveStepModuleService
+    arguments: ['@config.factory', '@entity.manager', '@theme_installer']

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - telephone
+_core:
+  default_config_hash: NyZZAmnK5TCT0fJI3bixNFcXisbwmQiNHPdvzHHWujM
+id: twelvestepgroup.field_default_phone
+field_name: field_default_phone
+entity_type: twelvestepgroup
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -44,12 +44,6 @@ $ drush chosenplugin
 
 ### @todo: install chosen with composer.
 
-## Create new entities, this was how twelvestepmeetings and twelvestepgroups modules were created
-
-  - Install the drupal console, https://drupalconsole.com/
-  - To create a new module, from docroot $ drupal generate:module
-  - To create new entities, from docroot $ drupal generate:entity:content
-
 ## Export and Import content
 
   The content specific to this profile should be migrated. See baltimoreaa_migrate as an example.

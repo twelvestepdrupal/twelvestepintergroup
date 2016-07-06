@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.twelvestepgroup.field_directions
+  module:
+    - text
+_core:
+  default_config_hash: 2weSP6CaGGemW7OE0FsH2_nihs3goRHa77wFJi2F8Es
+id: twelvestepgroup.twelvestepgroup.field_directions
+field_name: field_directions
+entity_type: twelvestepgroup
+bundle: twelvestepgroup
+label: Directions
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

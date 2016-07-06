@@ -22,7 +22,7 @@ function twelvestepintergrouporg_install() {
     ->save(TRUE);
 
   // Change the default theme.
-  \Drupal::service('twelvestephelper.default')->changeTheme('twelvesteporgtheme');
+  \Drupal::service('twelvestepmodule.default')->changeTheme('twelvesteporgtheme');
 
   // Import content.
   \Drupal::service('module_installer')->install(['twelvestepmigrate']);

@@ -1,4 +1,0 @@
-services:
-  twelvestephelper.default:
-    class: Drupal\twelvestephelper\TwelveStepHelperService
-    arguments: ['@config.factory', '@entity.manager', '@theme_installer']

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module: { }
+_core:
+  default_config_hash: eUVsu79K3yudObM9JB2MNB-Hs8_gU6ryesIH00HnBrU
+id: twelvestepmeeting.field_location
+field_name: field_location
+entity_type: twelvestepmeeting
+type: entity_reference
+settings:
+  target_type: twelvesteplocation
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

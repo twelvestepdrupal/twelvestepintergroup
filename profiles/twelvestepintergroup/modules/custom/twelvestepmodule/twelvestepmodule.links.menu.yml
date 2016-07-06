@@ -1,0 +1,38 @@
+# Twelve Step Meeting menu items definition
+entity.twelvestepmeeting.collection:
+  title: 'Twelve Step Meeting list'
+  route_name: entity.twelvestepmeeting.collection
+  description: 'List Twelve Step Meetings'
+  parent: system.admin_content
+
+twelvestepmeeting.admin.structure.settings:
+  title: 'Twelve Step Meeting settings'
+  description: 'Configure Twelve Step Meetings'
+  route_name: twelvestepmeeting.settings
+  parent: system.admin_structure
+
+# Twelve Step Location menu items definition
+entity.twelvesteplocation.collection:
+  title: 'Twelve Step Location list'
+  route_name: entity.twelvesteplocation.collection
+  description: 'List Twelve Step Locations'
+  parent: system.admin_content
+
+twelvesteplocation.admin.structure.settings:
+  title: 'Twelve Step Location settings'
+  description: 'Configure Twelve Step Locations'
+  route_name: twelvesteplocation.settings
+  parent: system.admin_structure
+
+# Twelve Step Group menu items definition
+entity.twelvestepgroup.collection:
+  title: 'Twelve Step Group list'
+  route_name: entity.twelvestepgroup.collection
+  description: 'List Twelve Step Groups'
+  parent: system.admin_content
+
+twelvestepgroup.admin.structure.settings:
+  title: 'Twelve Step Group settings'
+  description: 'Configure Twelve Step Groups'
+  route_name: twelvestepgroup.settings
+  parent: system.admin_structure

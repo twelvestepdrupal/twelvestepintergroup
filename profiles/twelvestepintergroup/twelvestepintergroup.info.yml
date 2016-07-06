@@ -46,8 +46,7 @@ dependencies:
   - automated_cron
 # Required modules for TwelveStepIntergroup
   - chosen
-  - twelvestepmeetings
-  - twelvestephelper
+  - twelvestepmodule
 themes:
   - seven
   - twelvesteptheme

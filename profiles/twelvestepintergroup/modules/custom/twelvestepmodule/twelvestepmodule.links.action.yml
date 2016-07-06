@@ -1,0 +1,21 @@
+entity.twelvestepmeeting.add_form:
+  route_name: entity.twelvestepmeeting.add_form
+  title: 'Add Twelve Step Meeting'
+  appears_on:
+    - entity.twelvestepmeeting.collection
+    - entity.twelvestepmeeting.canonical
+
+entity.twelvesteplocation.add_form:
+  route_name: entity.twelvesteplocation.add_form
+  title: 'Add Twelve Step Location'
+  appears_on:
+    - entity.twelvesteplocation.collection
+    - entity.twelvesteplocation.canonical
+
+entity.twelvestepgroup.add_form:
+  route_name: entity.twelvestepgroup.add_form
+  title: 'Add Twelve Step Group'
+  appears_on:
+    - entity.twelvestepgroup.collection
+    - entity.twelvestepgroup.canonical
+

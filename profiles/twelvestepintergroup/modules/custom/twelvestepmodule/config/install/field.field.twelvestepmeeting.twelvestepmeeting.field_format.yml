@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.twelvestepmeeting.field_format
+  module:
+    - options
+_core:
+  default_config_hash: 7aCPcuJ4NBLXPDg_IvLi3_26R9hSukQG0fpMEd6sCzI
+id: twelvestepmeeting.twelvestepmeeting.field_format
+field_name: field_format
+entity_type: twelvestepmeeting
+bundle: twelvestepmeeting
+label: Type
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: discussion
+default_value_callback: ''
+settings: {  }
+field_type: list_string
