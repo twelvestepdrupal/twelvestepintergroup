@@ -8,7 +8,7 @@ source:
     day: mDayNo:1
   path: profiles/twelvestepintergroup/modules/custom/twelvestepmigrate/example-data/example.csv
 process:
-  name: mName
+  name: mAdd1
   field_address/country_code:
     plugin: default_value
     default_value: US
