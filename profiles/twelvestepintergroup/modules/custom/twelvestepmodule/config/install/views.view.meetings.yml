@@ -11,10 +11,11 @@ dependencies:
     - geolocation
     - options
     - rest
+    - twelvestepmodule
     - user
     - weeklytime
 _core:
-  default_config_hash: lXeYPpJKZRGBaMR31Y4zH5ZKyi_rreLdclKUhdaGij4
+  default_config_hash: QXHXfZmcxC6F9tAVbhzpLSwHK0TFKxsv5a_X6IdlGuQ
 id: meetings
 label: Meetings
 module: views
@@ -77,7 +78,7 @@ display:
             offset_label: Offset
           quantity: 9
       style:
-        type: maps_common
+        type: maps_twelvestepmeeting
         options:
           geolocation_field: field_coordinates
           title_field: name
@@ -749,8 +750,7 @@ display:
           group_type: group
           admin_label: ''
           operator: '='
-          value:
-            today: today
+          value: today
           group: 1
           exposed: true
           expose:
@@ -762,7 +762,7 @@ display:
             identifier: days
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'

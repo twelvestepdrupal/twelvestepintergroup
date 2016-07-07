@@ -1,0 +1,27 @@
+views.style.maps_twelvestepmeeting:
+  type: views_style
+  label: 'Geolocation Twelve Step Meeting Map'
+  mapping:
+    geolocation_field:
+      type: string
+      label: 'Geolocation Field'
+    title_field:
+      type: string
+      label: 'Title Field'
+    centre:
+      type: sequence
+      label: 'Centre Option'
+      sequence:
+        type: mapping
+        mapping:
+          weight:
+            type: integer
+            label: 'Weight'
+          enable:
+            type: boolean
+            label: 'enable'
+          settings:
+            type: sequence
+            label: 'Settings'
+            sequence:
+              type: string
