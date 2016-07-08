@@ -59,12 +59,16 @@ class TwelveStepMeetingRow extends Fields {
       foreach ($row->twelvestepmeeting__entities as $entity) {
         // @todo: do this with theming and not by rendering the fields.
         $output = self::renderField($entity, 'field_time') . ' ' . self::renderField($entity, 'field_format');
-        $items[] = [
-          '#markup' => strip_tags($output),
-          '#weight' => $entity->get('field_time')->get(0)->getTimeValue(),
-        ];
+        $output = preg_replace('/\s+/', ' ', strip_tags($output));
+        // Use the array index to weight.
+        $weight = $entity->get('field_time')->get(0)->getTimeValue();
+        while (isset($items[$weight])) {
+          $weight += 0.0001;
+        }
+        $items[$weight] = $output;
       }
-      uasort($items, array(SortArray::class, 'sortByWeightElement'));
+      // @todo: use uasort() #weight and SortArray::sortByWeightElement().
+      ksort($items, SORT_NUMERIC);
       $build['time_and_format'] = [
         '#theme' => 'item_list',
         '#items' => $items,
