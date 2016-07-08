@@ -25,3 +25,23 @@ views.style.maps_twelvestepmeeting:
             label: 'Settings'
             sequence:
               type: string
+
+views.row.fields_twelvestepmeeting:
+  type: views_row
+  label: 'Twelve Step Meeting Field options'
+  mapping:
+    default_field_elements:
+      type: boolean
+      label: 'Provide default field wrapper elements'
+    inline:
+      type: sequence
+      label: 'Inline'
+      sequence:
+        type: string
+        label: 'Inline'
+    separator:
+      type: string
+      label: 'Separator'
+    hide_empty:
+      type: boolean
+      label: 'Hide empty'

@@ -150,8 +150,8 @@ class WeeklyTimeField extends FieldItemBase {
    */
   public function isEmpty() {
     // This time is empty if there is no time-of-day value.
-    $time = $this->get('time')->getValue();
-    if ($time === NULL || $time === '') {
+    $time = $this->getTimeValue();
+    if ($time === NULL) {
       return TRUE;
     }
 
@@ -164,6 +164,16 @@ class WeeklyTimeField extends FieldItemBase {
 
     // And empty if it is not assigned to any day.
     return TRUE;
+  }
+
+  /**
+   * Return the numeric time value.
+   *
+   * @return int
+   */
+  public function getTimeValue() {
+    $time = $this->get('time')->getValue();
+    return $time === '' ? NULL : $time;
   }
 
 }

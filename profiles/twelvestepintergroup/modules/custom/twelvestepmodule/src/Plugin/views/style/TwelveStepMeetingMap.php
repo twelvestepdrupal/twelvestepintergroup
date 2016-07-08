@@ -41,18 +41,15 @@ class TwelveStepMeetingMap extends CommonMap {
         // Add this rows values to field_time and field_format.
         $delta = $map[$location_id];
         $aggregated_row = $this->view->result[$delta];
-        foreach (['field_time', 'field_format'] as $field_name) {
-          $aggregated_items = $aggregated_row->_entity->get($field_name);
-          $original_item = $original->get($field_name)->get(0);
-          if ($original_item) {
-//          $aggregated_items->appendItem($original_item);
-          }
-        }
       }
       else {
         // Remember this row as the first use of this location.
         $map[$location_id] = $delta;
+        $aggregated_row = $row;
       }
+
+      // Aggregate the row's time and format values.
+      $aggregated_row->twelvestepmeeting__entities[] = clone $row->_entity;
     }
 
     $build = parent::render();
