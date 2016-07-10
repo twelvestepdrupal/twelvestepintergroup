@@ -90,9 +90,7 @@ class WeeklyTimeWidget extends WidgetBase {
 
     foreach ($values as &$value) {
       // Save the time as a minute in the day.
-      $hh = substr($value['time'], 0, 2);
-      $mm = substr($value['time'], 3, 2);
-      $value['time'] = $hh * 60 + $mm;
+      $value['time'] = self::stringToTime($value['time']);
 
       // Save the day of the week in each field.
       foreach (array_keys(WeeklyTimeField::dayOptions()) as $day) {

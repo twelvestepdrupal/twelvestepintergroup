@@ -15,7 +15,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: mJRwch11CDWn5IjIKzBM47zRFZfb9rE6JUvR_xfgGlU
+  default_config_hash: CUoX2uANO_V0xpgU5_wmO5yEl6Iq2v8oFo1oPl1EA0Y
 id: meetings
 label: Meetings
 module: views
@@ -535,7 +535,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Days
+            label: Day
             description: ''
             use_operator: false
             operator: field_time_days_op
@@ -571,7 +571,7 @@ display:
           group_type: group
           admin_label: ''
           operator: '='
-          value: ''
+          value: next
           group: 1
           exposed: true
           expose:
@@ -583,7 +583,7 @@ display:
             identifier: time
             required: false
             remember: false
-            multiple: true
+            multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'

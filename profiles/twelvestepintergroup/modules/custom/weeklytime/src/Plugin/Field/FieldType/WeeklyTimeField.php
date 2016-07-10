@@ -28,6 +28,9 @@ use Drupal\Core\TypedData\DataDefinition;
  */
 class WeeklyTimeField extends FieldItemBase {
 
+  const DEFAULT_DAY = 'today';
+  const DEFAULT_TIME = 'next';
+
   /**
    * Return keyed array of Days of the Week.
    *
@@ -46,12 +49,52 @@ class WeeklyTimeField extends FieldItemBase {
   }
 
   /**
-   * Return the key representing today in WeeklyTimeField::dayOptions().
+   * Return keyed array of Days of the Week, with the default option.
+   * 
+   * @return array
+   */
+  public static function dayLabels() {
+    $labels = [];
+    $labels[self::DEFAULT_DAY] = t('- Today -');
+    $labels += WeeklyTimeField::dayOptions();
+    return $labels;
+  }
+
+  /**
+   * Return the key representing the default day in WeeklyTimeField::dayOptions().
    *
    * @return string
    */
-  public static function today() {
+  public static function defaultDay() {
     return strtolower(date('D'));
+  }
+
+  /**
+   * Return the key representing the default time in WeeklyTimeField::timeOptions().
+   *
+   * @return string
+   */
+  public static function defaultTime() {
+    $now = stringToTime(date('Hi'));
+    foreach (self::timeOptions() as $key => $option) {
+      foreach ($options['ranges'] as $range) {
+        if ($now >= $range[0] && $now < $range[1]) {
+          return $key;
+        }
+      }
+    }
+    return NULL;
+  }
+
+  /**
+   * Convert the time string into minutes since midnight.
+   *
+   * @param $value
+   */
+  public static function stringToTime($value) {
+    $hh = substr($value, 0, 2);
+    $mm = substr($value, 3, 2);
+    return $hh * 60 + $mm;
   }
 
   /**
@@ -60,13 +103,79 @@ class WeeklyTimeField extends FieldItemBase {
    * @return array
    */
   public static function timeOptions() {
-    // @todo: use prettier code using array_map()?
-    $options = [];
-    foreach (range(0, 47) as $value) {
-      $time = $value * 30;
-      $options[$time] = self::formatTime($time);
+    return [
+      'earlymorning' => [
+        'label' => t('Early morning'),
+        'ranges' => [
+          ['0400', '0700'],
+        ],
+      ],
+      'morning' => [
+        'label' => t('Morning'),
+        'ranges' => [
+          ['0700', '1030'],
+        ],
+      ],
+      'midday' => [
+        'label' => t('Mid-day'),
+        'ranges' => [
+          ['1030', '1330'],
+        ],
+      ],
+      'afternoon' => [
+        'label' => t('Afternon'),
+        'ranges' => [
+          ['1330', '1600'],
+        ],
+      ],
+      'rushhour' => [
+        'label' => t('Rush-hour'),
+        'ranges' => [
+          ['1600', '1830'],
+        ],
+      ],
+      'evening' => [
+        'label' => t('Evening'),
+        'ranges' => [
+          ['1830', '2130'],
+        ],
+      ],
+      'latenight' => [
+        'label' => t('Late night'),
+        'ranges' => [
+          ['2130', '2400'],
+          ['0000', '0400'],
+        ],
+      ],
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function timeLabels() {
+    $labels = [];
+    $labels[self::DEFAULT_TIME] = t('- Next available -');
+    foreach (self::timeOptions() as $key => $option) {
+      $start = reset($option['ranges'])[0];
+      $end = end($option['ranges'])[1];
+      $labels[$key] = $option['label'] . ' (' . t('%start to %end', [
+          '%start' => self::formatStringTime($start),
+          '%end' => self::formatStringTime($end),
+        ]) . ')';
     }
-    return $options;
+    return $labels;
+  }
+
+  /**
+   * Return the string time of day formatted.
+   * 
+   * @param $value
+   * 
+   * @return string
+   */
+  protected static function formatStringTime($time) {
+    return self::formatTime(self::stringToTime($time));
   }
 
   /**

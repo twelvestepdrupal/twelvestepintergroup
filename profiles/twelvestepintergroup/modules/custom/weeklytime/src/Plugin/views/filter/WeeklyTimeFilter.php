@@ -21,8 +21,8 @@ class WeeklyTimeFilter extends FilterPluginBase {
   protected function valueForm(&$form, FormStateInterface $form_state) {
     $form['value'] = [
       '#type' => 'select',
-      '#options' => WeeklyTimeField::timeOptions(),
-      '#default_value' => is_numeric($this->value) ? $this->value : [],
+      '#options' => WeeklyTimeField::timeLabels(),
+      '#default_value' => is_string($this->value) ? $this->value : [],
       '#multiple' => $this->options['expose']['multiple'],
     ];
   }
@@ -31,11 +31,28 @@ class WeeklyTimeFilter extends FilterPluginBase {
    * {@inheritdoc}
    */
   public function query() {
-    $table = $this->ensureMyTable();
-    $operator = $this->operator == '=' ? 'IN' : 'NOT IN';
+    $field_name = $this->ensureMyTable() . '.field_time_time';
+
+    $conditions = db_or();
+
+    $options = WeeklyTimeField::timeOptions();
     $values = is_array($this->value) ? $this->value : [$this->value];
-    $value = implode(', ', $values);
-    $this->query->addWhereExpression($this->options['group'], "{$table}.field_time_time {$operator} ({$value})");
+    foreach ($values as $value) {
+      if ($value === WeeklyTimeField::DEFAULT_TIME) {
+        $value = WeeklyTimeField::defaultTime();
+        if ($value === NULL) {
+          return;
+        }
+      }
+
+      foreach ($options[$value]['ranges'] as $range) {
+        $start = WeeklyTimeField::stringToTime($range[0]);
+        $end = WeeklyTimeField::stringToTime($range[1]);
+        $conditions->where("$field_name >= $start AND $field_name < $end");
+      }
+    }
+
+    $this->view->query->addWhere($this->options['group'], $conditions);
   }
 
 }

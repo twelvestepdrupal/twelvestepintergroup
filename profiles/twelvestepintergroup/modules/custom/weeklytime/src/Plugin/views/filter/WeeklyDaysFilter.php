@@ -21,7 +21,7 @@ class WeeklyDaysFilter extends FilterPluginBase {
   protected function valueForm(&$form, FormStateInterface $form_state) {
     $form['value'] = [
       '#type' => 'select',
-      '#options' => ['today' => $this->t('Today')] + WeeklyTimeField::dayOptions(),
+      '#options' => WeeklyTimeField::dayLabels(),
       '#default_value' => is_array($this->value) ? $this->value : [],
       '#multiple' => $this->options['expose']['multiple'],
     ];
@@ -32,13 +32,20 @@ class WeeklyDaysFilter extends FilterPluginBase {
    */
   public function query() {
     $table = $this->ensureMyTable();
+
+    $conditions = db_or();
+
     $values = is_array($this->value) ? $this->value : [$this->value];
     foreach ($values as $day) {
-      if ($day == 'today') {
-        $day = WeeklyTimeField::today();
+      if ($day == WeeklyTimeField::DEFAULT_DAY) {
+        $day = WeeklyTimeField::defaultDay();
       }
+
       $value = ($this->operator == '=') ? '1' : '0';
-      $this->query->addWhereExpression($this->options['group'], "{$table}.field_time_{$day} {$this->operator} {$value}");
+      $conditions->condition("{$table}.field_time_{$day}", $value, $this->operator);
     }
+
+    $this->query->addWhere($this->options['group'], $conditions);
   }
+
 }
