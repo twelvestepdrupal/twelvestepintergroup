@@ -3,6 +3,7 @@
 namespace Drupal\geolocationqueue\Plugin\QueueWorker;
 
 use Drupal\Core\Entity\Query\QueryFactory;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
@@ -72,19 +73,13 @@ class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactory
     $entity_url = $entity->toUrl()->toString();
 
     // Get the entities address field.
-    if (!$address = $entity->get($data->field_address)->first()) {
+    if (!$address = $this->buildAddress($entity, $data->field_address)) {
       return;
     }
 
     // Get the address's geo coordinates from Google APIs. Don't send the second
     // line of the address, which causes too many APPROXIMATE matches.
-    $googlemap_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode(implode(', ', [
-      $address->address_line1,
-      $address->locality,
-      $address->administrative_area,
-      $address->postal_code,
-      $address->country_code,
-    ]));
+    $googlemap_url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address);
     $response = $this->httpClient->get($googlemap_url);
     $status_code = $response->getStatusCode();
     if ($status_code != 200) {
@@ -122,5 +117,24 @@ class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactory
     }
   }
 
+  /**
+   * @param EntityInterface $entity
+   * @param string $field_address
+   */
+  protected function buildAddress(EntityInterface $entity, $field_address) {
+    if ($address = $entity->get($field_address)->first()) {
+      // @todo: don't make this US-centric. Ese a renderer. The problem is that
+      // the render adds HTML markup, with no commas separating the fields.
+      return implode(', ', [
+        $address->address_line1,
+        $address->locality,
+        preg_replace('/^US-/', '', $address->administrative_area),
+        $address->postal_code,
+        $address->country_code,
+      ]);
+    }
+
+    return NULL;
+  }
 }
 

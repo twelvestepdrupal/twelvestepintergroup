@@ -7,10 +7,10 @@ dependencies:
     - field.field.twelvesteplocation.twelvesteplocation.field_directions
   module:
     - address
-    - geolocation
     - text
+    - twelvestepmodule
 _core:
-  default_config_hash: b1wB2ymAJ0niu0PFIFh435bMj8Lj-pXc40mLOlqrp5I
+  default_config_hash: 4-D10gj7vREX3O9z1VdID4FtaGdtF853ycz8GFa8RU8
 id: twelvesteplocation.twelvesteplocation.default
 targetEntityType: twelvesteplocation
 bundle: twelvesteplocation
@@ -22,11 +22,6 @@ content:
       default_country: null
     third_party_settings: {  }
     type: address_default
-  field_coordinates:
-    type: geolocation_googlegeocoder
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
   field_directions:
     type: text_textarea
     weight: 3
@@ -49,4 +44,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_coordinates: true

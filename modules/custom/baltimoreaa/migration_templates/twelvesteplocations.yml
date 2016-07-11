@@ -14,7 +14,7 @@ process:
     default_value: US
   field_address/administrative_area:
     plugin: default_value
-    default_value: MD
+    default_value: 'US-MD'
   field_address/address_line1: mAdd2
   field_address/address_line2: mAdd1
   field_address/locality: mCity
