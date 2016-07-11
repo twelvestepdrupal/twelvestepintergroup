@@ -30,9 +30,7 @@ class MeetingGuideRow extends DataEntityRow {
     /** @var TwelveStepMeeting $meeting */
     $meeting = $this->getEntityTranslation($row->_entity, $row);
     $output['name'] = $meeting->getName();
-//  $output['slug'] = $meeting->path->value;
     $output['updated'] = format_date($meeting->changed->value);
-//  $output['url'] = $meeting->url->value;
 
     /** @var FieldItemList $field_format */
     $field_format = $meeting->get('field_format');
@@ -55,7 +53,6 @@ class MeetingGuideRow extends DataEntityRow {
       /** @var TwelveStepLocation $location */
       $location = entity_load('twelvesteplocation', $location_id);
       $output['location'] = $location->getName();
-//    $output['location_slug'] = $location->path->value;
       /** @var FieldItemList $field_address */
       $field_address = $location->get('field_address')->first();
       if ($field_address) {

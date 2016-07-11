@@ -18,7 +18,6 @@ use Drupal\user\EntityOwnerInterface;
  * @ingroup twelvestepmodule
  */
 interface TwelveStepMeetingInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
-  // Add get/set methods for your configuration properties here.
 
   /**
    * Gets the Twelve Step Meeting name.

@@ -34,7 +34,7 @@ class TwelveStepModuleService implements TwelveStepModuleServiceInterface {
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $storage;
-  
+
   /**
    * Constructor.
    */
@@ -63,6 +63,7 @@ class TwelveStepModuleService implements TwelveStepModuleServiceInterface {
       ->condition('theme', $default_theme)
       ->condition('region', 'navigation')
       ->execute();
+
     /** @var $block \Drupal\block\BlockInterface[] */
     $blocks = $this->storage->loadMultiple($block_ids);
     foreach ($blocks as $block) {

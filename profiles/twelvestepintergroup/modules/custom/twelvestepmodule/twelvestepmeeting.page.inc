@@ -22,9 +22,6 @@ use Drupal\Core\Url;
  *   - attributes: HTML attributes for the containing element.
  */
 function template_preprocess_twelvestepmeeting(array &$variables) {
-  // Fetch TwelveStepMeeting Entity Object.
-  $twelvestepmeeting = $variables['elements']['#twelvestepmeeting'];
-
   // Helpful $content variable for templates.
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
@@ -42,9 +39,6 @@ function template_preprocess_twelvestepmeeting(array &$variables) {
  *   - attributes: HTML attributes for the containing element.
  */
 function template_preprocess_twelvesteplocation(array &$variables) {
-  // Fetch TwelveStepLocation Entity Object.
-  $twelvesteplocation = $variables['elements']['#twelvesteplocation'];
-
   // Helpful $content variable for templates.
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
@@ -62,9 +56,6 @@ function template_preprocess_twelvesteplocation(array &$variables) {
  *   - attributes: HTML attributes for the containing element.
  */
 function template_preprocess_twelvestepgroup(array &$variables) {
-  // Fetch TwelveStepGroup Entity Object.
-  $twelvestepgroup = $variables['elements']['#twelvestepgroup'];
-
   // Helpful $content variable for templates.
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];

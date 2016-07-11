@@ -18,7 +18,6 @@ use Drupal\user\EntityOwnerInterface;
  * @inlocation twelvestepmodule
  */
 interface TwelveStepLocationInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
-  // Add get/set methods for your configuration properties here.
 
   /**
    * Gets the Twelve Step Location name.

@@ -87,7 +87,6 @@ class WeeklyTimeWidget extends WidgetBase {
    */
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
     // @todo: where do we do validation in D8?
-
     foreach ($values as &$value) {
       // Save the time as a minute in the day.
       $value['time'] = WeeklyTimeField::stringToTime($value['time']);
