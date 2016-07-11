@@ -35,7 +35,7 @@ class WeeklyTimeWidget extends WidgetBase {
       $default_days = $items[$delta]->day;
     }
     else {
-      $today = WeeklyTimeField::today();
+      $today = WeeklyTimeField::defaultDay();
       $default_days = [$today => $today];
     }
 
