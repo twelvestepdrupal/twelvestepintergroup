@@ -1,3 +1,19 @@
 /**
  * Place your custom styles here.
  */
+
+.filters-wrapper-toggle {
+  margin: 15px 0;
+}
+
+@media screen and (min-width: 768px) {
+
+  .filters-wrapper-toggle {
+    display: none;
+  }
+
+  .filters-wrapper {
+    display: block;
+  }
+
+}
