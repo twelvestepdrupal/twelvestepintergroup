@@ -75,9 +75,9 @@ class WeeklyTimeField extends FieldItemBase {
    * @return string
    */
   public static function defaultTime() {
-    $now = stringToTime(date('Hi'));
+    $now = self::stringToTime(date('Hi'));
     foreach (self::timeOptions() as $key => $option) {
-      foreach ($options['ranges'] as $range) {
+      foreach ($option['ranges'] as $range) {
         if ($now >= $range[0] && $now < $range[1]) {
           return $key;
         }
