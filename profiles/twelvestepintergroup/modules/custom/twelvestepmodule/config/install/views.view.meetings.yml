@@ -15,7 +15,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: CUoX2uANO_V0xpgU5_wmO5yEl6Iq2v8oFo1oPl1EA0Y
+  default_config_hash: __3D3VRfgf5eiclx-kmK67fpprghLdo-f5O2OfYDYzc
 id: meetings
 label: Meetings
 module: views
@@ -463,7 +463,7 @@ display:
           plugin_id: standard
       arguments: {  }
       display_extenders: {  }
-      use_ajax: true
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:
