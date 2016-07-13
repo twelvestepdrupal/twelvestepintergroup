@@ -27,22 +27,23 @@ process:
         discusssion: discussion
         d: discussion
         speaker: speaker
-        step: stepstudy
-        stepstudy: stepstudy
-        begstep: [ beginners, step ]
-        beginners: beginners
+        step: steps
+        stepstudy: [ steps, literature ]
+        begstep: [ beginner, steps ]
+        beginner: beginner
+        beginners: beginner
         literature: literature
         o: open
         bigbook: [ bigbook, literature ]
         bb: [ literature, bigbook ]
         traditions: traditions
       mAccess:
-       h: wheelchair
+       h: handicap
       mNotes:
         gay: gay
-        spanish: 'spanish'
-        '12&12': [ traditions, study, literature ]
-        'twelve&twelve': [ traditions, study, literature ]
+        spanish: spanish
+        '12&12': [ traditions, literature ]
+        'twelve&twelve': [ traditions, literature ]
   field_location:
     plugin: migration
     migration: example_csv_locations

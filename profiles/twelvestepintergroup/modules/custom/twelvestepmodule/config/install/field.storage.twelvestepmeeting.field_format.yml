@@ -30,6 +30,12 @@ settings:
       value: candlelight
       label: candlelight
     -
+      value: chips
+      label: 'chips provided'
+    -
+      value: childcare
+      label: 'child care'
+    -
       value: closed
       label: closed
     -
@@ -39,8 +45,8 @@ settings:
       value: discussion
       label: discussion
     -
-      value: fragrancefree
-      label: 'fragrance free'
+      value: french
+      label: 'french speaking'
     -
       value: gay
       label: gay
@@ -60,7 +66,7 @@ settings:
       value: mens
       label: mens
     -
-      value: non-smoking
+      value: nonsmoking
       label: non-smoking
     -
       value: open
@@ -87,8 +93,8 @@ settings:
       value: transgender
       label: transgender
     -
-      value: womans
-      label: womans
+      value: womens
+      label: womens
     -
       value: young
       label: 'young peoples'

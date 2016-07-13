@@ -22,28 +22,27 @@ process:
         ba: babysitting
         c: closed
         can: candlelight
-        cf: children
+        cf: childcare
         d: discussion
-        ff: fragrancefree
+        ff: nonsmoking
         fr: french
         g: gay
         gr: grapevine
         h: chips
         l: lesbian
-        lgbtq: ltbtq
+        lgbtq: [ lesbian, gay, transgender, ltbtq ]
         lit: literature
         m: mens
         med: meditation
         o: open
         s: spanish
-        st: step
         sm: smoking
         sp: speaker
-        st: step
+        st: steps
         t: transgender
         tr: traditions
         w: womens
-        x: wheelchair
+        x: handicap
         xt: crosstalk
         y: young
   field_location:
