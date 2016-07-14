@@ -46,3 +46,7 @@
   -webkit-order: 1;
   order: 1;
 }
+
+.geolocation-common-map-locations h2, .gm-style-iw h2 {
+  font-size: 1.5em;
+}
