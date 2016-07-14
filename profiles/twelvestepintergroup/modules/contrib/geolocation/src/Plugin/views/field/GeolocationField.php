@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- *   Definition of Drupal\geolocation\Plugin\views\Geolocation.
- */
-
 namespace Drupal\geolocation\Plugin\views\field;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -37,4 +32,5 @@ class GeolocationField extends Field {
     // Remote the click sort field selector.
     unset($form['click_sort_column']);
   }
+
 }

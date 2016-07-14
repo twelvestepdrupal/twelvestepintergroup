@@ -1,18 +1,15 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\geolocation\Plugin\views\style\CommonMap.
- */
-
 namespace Drupal\geolocation\Plugin\views\style;
 
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Component\Utility\SortArray;
-
+use Drupal\geolocation\Plugin\views\field\GeolocationField;
+use Drupal\geolocation\GoogleMapsDisplayTrait;
 
 /**
+ * Allow to display several field items on a common map.
+ *
  * @ingroup views_style_plugins
  *
  * @ViewsStyle(
@@ -25,13 +22,15 @@ use Drupal\Component\Utility\SortArray;
  */
 class CommonMap extends StylePluginBase {
 
+  use GoogleMapsDisplayTrait;
+
   protected $usesFields = TRUE;
   protected $usesRowPlugin = TRUE;
   protected $usesRowClass = FALSE;
   protected $usesGrouping = FALSE;
 
   /**
-   * Overrides \Drupal\views\Plugin\views\display\PathPluginBase::render().
+   * {@inheritdoc}
    */
   public function render() {
 
@@ -40,7 +39,7 @@ class CommonMap extends StylePluginBase {
       $this->view->field[$geo_field]->options['exclude'] = TRUE;
     }
     else {
-      // TODO: Throw some exception here, we're done.
+      \Drupal::logger('geolocation')->error("The geolocation common map views style was called without a geolocation field defined in the views style settings.");
       return [];
     }
 
@@ -49,7 +48,8 @@ class CommonMap extends StylePluginBase {
       $this->view->field[$title_field]->options['exclude'] = TRUE;
     }
 
-    $id = \Drupal\Component\Utility\Html::getUniqueId($this->pluginId);
+    $id = uniqid($this->pluginId);
+
     $build = [
       '#theme' => 'geolocation_common_map_display',
       '#id' => $id,
@@ -60,8 +60,12 @@ class CommonMap extends StylePluginBase {
         'drupalSettings' => [
           'geolocation' => [
             'commonMap' => [
-              'id' => $id,
+              $id => [
+                'settings' => $this->getGoogleMapsSettings($this->options),
+                'google_map_api_key' => \Drupal::config('geolocation.settings')->get('google_map_api_key'),
+              ],
             ],
+            'google_map_api_key' => \Drupal::config('geolocation.settings')->get('google_map_api_key'),
           ],
         ],
       ],
@@ -78,7 +82,15 @@ class CommonMap extends StylePluginBase {
         );
       }
 
-      $geo_items = $this->view->field[$geo_field]->getItems($row);
+      if ($this->view->field[$geo_field] instanceof GeolocationField) {
+        /** @var \Drupal\geolocation\Plugin\views\field\GeolocationField $geolocation_field */
+        $geolocation_field = $this->view->field[$geo_field];
+        $geo_items = $geolocation_field->getItems($row);
+      }
+      else {
+        return $build;
+      }
+
       foreach ($geo_items as $delta => $item) {
         $geolocation = $item['raw'];
         $position = [
@@ -92,27 +104,43 @@ class CommonMap extends StylePluginBase {
           '#title' => empty($title_build) ? '' : $title_build,
           '#position' => $position,
         ];
-
-
       }
     }
 
     $centre = NULL;
+    $fitbounds = FALSE;
+    if (!is_array($this->options['centre'])) {
+      return $build;
+    }
+
     foreach ($this->options['centre'] as $id => $option) {
+      // Ignore if not enabled.
       if (empty($option['enable'])) {
         continue;
       }
 
+      // Ignore if fitBounds is enabled, as it will supersede any other option.
+      if ($fitbounds) {
+        break;
+      }
+
+      // Ignore if center is already set.
+      if (!empty($centre['lat']) && !empty($centre['lng'])) {
+        break;
+      }
+
       switch ($id) {
+
         case 'fixed_value':
           $centre = [
-            'lat' => (float)$option['settings']['latitude'],
-            'lng' => (float)$option['settings']['longitude'],
+            'lat' => (float) $option['settings']['latitude'],
+            'lng' => (float) $option['settings']['longitude'],
           ];
           break;
 
-        case (preg_match('/proximity_filter_*/', $id) ? true : false) :
+        case (preg_match('/proximity_filter_*/', $id) ? TRUE : FALSE):
           $filter_id = substr($id, 17);
+          /** @var \Drupal\geolocation\Plugin\views\filter\ProximityFilter $handler */
           $handler = $this->displayHandler->getHandler('filter', $filter_id);
           if ($handler->value['lat'] && $handler->value['lng']) {
             $centre = [
@@ -128,17 +156,20 @@ class CommonMap extends StylePluginBase {
           }
           break;
 
-      }
+        case 'fit_bounds':
+          // fitBounds will only work when at least one result is available.
+          if (!empty($build['#locations'][0]['#position'])) {
+            $fitbounds = TRUE;
+          }
+          break;
 
-      if (!empty($centre['lat']) || !empty($centre['lng']) || !empty($centre['locate'])) {
-        // We're done, no need for further options.
-        break;
       }
     }
 
     if (!empty($centre)) {
-      $build['#centre'] = $centre;
+      $build['#centre'] = $centre ?: ['lat' => 0, 'lng' => 0];
     }
+    $build['#fitbounds'] = $fitbounds;
 
     return $build;
   }
@@ -153,6 +184,10 @@ class CommonMap extends StylePluginBase {
     $options['title_field'] = ['default' => ''];
     $options['centre'] = ['default' => ''];
 
+    foreach (self::getGoogleMapDefaultSettings() as $key => $setting) {
+      $options[$key] = ['default' => $setting];
+    }
+
     return $options;
   }
 
@@ -163,7 +198,7 @@ class CommonMap extends StylePluginBase {
     parent::buildOptionsForm($form, $form_state);
 
     $labels = $this->displayHandler->getFieldLabels();
-    $fieldMap = \Drupal::entityManager()->getFieldMap();
+    $fieldMap = \Drupal::service('entity_field.manager')->getFieldMap();
     $geo_options = [];
     $title_options = [];
     $filters = $this->displayHandler->getOption('filters');
@@ -172,6 +207,7 @@ class CommonMap extends StylePluginBase {
       if ($field['plugin_id'] == 'geolocation_field') {
         $geo_options[$field_name] = $labels[$field_name];
       }
+
       if (
         $field['plugin_id'] == 'field'
         && !empty($field['entity_type'])
@@ -184,10 +220,12 @@ class CommonMap extends StylePluginBase {
           $geo_options[$field_name] = $labels[$field_name];
         }
       }
-      if ($field['type'] == 'string') {
+
+      if (!empty($field['type']) && $field['type'] == 'string') {
         $title_options[$field_name] = $labels[$field_name];
       }
     }
+
     $form['geolocation_field'] = [
       '#title' => $this->t('Geolocation source field'),
       '#type' => 'select',
@@ -200,11 +238,15 @@ class CommonMap extends StylePluginBase {
       '#title' => $this->t('Title source field'),
       '#type' => 'select',
       '#default_value' => $this->options['title_field'],
-      '#description' => $this->t("The source of the title for each entity. Must be string"),
+      '#description' => $this->t("The source of the title for each entity. Field type must be 'string'."),
       '#options' => $title_options,
     ];
 
+    /*
+     * Centre handling.
+     */
     $options = [
+      'fit_bounds' => $this->t('Automatically fit map bounds to results. Disregards any set center or zoom.'),
       'first_row' => $this->t('Use first row as centre.'),
       'fixed_value' => $this->t('Provide fixed latitude and longitude.'),
     ];
@@ -213,12 +255,23 @@ class CommonMap extends StylePluginBase {
       if (empty($filter['plugin_id']) || $filter['plugin_id'] != 'geolocation_filter_proximity') {
         continue;
       }
-      $options['proximity_filter_' . $filter_name] = $this->displayHandler->getHandler('filter', $filter_name)->adminLabel();
+      /** @var \Drupal\geolocation\Plugin\views\filter\ProximityFilter $proximity_filter_handler */
+      $proximity_filter_handler = $this->displayHandler->getHandler('filter', $filter_name);
+      $options['proximity_filter_' . $filter_name] = $proximity_filter_handler->adminLabel();
     }
 
     $form['centre'] = [
       '#type' => 'table',
-      '#header' => [ t('Enable'), t('Option'), t('settings'), array('data' => t('Settings'), 'colspan' => '1')],
+      '#prefix' => t('Please note: Each option will, if it can be applied, supersede any following option.'),
+      '#header' => [
+        t('Enable'),
+        t('Option'),
+        t('settings'),
+        [
+          'data' => t('Settings'),
+          'colspan' => '1',
+        ],
+      ],
       '#attributes' => ['id' => 'geolocation-centre-options'],
       '#tabledrag' => [
         [
@@ -230,7 +283,7 @@ class CommonMap extends StylePluginBase {
     ];
 
     foreach ($options as $id => $label) {
-      $weight = $this->options['centre'][$id]['weight'] ?: 0;
+      $weight = isset($this->options['centre'][$id]['weight']) ? $this->options['centre'][$id]['weight'] : 0;
       $form['centre'][$id]['#weight'] = $weight;
 
       $form['centre'][$id]['enable'] = [
@@ -242,7 +295,7 @@ class CommonMap extends StylePluginBase {
         '#markup' => $label,
       ];
 
-      // Optionally, to add tableDrag support:
+      // Add tabledrag supprt.
       $form['centre'][$id]['#attributes']['class'][] = 'draggable';
       $form['centre'][$id]['weight'] = [
         '#type' => 'weight',
@@ -255,23 +308,21 @@ class CommonMap extends StylePluginBase {
     }
 
     $form['centre']['fixed_value']['settings'] = [
-      '#title' => $this->t('Fixed values for centre'),
       '#type' => 'container',
       'latitude' => [
         '#type' => 'textfield',
         '#title' => t('Latitude'),
-        '#default_value' => $this->options['centre']['fixed_value']['settings']['latitude'],
+        '#default_value' => isset($this->options['centre']['fixed_value']['settings']['latitude']) ? $this->options['centre']['fixed_value']['settings']['latitude'] : '',
         '#size' => 60,
         '#maxlength' => 128,
       ],
       'longitude' => [
         '#type' => 'textfield',
         '#title' => t('Longitude'),
-        '#default_value' => $this->options['centre']['fixed_value']['settings']['longitude'],
+        '#default_value' => isset($this->options['centre']['fixed_value']['settings']['longitude']) ? $this->options['centre']['fixed_value']['settings']['longitude'] : '',
         '#size' => 60,
         '#maxlength' => 128,
       ],
-      '#description' => $this->t("The source of geodata for each entity. Must be string"),
       '#states' => [
         'visible' => [
           ':input[name="style_options[centre][fixed_value][enable]"]' => ['checked' => TRUE],
@@ -280,5 +331,19 @@ class CommonMap extends StylePluginBase {
     ];
 
     uasort($form['centre'], 'Drupal\Component\Utility\SortArray::sortByWeightProperty');
+
+    /*
+     * Additional map settings.
+     */
+    $form += $this->getGoogleMapsSettingsForm($this->options);
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateOptionsForm(&$form, FormStateInterface $form_state) {
+    parent::validateOptionsForm($form, $form_state);
+    $this->validateGoogleMapsSettingsForm($form, $form_state, 'style_options');
+  }
+
 }

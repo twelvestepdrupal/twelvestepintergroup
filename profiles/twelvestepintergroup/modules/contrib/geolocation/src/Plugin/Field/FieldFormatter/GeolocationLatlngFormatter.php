@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\geolocation\Plugin\Field\FieldFormatter\GeolocationLatlngFormatter.
- */
-
 namespace Drupal\geolocation\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;

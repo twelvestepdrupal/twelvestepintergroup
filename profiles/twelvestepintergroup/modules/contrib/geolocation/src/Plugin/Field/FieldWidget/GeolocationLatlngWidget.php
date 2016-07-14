@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\geolocation\Plugin\Field\FieldWidget\GeolocationLatlngWidget.
- */
-
 namespace Drupal\geolocation\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
@@ -36,6 +31,7 @@ class GeolocationLatlngWidget extends WidgetBase {
       '#default_value' => (isset($items[$delta]->lat)) ? $items[$delta]->lat : NULL,
       '#maxlength' => 255,
       '#description' => $this->t('Latitude'),
+      '#required' => $this->fieldDefinition->isRequired(),
     );
 
     $element['lng'] = array(
@@ -45,6 +41,7 @@ class GeolocationLatlngWidget extends WidgetBase {
       '#default_value' => (isset($items[$delta]->lng)) ? $items[$delta]->lng : NULL,
       '#maxlength' => 255,
       '#description' => $this->t('Longitude'),
+      '#required' => $this->fieldDefinition->isRequired(),
     );
 
     return $element;

@@ -1,14 +1,11 @@
 <?php
-/**
- * @file
- * Contains \Drupal\geolocation\Plugin\Field\FieldWidget\GeolocationHTML5Widget.
- */
 
 namespace Drupal\geolocation\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Plugin implementation of the 'geolocation_html5' widget.
@@ -22,6 +19,18 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class GeolocationHTML5Widget extends WidgetBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function flagErrors(FieldItemListInterface $items, ConstraintViolationListInterface $violations, array $form, FormStateInterface $form_state) {
+    foreach ($violations as $offset => $violation) {
+      if ($violation->getMessageTemplate() == 'This value should not be null.') {
+        $form_state->setErrorByName($items->getName(), t('No location could be determined for required field %field.', ['%field' => $items->getFieldDefinition()->getLabel()]));
+      }
+    }
+    parent::flagErrors($items, $violations, $form, $form_state);
+  }
 
   /**
    * {@inheritdoc}
@@ -74,4 +83,5 @@ class GeolocationHTML5Widget extends WidgetBase {
 
     return $element;
   }
+
 }

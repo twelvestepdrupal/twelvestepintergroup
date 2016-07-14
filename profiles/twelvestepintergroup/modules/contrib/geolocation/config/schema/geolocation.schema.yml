@@ -1,3 +1,11 @@
+geolocation.settings:
+  type: config_object
+  label: 'Geolocation settings'
+  mapping:
+    google_map_api_key:
+      type: string
+      label: 'Geoogle Maps API Key'
+
 views.style.maps_common:
   type: views_style
   label: 'Geolocation CommonMap'
@@ -25,7 +33,123 @@ views.style.maps_common:
             label: 'Settings'
             sequence:
               type: string
+    type:
+      type: string
+      label: 'Google map type'
+    zoom:
+      type: string
+      label: 'Zoom level'
+    mapTypeControl:
+      type: integer
+      label: 'Map controls'
+    streetViewControl:
+      type: integer
+      label: 'Street view'
+    zoomControl:
+      type: integer
+      label: 'Zoom control'
+    scrollwheel:
+      type: integer
+      label: 'Scrool wheel'
+    disableDoubleClickZoom:
+      type: integer
+      label: 'Disable double click zoom'
+    draggable:
+      type: integer
+      label: 'Draggable'
+    height:
+      type: string
+      label: 'Height value'
+    width:
+      type: string
+      label: 'Width value'
+    info_auto_display:
+      type: integer
+      label: 'Display info'
+    style:
+      type: string
+      label: 'JSON encoded style'
 
 views.field.geolocation_field:
   type: views.field.field
   label: 'Geolocation Field'
+
+views.filter.geolocation_filter_boundary:
+  type: views.filter.filter
+  label: 'Geolocation Boundary Filter'
+  mapping:
+    value:
+      type: mapping
+      label: 'Value'
+      mapping:
+        lat_north_east:
+          type: string
+          label: 'North East Latitude'
+        lng_north_east:
+           type: string
+           label: 'North East Longitude'
+        lat_south_west:
+           type: string
+           label: 'South West Latitude'
+        lng_south_west:
+           type: string
+           label: 'North East Longitude'
+
+field.formatter.settings.geolocation_map:
+  type: mapping
+  label: 'Geolocation Google Map Formatter'
+  mapping:
+    title:
+      type: string
+      label: 'Title'
+    info_text:
+      type: string
+      label: 'Info Text'
+    type:
+      type: string
+      label: 'Google map type'
+    zoom:
+      type: string
+      label: 'Zoom level'
+    mapTypeControl:
+      type: integer
+      label: 'Map controls'
+    streetViewControl:
+      type: integer
+      label: 'Street view'
+    zoomControl:
+      type: integer
+      label: 'Zoom control'
+    scrollwheel:
+      type: integer
+      label: 'Scrool wheel'
+    disableDoubleClickZoom:
+      type: integer
+      label: 'Disable double click zoom'
+    draggable:
+      type: integer
+      label: 'Draggable'
+    height:
+      type: string
+      label: 'Height value'
+    width:
+      type: string
+      label: 'Width value'
+    info_auto_display:
+      type: integer
+      label: 'Display info'
+    style:
+      type: string
+      label: 'JSON encoded style'
+
+
+field.widget.settings.geolocation_googlegeocoder:
+  type: mapping
+  label: 'Geolocation Google Geocoder Widget settings'
+  mapping:
+    populate_address_field:
+      type: string
+      label: 'Store address'
+    target_address_field:
+      type: string
+      label: 'Target address field name'

@@ -1,13 +1,10 @@
 <?php
-/**
- * @file
- *   Definition of Drupal\geolocation\Plugin\views\sort\ProximitySort.
- */
 
 namespace Drupal\geolocation\Plugin\views\sort;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\sort\SortPluginBase;
+use Drupal\views\Plugin\views\query\Sql;
 
 /**
  * Sort handler for geolocaiton field.
@@ -60,6 +57,9 @@ class ProximitySort extends SortPluginBase {
    * {@inheritdoc}
    */
   public function query() {
+    if (!($this->query instanceof Sql)) {
+      return;
+    }
     // Get the field for sorting.
     $field = isset($this->view->field[$this->options['proximity_field']]) ? $this->view->field[$this->options['proximity_field']] : NULL;
     if (!empty($field->field_alias)) {
@@ -67,4 +67,5 @@ class ProximitySort extends SortPluginBase {
       $this->tableAlias = $field->tableAlias;
     }
   }
+
 }

@@ -1,12 +1,8 @@
 <?php
-/**
- * @file
- *   Contains Drupal\geolocation\GeolocationCore.
- */
 
 namespace Drupal\geolocation;
 
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\field\FieldStorageConfigInterface;
@@ -26,23 +22,37 @@ class GeolocationCore {
    *
    * @var \Drupal\Core\Extension\ModuleHandler
    */
-  protected $module_handler;
+  protected $moduleHandler;
 
   /**
    * Drupal\Core\Entity\EntityManager definition.
    *
    * @var \Drupal\Core\Entity\EntityManager
    */
-  protected $entity_manager;
+  protected $entityManager;
 
   /**
    * Constructor.
+   *
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   A module handler.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+   *   An EntityTypeManager instance.
    */
-  public function __construct(ModuleHandlerInterface $module_handler, EntityManagerInterface $entity_manager) {
-    $this->module_handler = $module_handler;
-    $this->entity_manager = $entity_manager;
+  public function __construct(ModuleHandlerInterface $module_handler, EntityTypeManagerInterface $entity_manager) {
+    $this->moduleHandler = $module_handler;
+    $this->entityManager = $entity_manager;
   }
 
+  /**
+   * Get views data for fields and filters.
+   *
+   * @param \Drupal\field\FieldStorageConfigInterface $field_storage
+   *   Storage of the current field.
+   *
+   * @return array
+   *   The data to return to Views.
+   */
   public function getViewsFieldData(FieldStorageConfigInterface $field_storage) {
 
     // Make sure views.views.inc is loaded.
@@ -54,7 +64,7 @@ class GeolocationCore {
     // Loop through all of the results and set our overrides.
     foreach ($data as $table_name => $table_data) {
       foreach ($table_data as $field_name => $field_data) {
-        // only modify fields.
+        // Only modify fields.
         if ($field_name != 'delta') {
           if (isset($field_data['field'])) {
             // Use our own field handler.
@@ -78,59 +88,69 @@ class GeolocationCore {
 
       $args = ['@field_name' => $field_storage->getName()];
 
-      $target_entity_type = \Drupal::entityManager()->getDefinition($field_storage->getTargetEntityTypeId());
-      $field_coordinates_table_data = $data[$target_entity_type->getBaseTable() . '__' . $field_storage->getName()][$field_storage->getName()];
+      $field_coordinates_table_data = [];
+      $entity_type_id = $field_storage->getTargetEntityTypeId();
+      $target_entity_type = \Drupal::entityTypeManager()->getDefinition($field_storage->getTargetEntityTypeId());
+
+      if (array_key_exists($target_entity_type->getBaseTable() . '__' . $field_storage->getName(), $data)) {
+        $field_coordinates_table_data = $data[$target_entity_type->getBaseTable() . '__' . $field_storage->getName()][$field_storage->getName()];
+      }
+      elseif (array_key_exists($entity_type_id . '__' . $field_storage->getName(), $data)) {
+        // Fall back to using the key format as defined in,
+        // views_field_default_views_data().
+        $field_coordinates_table_data = $data[$entity_type_id . '__' . $field_storage->getName()][$field_storage->getName()];
+      }
 
       // Add proximity handlers.
       $data[$table_name][$args['@field_name'] . '_proximity'] = [
-        'group' => 'Content',
+        'group' => $target_entity_type->getLabel(),
         'title' => $this->t('Proximity (@field_name)', $args),
-        'title short' => $field_coordinates_table_data['title short'] . t(":proximity"),
-        'help' => $field_coordinates_table_data['help'],
+        'title short' => isset($field_coordinates_table_data['title short']) ? $field_coordinates_table_data['title short'] . t(":proximity") : '',
+        'help' => isset($field_coordinates_table_data['help']) ? $field_coordinates_table_data['help'] : '',
         'argument' => [
           'id' => 'geolocation_argument_proximity',
           'table' => $table_name,
-          'entity_type' => $field_storage->get('entity_type'),
-          'field_name' => $args['@field_name'].'_proximity',
+          'entity_type' => $entity_type_id,
+          'field_name' => $args['@field_name'] . '_proximity',
           'real field' => $args['@field_name'],
           'label' => $this->t('Distance to !field_name', $args),
           'empty field name' => '- No value -',
           'additional fields' => [
-            $args['@field_name'].'_lat',
-            $args['@field_name'].'_lng',
-            $args['@field_name'].'_lat_sin',
-            $args['@field_name'].'_lat_cos',
-            $args['@field_name'].'_lng_rad',
+            $args['@field_name'] . '_lat',
+            $args['@field_name'] . '_lng',
+            $args['@field_name'] . '_lat_sin',
+            $args['@field_name'] . '_lat_cos',
+            $args['@field_name'] . '_lng_rad',
           ],
         ],
         'filter' => [
           'id' => 'geolocation_filter_proximity',
           'table' => $table_name,
-          'entity_type' => $field_storage->get('entity_type'),
-          'field_name' => $args['@field_name'].'_proximity',
+          'entity_type' => $entity_type_id,
+          'field_name' => $args['@field_name'] . '_proximity',
           'real field' => $args['@field_name'],
           'label' => $this->t('Distance to !field_name', $args),
           'allow empty' => TRUE,
           'additional fields' => [
-            $args['@field_name'].'_lat',
-            $args['@field_name'].'_lng',
-            $args['@field_name'].'_lat_sin',
-            $args['@field_name'].'_lat_cos',
-            $args['@field_name'].'_lng_rad',
+            $args['@field_name'] . '_lat',
+            $args['@field_name'] . '_lng',
+            $args['@field_name'] . '_lat_sin',
+            $args['@field_name'] . '_lat_cos',
+            $args['@field_name'] . '_lng_rad',
           ],
         ],
         'field' => [
           'table' => $table_name,
           'id' => 'geolocation_field_proximity',
-          'field_name' => $args['@field_name'].'_proximity',
-          'entity_type' => $field_storage->get('entity_type'),
+          'field_name' => $args['@field_name'] . '_proximity',
+          'entity_type' => $entity_type_id,
           'real field' => $args['@field_name'],
           'additional fields' => [
-            $args['@field_name'].'_lat',
-            $args['@field_name'].'_lng',
-            $args['@field_name'].'_lat_sin',
-            $args['@field_name'].'_lat_cos',
-            $args['@field_name'].'_lng_rad',
+            $args['@field_name'] . '_lat',
+            $args['@field_name'] . '_lng',
+            $args['@field_name'] . '_lat_sin',
+            $args['@field_name'] . '_lat_cos',
+            $args['@field_name'] . '_lng_rad',
           ],
           'element type' => 'div',
           'is revision' => (isset($table_data[$args['@field_name']]['field']['is revision']) && $table_data[$args['@field_name']]['field']['is revision']),
@@ -139,9 +159,30 @@ class GeolocationCore {
         'sort' => [
           'table' => $table_name,
           'id' => 'geolocation_sort_proximity',
-          'field_name' => $args['@field_name'].'_proximity',
-          'entity_type' => $field_storage->get('entity_type'),
+          'field_name' => $args['@field_name'] . '_proximity',
+          'entity_type' => $entity_type_id,
           'real field' => $args['@field_name'],
+        ],
+      ];
+
+      // Add boundary handlers.
+      $data[$table_name][$args['@field_name'] . '_boundary'] = [
+        'group' => $target_entity_type->getLabel(),
+        'title' => $this->t('Boundary (@field_name)', $args),
+        'title short' => isset($field_coordinates_table_data['title short']) ? $field_coordinates_table_data['title short'] . t(":boundary") : '',
+        'help' => isset($field_coordinates_table_data['help']) ? $field_coordinates_table_data['help'] : '',
+        'filter' => [
+          'id' => 'geolocation_filter_boundary',
+          'table' => $table_name,
+          'entity_type' => $entity_type_id,
+          'field_name' => $args['@field_name'] . '_boundary',
+          'real field' => $args['@field_name'],
+          'label' => $this->t('Boundaries around !field_name', $args),
+          'allow empty' => TRUE,
+          'additional fields' => [
+            $args['@field_name'] . '_lat',
+            $args['@field_name'] . '_lng',
+          ],
         ],
       ];
     }
@@ -152,14 +193,21 @@ class GeolocationCore {
   /**
    * Gets the query fragment for adding a proximity field to a query.
    *
-   * @param $table_name
-   * @param $field_id
-   * @param $filter_lat
-   * @param $filter_lng
+   * @param string $table_name
+   *   The proximity table name.
+   * @param string $field_id
+   *   The proximity field ID.
+   * @param string $filter_lat
+   *   The latitude to filter for.
+   * @param string $filter_lng
+   *   The longitude to filter for.
    * @param int $earth_radius
+   *   Filter radius.
+   *
    * @return string
+   *   The fragment to enter to actual query.
    */
-  public function getQueryFragment($table_name, $field_id, $filter_lat, $filter_lng, $earth_radius = self::EARTH_RADIUS_KM) {
+  public function getProximityQueryFragment($table_name, $field_id, $filter_lat, $filter_lng, $earth_radius = self::EARTH_RADIUS_KM) {
 
     // Define the field names.
     $field_latsin = "{$table_name}.{$field_id}_lat_sin";
@@ -185,7 +233,38 @@ class GeolocationCore {
         * $field_latsin
       ) * $earth_radius
     )";
+  }
 
+  /**
+   * Gets the query fragment for adding a boundary field to a query.
+   *
+   * @param string $table_name
+   *   The proximity table name.
+   * @param string $field_id
+   *   The proximity field ID.
+   * @param string $filter_lat_north_east
+   *   The latitude to filter for.
+   * @param string $filter_lng_north_east
+   *   The longitude to filter for.
+   * @param string $filter_lat_south_west
+   *   The latitude to filter for.
+   * @param string $filter_lng_south_west
+   *   The longitude to filter for.
+   *
+   * @return string
+   *   The fragment to enter to actual query.
+   */
+  public function getBoundaryQueryFragment($table_name, $field_id, $filter_lat_north_east, $filter_lng_north_east, $filter_lat_south_west, $filter_lng_south_west) {
+    // Define the field name.
+    $field_lat = "{$table_name}.{$field_id}_lat";
+    $field_lng = "{$table_name}.{$field_id}_lng";
+
+    return "(
+      $field_lat < $filter_lat_north_east
+      AND $field_lat > $filter_lat_south_west
+      AND $field_lng < $filter_lng_north_east
+      AND $field_lng > $filter_lng_south_west
+    )";
   }
 
 }

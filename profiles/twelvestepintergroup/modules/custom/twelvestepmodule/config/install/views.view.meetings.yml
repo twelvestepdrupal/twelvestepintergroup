@@ -15,7 +15,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: __3D3VRfgf5eiclx-kmK67fpprghLdo-f5O2OfYDYzc
+  default_config_hash: 9hRw75lxiCyNww8yrf4l39NipR2mKcMDNaxq2MZksjw
 id: meetings
 label: Meetings
 module: views
@@ -411,7 +411,21 @@ display:
           field_api_classes: false
           plugin_id: geolocation_field
       filters: {  }
-      sorts: {  }
+      sorts:
+        name:
+          id: name
+          table: twelvesteplocation
+          field: name
+          relationship: field_location
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: twelvesteplocation
+          entity_field: name
+          plugin_id: standard
       title: 'Search Meetings'
       header: {  }
       footer:

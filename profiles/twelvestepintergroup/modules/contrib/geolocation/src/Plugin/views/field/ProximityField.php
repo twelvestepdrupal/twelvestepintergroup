@@ -1,18 +1,10 @@
 <?php
 
-/**
- * @file
- *   Definition of Drupal\geolocation\Plugin\views\field\ProximityField.
- */
-
 namespace Drupal\geolocation\Plugin\views\field;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\geolocation\GeoCoreInjectionTrait;
 use Drupal\geolocation\GeolocationCore;
-use Drupal\geolocation\Plugin\views\argument\ProximityArgument;
 use Drupal\views\Plugin\views\field\NumericField;
-use Drupal\views\Plugin\views\query\Sql;
 
 /**
  * Field handler for geolocaiton field.
@@ -22,8 +14,6 @@ use Drupal\views\Plugin\views\query\Sql;
  * @ViewsField("geolocation_field_proximity")
  */
 class ProximityField extends NumericField {
-
-  use GeoCoreInjectionTrait;
 
   /**
    * {@inheritdoc}
@@ -170,21 +160,23 @@ class ProximityField extends NumericField {
    * {@inheritdoc}
    */
   public function query() {
-    /** @var Sql $query */
+    /** @var \Drupal\views\Plugin\views\query\Sql $query */
     $query = $this->query;
     if ($this->options['proximity_source'] === 'filter' && $this->view->filter[$this->options['proximity_filter']]) {
       $filter = $this->view->filter[$this->options['proximity_filter']];
       $lat = $filter->value['lat'];
       $lgn = $filter->value['lng'];
       $units = $filter->value['units'];
-    } elseif ($this->options['proximity_source'] === 'argument' && $this->view->argument[$this->options['proximity_argument']]) {
-      /** @var ProximityArgument $argument */
+    }
+    elseif ($this->options['proximity_source'] === 'argument' && $this->view->argument[$this->options['proximity_argument']]) {
+      /** @var \Drupal\geolocation\Plugin\views\argument\ProximityArgument $argument */
       $argument = $this->view->argument[$this->options['proximity_argument']];
       $values = $argument->getParsedReferenceLocation();
       $lat = $values['lat'];
       $lgn = $values['lng'];
       $units = $values['units'];
-    } else {
+    }
+    else {
       $lat = $this->options['proximity_lat'];
       $lgn = $this->options['proximity_lng'];
       $units = $this->options['units'];
@@ -193,12 +185,13 @@ class ProximityField extends NumericField {
     $earth_radius = $units === 'mile' ? GeolocationCore::EARTH_RADIUS_MILE : GeolocationCore::EARTH_RADIUS_KM;
 
     // Build the query expression.
-    $expression = $this->geolocation_core->getQueryFragment($this->ensureMyTable(), $this->realField, $lat, $lgn, $earth_radius);
+    $expression = \Drupal::service('geolocation.core')->getProximityQueryFragment($this->ensureMyTable(), $this->realField, $lat, $lgn, $earth_radius);
 
     // Get a placeholder for this query and save the field_alias for it.
     $placeholder = $this->placeholder();
     $this->field_alias = substr($placeholder, 1);
-    // We use having to be able to reuse the query on field handlers
+    // We use having to be able to reuse the query on field handlers.
     $query->addField(NULL, $expression, $this->field_alias);
   }
+
 }
