@@ -38,7 +38,8 @@ class WeeklyTimeFilter extends FilterPluginBase {
     $options = WeeklyTimeField::timeOptions();
     $values = is_array($this->value) ? $this->value : [$this->value];
     foreach ($values as $value) {
-      if ($value === WeeklyTimeField::DEFAULT_TIME) {
+      $selected_value = $value;
+      if ($selected_value === WeeklyTimeField::DEFAULT_TIME) {
         $value = WeeklyTimeField::defaultTime();
         if ($value === NULL) {
           return;
@@ -47,6 +48,14 @@ class WeeklyTimeFilter extends FilterPluginBase {
 
       foreach ($options[$value]['ranges'] as $range) {
         $start = WeeklyTimeField::stringToTime($range[0]);
+        if ($selected_value === WeeklyTimeField::DEFAULT_TIME) {
+          // When finding the next meeting, make sure that the start time is
+          // mostly (allow 30 minutes buffer) in the future,.
+          $now = WeeklyTimeField::stringToTime(date('Hi'));
+          if ($now - 30 > $start) {
+            $start = $now - 30;
+          }
+        }
         $end = WeeklyTimeField::stringToTime($range[1]);
         $conditions->where("$field_name >= $start AND $field_name < $end");
       }

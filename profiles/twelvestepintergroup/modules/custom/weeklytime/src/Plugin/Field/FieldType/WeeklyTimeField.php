@@ -3,6 +3,9 @@
 /**
  * @file
  * Contains \Drupal\weeklytime\Plugin\Field\FieldType\WeeklyTimeField.
+ *
+ * @todo: clean up the class architecture so that the data and functions make
+ * more sense. Also, we shouldn't be doing all this date math.
  */
 
 namespace Drupal\weeklytime\Plugin\Field\FieldType;
@@ -50,7 +53,7 @@ class WeeklyTimeField extends FieldItemBase {
 
   /**
    * Return keyed array of Days of the Week, with the default option.
-   * 
+   *
    * @return array
    */
   public static function dayLabels() {
@@ -78,7 +81,7 @@ class WeeklyTimeField extends FieldItemBase {
     $now = self::stringToTime(date('Hi'));
     foreach (self::timeOptions() as $key => $option) {
       foreach ($option['ranges'] as $range) {
-        if ($now >= $range[0] && $now < $range[1]) {
+        if ($now >= self::stringToTime($range[0]) && $now < self::stringToTime($range[1])) {
           return $key;
         }
       }
@@ -93,7 +96,7 @@ class WeeklyTimeField extends FieldItemBase {
    */
   public static function stringToTime($value) {
     $hh = substr($value, 0, 2);
-    $mm = substr($value, 3, 2);
+    $mm = substr($value, 2, 2);
     return $hh * 60 + $mm;
   }
 
@@ -169,9 +172,9 @@ class WeeklyTimeField extends FieldItemBase {
 
   /**
    * Return the string time of day formatted.
-   * 
+   *
    * @param $value
-   * 
+   *
    * @return string
    */
   protected static function formatStringTime($time) {
@@ -185,7 +188,19 @@ class WeeklyTimeField extends FieldItemBase {
    *   Time of day in minutes past midnight.
    */
   public static function formatTime($time) {
-    return date('h:i a', ($time - 60) * 60);
+    $hh = floor($time / 60);
+    $mm = $time % 60;
+    $meridian = 'am';
+    if ($hh == 12) {
+      $meridian = 'pm';
+    }
+    elseif ($hh > 12) {
+      if ($hh != 24) {
+        $meridian = 'pm';
+      }
+      $hh -= 12;
+    }
+    return sprintf("%02d:%02d $meridian", $hh, $mm);
   }
 
   /**
