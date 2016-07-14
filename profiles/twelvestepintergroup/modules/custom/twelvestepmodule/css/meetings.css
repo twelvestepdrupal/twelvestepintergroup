@@ -23,7 +23,6 @@
 .geolocation-common-map .geolocation-common-map-locations .geolocation {
   float: left;
   width: 33.33%;
-  border: 1px solid;
   padding: 10px;
 }
 
@@ -47,5 +46,3 @@
   -webkit-order: 1;
   order: 1;
 }
-
-
