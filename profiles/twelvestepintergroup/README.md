@@ -46,7 +46,21 @@ $ drush chosenplugin
 
 ## Export and Import content
 
-  The content specific to this profile should be migrated. See baltimoreaa_migrate as an example.
+The content specific to this profile should be migrated.
+
+Create the migration templates from the examples in the twelvestepmigrate/migration_templates directory,
+enable the twelvestepmigrate module, then import your the content based on the migration_tag.
+
+```
+  drush en twelvestepmigrate
+```
+
+Or in your custom modules hook_install().
+
+```
+  \Drupal::service('module_installer')->install(['twelvestepmigrate']);
+  twelvestepmigrate_import('example-csv');
+```
 
 ## See also
 

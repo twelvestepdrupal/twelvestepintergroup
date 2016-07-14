@@ -53,4 +53,8 @@ function twelvestepintergroup_install() {
 
   // Enable the admin theme.
   \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
+
+  // Set the timezone.
+  $tz = ini_get('date.timezone');
+  \Drupal::configFactory()->getEditable('system.date')->set('timezone.default', ini_get('date.timezone'))->save(TRUE);
 }
