@@ -3,3 +3,9 @@
     width: 100%;
     display: none;
 }
+
+.geolocation-common-map .geolocation-common-map-locations .geolocation {
+    display: block;
+    float: left;
+}
+

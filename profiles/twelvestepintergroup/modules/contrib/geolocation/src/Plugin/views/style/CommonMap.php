@@ -69,6 +69,7 @@ class CommonMap extends StylePluginBase {
           ],
         ],
       ],
+      '#maponly' => $this->options['maponly'],
     ];
 
     foreach ($this->view->result as $row) {
@@ -183,6 +184,7 @@ class CommonMap extends StylePluginBase {
     $options['geolocation_field'] = ['default' => ''];
     $options['title_field'] = ['default' => ''];
     $options['centre'] = ['default' => ''];
+    $options['maponly'] = ['default' => TRUE];
 
     foreach (self::getGoogleMapDefaultSettings() as $key => $setting) {
       $options[$key] = ['default' => $setting];
@@ -328,6 +330,13 @@ class CommonMap extends StylePluginBase {
           ':input[name="style_options[centre][fixed_value][enable]"]' => ['checked' => TRUE],
         ],
       ],
+    ];
+
+    $form['maponly'] = [
+      '#title' => $this->t('Map only'),
+      '#type' => 'checkbox',
+      '#default_value' => $this->options['maponly'],
+      '#description' => $this->t("Show only a map. If not selected, locations are also shown below the map and filtered as the map viewport changes."),
     ];
 
     uasort($form['centre'], 'Drupal\Component\Utility\SortArray::sortByWeightProperty');

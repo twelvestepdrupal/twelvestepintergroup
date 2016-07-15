@@ -15,7 +15,7 @@ dependencies:
     - user
     - weeklytime
 _core:
-  default_config_hash: 9hRw75lxiCyNww8yrf4l39NipR2mKcMDNaxq2MZksjw
+  default_config_hash: UHZf8WhGzwb833tO667z9En-4gs0PsVvZBNCjk1yeII
 id: meetings
 label: Meetings
 module: views
@@ -70,6 +70,9 @@ display:
           geolocation_field: field_coordinates
           title_field: name
           centre:
+            fit_bounds:
+              enable: true
+              weight: 0
             first_row:
               enable: true
               weight: 0
@@ -79,6 +82,20 @@ display:
                 latitude: ''
                 longitude: ''
               enable: false
+          maponly: 0
+          google_map_settings:
+            type: ROADMAP
+            zoom: '10'
+            mapTypeControl: 1
+            streetViewControl: 1
+            zoomControl: 1
+            scrollwheel: 1
+            disableDoubleClickZoom: 0
+            draggable: 1
+            style: ''
+            height: 400px
+            width: 100%
+            info_auto_display: 1
       row:
         type: fields_twelvestepmeeting
         options:

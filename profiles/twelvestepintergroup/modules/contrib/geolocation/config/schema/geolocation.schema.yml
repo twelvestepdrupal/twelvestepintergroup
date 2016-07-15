@@ -73,6 +73,9 @@ views.style.maps_common:
         style:
           type: string
           label: 'JSON encoded style'
+        maponly:
+          type: integer
+          label: 'Map only'
 
 views.field.geolocation_field:
   type: views.field.field

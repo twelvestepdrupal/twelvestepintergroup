@@ -49,7 +49,9 @@
       }
 
       // Hide the graceful-fallback HTML list; map will propably work now.
-      map.children('.geolocation-common-map-locations').hide();
+      if (map.data('maponly')) {
+        map.children('.geolocation-common-map-locations').hide();
+      }
       // Map-container is not hidden by default in case of graceful-fallback.
 
       var geolocationMap = {};
@@ -77,15 +79,16 @@
 
       // Add the locations to the map.
       map.find('.geolocation-common-map-locations .geolocation').each(function (key, location) {
+        var item = location;
         location = $(location);
-        var position = new google.maps.LatLng(location.data('lat'), location.data('lng'));
+        item.position = new google.maps.LatLng(location.data('lat'), location.data('lng'));
 
         if (fitBounds && bounds) {
-          bounds.extend(position);
+          bounds.extend(item.position);
         }
 
         var marker = new google.maps.Marker({
-          position: position,
+          position: item.position,
           map: googleMap,
           title: location.children('h2').text(),
           content: location.html()
@@ -107,7 +110,32 @@
         // Fit map center and zoom to all currently loaded markers.
         googleMap.fitBounds(bounds);
       }
+
+      if (!map.data('maponly')) {
+        // Show locations on the map.
+        google.maps.event.addListener(googleMap, 'zoom_changed', function () {
+          showLocations(map, geolocationMap);
+        });
+        google.maps.event.addListener(googleMap, 'dragend', function () {
+          showLocations(map, geolocationMap);
+        });
+      }
+
     });
-  }
+  };
+
+  function showLocations(map, geolocationMap) {
+    var boundary = geolocationMap.googleMap.getBounds();
+    map.find('.geolocation-common-map-locations .geolocation').each(function(index, location) {
+      var item = location;
+      location = $(location);
+      if (boundary.contains(item.position)) {
+        location.show();
+      }
+      else {
+        location.hide();
+      }
+    });
+  };
 
 })(jQuery);

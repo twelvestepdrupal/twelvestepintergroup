@@ -47,6 +47,7 @@ function geolocation_theme() {
       'variables' => [
         'centre' => NULL,
         'fitbounds' => NULL,
+        'maponly' => NULL,
         'locations' => NULL,
         'id' => NULL,
       ],
