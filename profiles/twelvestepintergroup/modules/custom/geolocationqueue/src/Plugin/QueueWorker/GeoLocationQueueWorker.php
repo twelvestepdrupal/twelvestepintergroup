@@ -97,7 +97,7 @@ class GeoLocationQueueWorker extends QueueWorkerBase implements ContainerFactory
         ]);
         throw new RequeueException;
       }
-      throw new Exception(t('JSON %type/%id %json', ['%type' => $data->entity_type, '%id' => $data->entity_id, '%json' => $body]));
+      throw new \UnexpectedValueException(t('JSON %type/%id %json', ['%type' => $data->entity_type, '%id' => $data->entity_id, '%json' => $body]));
     }
     $result = reset($json->results);
     $match = $result->geometry->location_type;
