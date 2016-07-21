@@ -84,20 +84,22 @@
    */
   Drupal.geolocation.defaultSettings = function () {
     return {
-      scrollwheel: false,
-      panControl: false,
-      mapTypeControl: true,
-      scaleControl: false,
-      streetViewControl: false,
-      overviewMapControl: false,
-      zoomControl: true,
-      zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.LARGE,
-        position: google.maps.ControlPosition.LEFT_TOP
-      },
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      zoom: 2,
-      style: []
+      google_map_settings: {
+        scrollwheel: false,
+        panControl: false,
+        mapTypeControl: true,
+        scaleControl: false,
+        streetViewControl: false,
+        overviewMapControl: false,
+        zoomControl: true,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.LARGE,
+          position: google.maps.ControlPosition.LEFT_TOP
+        },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoom: 2,
+        style: []
+      }
     };
   };
 
@@ -148,7 +150,7 @@
       var scriptPath = '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=Drupal.geolocation.googleCallback';
 
       // If a Google API key isset, use it.
-      if (drupalSettings.geolocation.google_map_api_key) {
+      if (typeof drupalSettings.geolocation.google_map_api_key !== 'undefined') {
         scriptPath += '&key=' + drupalSettings.geolocation.google_map_api_key;
       }
 

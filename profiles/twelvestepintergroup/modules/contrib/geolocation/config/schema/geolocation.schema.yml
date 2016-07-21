@@ -33,42 +33,46 @@ views.style.maps_common:
             label: 'Settings'
             sequence:
               type: string
-    type:
-      type: string
-      label: 'Google map type'
-    zoom:
-      type: string
-      label: 'Zoom level'
-    mapTypeControl:
-      type: integer
-      label: 'Map controls'
-    streetViewControl:
-      type: integer
-      label: 'Street view'
-    zoomControl:
-      type: integer
-      label: 'Zoom control'
-    scrollwheel:
-      type: integer
-      label: 'Scrool wheel'
-    disableDoubleClickZoom:
-      type: integer
-      label: 'Disable double click zoom'
-    draggable:
-      type: integer
-      label: 'Draggable'
-    height:
-      type: string
-      label: 'Height value'
-    width:
-      type: string
-      label: 'Width value'
-    info_auto_display:
-      type: integer
-      label: 'Display info'
-    style:
-      type: string
-      label: 'JSON encoded style'
+    google_map_settings:
+      type: mapping
+      label: 'Google Map settings'
+      mapping:
+        type:
+          type: string
+          label: 'Google map type'
+        zoom:
+          type: string
+          label: 'Zoom level'
+        mapTypeControl:
+          type: integer
+          label: 'Map controls'
+        streetViewControl:
+          type: integer
+          label: 'Street view'
+        zoomControl:
+          type: integer
+          label: 'Zoom control'
+        scrollwheel:
+          type: integer
+          label: 'Scrool wheel'
+        disableDoubleClickZoom:
+          type: integer
+          label: 'Disable double click zoom'
+        draggable:
+          type: integer
+          label: 'Draggable'
+        height:
+          type: string
+          label: 'Height value'
+        width:
+          type: string
+          label: 'Width value'
+        info_auto_display:
+          type: integer
+          label: 'Display info'
+        style:
+          type: string
+          label: 'JSON encoded style'
 
 views.field.geolocation_field:
   type: views.field.field
@@ -105,43 +109,46 @@ field.formatter.settings.geolocation_map:
     info_text:
       type: string
       label: 'Info Text'
-    type:
-      type: string
-      label: 'Google map type'
-    zoom:
-      type: string
-      label: 'Zoom level'
-    mapTypeControl:
-      type: integer
-      label: 'Map controls'
-    streetViewControl:
-      type: integer
-      label: 'Street view'
-    zoomControl:
-      type: integer
-      label: 'Zoom control'
-    scrollwheel:
-      type: integer
-      label: 'Scrool wheel'
-    disableDoubleClickZoom:
-      type: integer
-      label: 'Disable double click zoom'
-    draggable:
-      type: integer
-      label: 'Draggable'
-    height:
-      type: string
-      label: 'Height value'
-    width:
-      type: string
-      label: 'Width value'
-    info_auto_display:
-      type: integer
-      label: 'Display info'
-    style:
-      type: string
-      label: 'JSON encoded style'
-
+    google_map_settings:
+      type: mapping
+      label: 'Google Map settings'
+      mapping:
+        type:
+          type: string
+          label: 'Google map type'
+        zoom:
+          type: string
+          label: 'Zoom level'
+        mapTypeControl:
+          type: integer
+          label: 'Map controls'
+        streetViewControl:
+          type: integer
+          label: 'Street view'
+        zoomControl:
+          type: integer
+          label: 'Zoom control'
+        scrollwheel:
+          type: integer
+          label: 'Scrool wheel'
+        disableDoubleClickZoom:
+          type: integer
+          label: 'Disable double click zoom'
+        draggable:
+          type: integer
+          label: 'Draggable'
+        height:
+          type: string
+          label: 'Height value'
+        width:
+          type: string
+          label: 'Width value'
+        info_auto_display:
+          type: integer
+          label: 'Display info'
+        style:
+          type: string
+          label: 'JSON encoded style'
 
 field.widget.settings.geolocation_googlegeocoder:
   type: mapping
@@ -153,3 +160,43 @@ field.widget.settings.geolocation_googlegeocoder:
     target_address_field:
       type: string
       label: 'Target address field name'
+    google_map_settings:
+      type: mapping
+      label: 'Google Map settings'
+      mapping:
+        type:
+          type: string
+          label: 'Google map type'
+        zoom:
+          type: string
+          label: 'Zoom level'
+        mapTypeControl:
+          type: integer
+          label: 'Map controls'
+        streetViewControl:
+          type: integer
+          label: 'Street view'
+        zoomControl:
+          type: integer
+          label: 'Zoom control'
+        scrollwheel:
+          type: integer
+          label: 'Scrool wheel'
+        disableDoubleClickZoom:
+          type: integer
+          label: 'Disable double click zoom'
+        draggable:
+          type: integer
+          label: 'Draggable'
+        height:
+          type: string
+          label: 'Height value'
+        width:
+          type: string
+          label: 'Width value'
+        info_auto_display:
+          type: integer
+          label: 'Display info'
+        style:
+          type: string
+          label: 'JSON encoded style'

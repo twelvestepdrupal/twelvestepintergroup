@@ -50,16 +50,16 @@ class GeolocationGoogleMapFormatter extends FormatterBase {
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $settings = $this->getSettings();
 
-    $elements['title'] = [
+    $element['title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Hover title'),
       '#description' => $this->t('The hover title is a tool tip that will be displayed when the mouse is paused over the map marker.'),
       '#default_value' => $settings['title'],
     ];
 
-    $elements += $this->getGoogleMapsSettingsForm($settings);
+    $element += $this->getGoogleMapsSettingsForm($settings);
 
-    $elements['info_text'] = [
+    $element['info_text'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Info text'),
       '#description' => $this->t('This text will be displayed in an "Info'
@@ -70,29 +70,29 @@ class GeolocationGoogleMapFormatter extends FormatterBase {
       '#default_value' => $settings['info_text'],
     ];
 
-    $elements['replacement_patterns'] = [
+    $element['replacement_patterns'] = [
       '#type' => 'details',
       '#title' => 'Replacement patterns',
       '#description' => $this->t('The following replacement patterns are available for the "Info text" and the "Hover title" settings.'),
     ];
-    $elements['replacement_patterns']['native'] = [
+    $element['replacement_patterns']['native'] = [
       '#markup' => $this->t('<h4>Geolocation field data:</h4><ul><li>Latitude (%lat) or (:lat)</li><li>Longitude (%lng) or (:lng)</li></ul>'),
     ];
     // Add the token UI from the token module if present.
-    $elements['replacement_patterns']['token_help'] = [
+    $element['replacement_patterns']['token_help'] = [
       '#theme' => 'token_tree_link',
       '#prefix' => $this->t('<h4>Tokens:</h4>'),
       '#token_types' => [$this->fieldDefinition->getTargetEntityTypeId()],
     ];
 
-    return $elements;
+    return $element;
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $settings = $this->getSettings();;
+    $settings = $this->getSettings();
 
     $summary = [];
     $summary[] = $this->t('Hover Title: @type', ['@type' => $settings['title']]);

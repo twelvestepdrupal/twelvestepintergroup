@@ -49,7 +49,7 @@
       }
 
       // Hide the graceful-fallback HTML list; map will propably work now.
-//    map.children('.geolocation-common-map-locations').hide();
+      map.children('.geolocation-common-map-locations').hide();
       // Map-container is not hidden by default in case of graceful-fallback.
 
       var geolocationMap = {};

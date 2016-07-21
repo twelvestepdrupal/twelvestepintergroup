@@ -5,6 +5,7 @@ namespace Drupal\geolocation\Plugin\Field\FieldWidget;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\geolocation\GoogleMapsDisplayTrait;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
@@ -19,6 +20,8 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  * )
  */
 class GeolocationGooglegeocoderWidget extends WidgetBase {
+
+  use GoogleMapsDisplayTrait;
 
   /**
    * {@inheritdoc}
@@ -36,16 +39,24 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return [
+    $settings = [
       'populate_address_field' => NULL,
       'target_address_field' => NULL,
-    ] + parent::defaultSettings();
+    ];
+    $settings += parent::defaultSettings();
+    $settings += self::getGoogleMapDefaultSettings();
+
+    return $settings;
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
+    $settings = $this->getSettings();
+    $element = [];
+
+    $element += $this->getGoogleMapsSettingsForm($settings);
 
     /** @var \Drupal\Core\Entity\EntityFieldManager $field_manager */
     $field_manager = \Drupal::service('entity_field.manager');
@@ -61,15 +72,13 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
     }
 
     if (empty($address_fields)) {
-      return NULL;
+      return $element;
     }
-
-    $element = [];
 
     $element['populate_address_field'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Store retrieved address data in address field?'),
-      '#default_value' => $this->getSetting('populate_address_field'),
+      '#default_value' => $settings['populate_address_field'],
     ];
 
     $element['target_address_field'] = [
@@ -77,7 +86,7 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
       '#title' => $this->t('Select target field to append address data.'),
       '#description' => $this->t('Only fields of type "address" with a cardinality of 1 are available.'),
       '#options' => $address_fields,
-      '#default_value' => $this->getSetting('target_address_field'),
+      '#default_value' => $settings['target_address_field'],
       '#states' => [
         // Only show this field when the 'toggle_me' checkbox is enabled.
         'visible' => [
@@ -94,9 +103,12 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
    */
   public function settingsSummary() {
     $summary = [];
+    $settings = $this->getSettings();
 
-    if (!empty($this->getSetting('populate_address_field'))) {
-      $summary[] = t('Geocoded address will be stored in @field', array('@field' => $this->getSetting('target_address_field')));
+    $summary = array_merge($summary, $this->getGoogleMapsSettingsSummary($settings));
+
+    if (!empty($settings['populate_address_field'])) {
+      $summary[] = t('Geocoded address will be stored in @field', array('@field' => $settings['target_address_field']));
     }
 
     return $summary;
@@ -106,6 +118,8 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
+    $settings = $this->getGoogleMapsSettings($this->getSettings()) + $this->getSettings();
+
     // Get this field name and parent.
     $field_name = $this->fieldDefinition->getName();
     $parents = $form['#parents'];
@@ -168,7 +182,7 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
                 'id' => $canvas_id,
                 'lat' => (float) $lat_default_value,
                 'lng' => (float) $lng_default_value,
-                'settings' => [],
+                'settings' => $settings,
               ],
             ],
             'google_map_api_key' => $config->get('google_map_api_key'),
@@ -176,8 +190,8 @@ class GeolocationGooglegeocoderWidget extends WidgetBase {
         ],
       ],
     ];
-    if ($this->getSetting('populate_address_field')) {
-      $element['map_canvas']['#attached']['drupalSettings']['geolocation']['widgetSettings']['addressFieldTarget'] = $this->getSetting('target_address_field');
+    if ($settings['populate_address_field']) {
+      $element['map_canvas']['#attached']['drupalSettings']['geolocation']['widgetSettings']['addressFieldTarget'] = $settings['target_address_field'];
 
       foreach ([
         'country_code',

@@ -9,8 +9,8 @@ dependencies:
   - node
   - field
 hidden: true
-# Information added by Drupal.org packaging script on 2016-07-14
-version: '8.x-1.5+38-dev'
+# Information added by Drupal.org packaging script on 2016-07-21
+version: '8.x-1.7+1-dev'
 core: '8.x'
 project: 'geolocation'
-datestamp: 1468493923
+datestamp: 1469097540

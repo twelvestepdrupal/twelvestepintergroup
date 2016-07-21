@@ -16,6 +16,7 @@ geolocation.geocoder:
     js/geolocation-geocoder.js: {}
   dependencies:
     - geolocation/geolocation.core
+    - core/jquery.ui.autocomplete
 
 # Google maps display formatter.
 geolocation.formatter.googlemap:
