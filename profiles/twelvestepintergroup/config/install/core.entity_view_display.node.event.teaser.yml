@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.body
+    - field.field.node.event.field_address
+    - field.field.node.event.field_end_date
+    - field.field.node.event.field_group
+    - field.field.node.event.field_start_date
+    - node.type.event
+  module:
+    - datetime
+    - text
+    - user
+_core:
+  default_config_hash: 1jJ0ioTRo0ix5AokcFmIEy2VvbRu_IzE6PuWUFQyk6k
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_start_date:
+    type: datetime_default
+    weight: 0
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_address: true
+  field_end_date: true
+  field_group: true
