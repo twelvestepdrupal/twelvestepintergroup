@@ -9,6 +9,7 @@ use Drupal\Core\Extension\ThemeInstaller;
 use Drupal\Core\Extension\ModuleInstaller;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\block\Entity\Block;
+use Drupal\node\Entity\Node;
 use Drupal\twelvesteptheme\TwelveStepThemeHelper;
 
 /**
@@ -22,7 +23,8 @@ function twelvestepintergrouporg_install() {
     ->save(TRUE);
 
   // Change the default theme.
-  \Drupal::service('twelvestepmodule.default')->changeTheme('twelvesteporgtheme');
+  $default_theme = 'twelvesteporgtheme';
+  \Drupal::service('twelvestepmodule.default')->changeTheme($default_theme);
 
   // Import content.
   \Drupal::service('module_installer')->install(['twelvestepmigrate']);
@@ -43,7 +45,7 @@ function twelvestepintergrouporg_install() {
   $block->save();
   Block::create([
     'id' => 'aboutthissite',
-    'theme' => 'twelvesteporgtheme',
+    'theme' => $default_theme,
     'weight' => -3,
     'status' => TRUE,
     'region' => 'highlighted',
@@ -51,6 +53,50 @@ function twelvestepintergrouporg_install() {
     'settings' => [
       'label' => 'About this site',
       'label_display' => FALSE,
+    ],
+  ])->save();
+
+  // Create an event for NAATW.
+  $node = Node::create([
+    'type' => 'event',
+    'title' => 'NAATW 2016',
+    'langcode' => 'en',
+    'uid' => '1',
+    'status' => 1,
+    'body' => [
+      'value' => 'Join us for the third annual <a href="http://naatw.org">National AA Technology Workshop</a> in Winston Salem, NC this November as we discuss how we use technology in service of our primary purpose.',
+      'format' => 'basic_html',
+    ],
+    'field_start_date' => '2016-11-18T15:00:00',
+    'field_end_date' => '2016-11-20T11:00:00',
+    'field_address' => [
+      'organization' => 'Marriott Hotel',
+      'country_code' => 'US',
+      'administrative_area' => 'US-NC',
+      'locality' => 'Winston-Salem',
+      'postal_code' => '27101',
+      'address_line1' => '425 North Cherry St',
+    ],
+  ]);
+  $node->save();
+
+  // Create a block for Events.
+  Block::create([
+    'id' => 'events',
+    'theme' => $default_theme,
+    'weight' => -2,
+    'status' => TRUE,
+    'region' => 'highlighted',
+    'plugin' => 'views_block:events-block_1',
+    'settings' => [
+      'label' => 'Events',
+      'label_display' => FALSE,
+    ],
+    'visibility' => [
+      'request_path' => [
+        'id' => 'request_path',
+        'pages' => '<front>',
+      ],
     ],
   ])->save();
 }

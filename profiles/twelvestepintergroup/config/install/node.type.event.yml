@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: IjdZONC2JqPKAWwrbcPFOPcNHS_2N-lHWNNn-olPXuc
+name: Event
+type: event
+description: 'Use events to list special events, such as Birthday celebrations, Holiday parties, and Committee meetings. Do not list meetings here.'
+help: ''
+new_revision: false
+preview_mode: 2
+display_submitted: false
