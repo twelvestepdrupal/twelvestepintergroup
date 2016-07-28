@@ -11,7 +11,7 @@ dependencies:
 _core:
   default_config_hash: qLErq-ZEF-VZxxlqa6hZqxyFfFbR7WMDXvjipkvuqZE
 id: events
-label: Events
+label: Special Events
 module: views
 description: ''
 tag: ''
@@ -185,7 +185,7 @@ display:
             label: ''
           granularity: minute
           plugin_id: datetime
-      title: Events
+      title: Special Events
       header: {  }
       footer: {  }
       empty: {  }

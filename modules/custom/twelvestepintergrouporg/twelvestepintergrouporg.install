@@ -88,10 +88,6 @@ function twelvestepintergrouporg_install() {
     'status' => TRUE,
     'region' => 'highlighted',
     'plugin' => 'views_block:events-block_1',
-    'settings' => [
-      'label' => 'Events',
-      'label_display' => FALSE,
-    ],
     'visibility' => [
       'request_path' => [
         'id' => 'request_path',
