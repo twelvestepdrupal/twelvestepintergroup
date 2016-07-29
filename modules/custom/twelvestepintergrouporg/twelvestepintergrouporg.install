@@ -18,8 +18,8 @@ use Drupal\twelvesteptheme\TwelveStepThemeHelper;
 function twelvestepintergrouporg_install() {
   // Change site name and slogan.
   \Drupal::configFactory()->getEditable('system.site')
-    ->set('name', 'Twelve Step Intergroup Example Site')
-    ->set('slogan', 'Create your own Intergroup site, free and easy')
+    ->set('name', 'Twelve Step Example Site')
+    ->set('slogan', 'Open, Collaborative, and Free')
     ->save(TRUE);
 
   // Change the default theme.
@@ -29,8 +29,6 @@ function twelvestepintergrouporg_install() {
   // Import content.
   \Drupal::service('module_installer')->install(['twelvestepmigrate']);
   twelvestepmigrate_import("example-csv");
-  // Don't import JSON because map data is then too geographically disperse.
-//twelvestepmigrate_import("example-json");
 
   // Create the 'About this site' header block.
   /** @var BlockContent $block */
@@ -39,7 +37,7 @@ function twelvestepintergrouporg_install() {
     'info' => 'About this site',
     'body' => [
       'format' => 'basic_html',
-      'value' => 'This is an example site of the Twelve Step Intergroup meeting Drupal profile <a href="https://github.com/anondrupal/twelvestepintergroup/tree/develop/profiles/twelvestepintergroup">TwelveStepIntergroup</a>. The meetings listed here are mostly of an example nature, while they were imported from a real site, they are not actively updated. This site is updated nightly from the develop branch.',
+      'value' => 'This is an example site of the Twelve Step Intergroup Drupal profile <a href="https://github.com/anondrupal/twelvestepintergroup/tree/develop/profiles/twelvestepintergroup">TwelveStepIntergroup</a>. Use this profile to develop local, city, district, area, and even national sites for Twelve Step organizations such as Alcoholics Anonymous. The meetings listed here are mostly of an example nature, while they were imported from a real site, they are not actively updated. This site is updated nightly from the develop branch.',
     ],
   ]);
   $block->save();
