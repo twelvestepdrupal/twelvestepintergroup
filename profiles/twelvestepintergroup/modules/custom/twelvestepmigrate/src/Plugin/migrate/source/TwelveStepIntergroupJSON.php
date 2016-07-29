@@ -41,9 +41,6 @@ class TwelveStepIntergroupJSON extends SourcePluginBase {
    * {@inheritdoc}
    */
   public function fields() {
-//  if (!isset($this->iterator)) {
-//    $this->initSource();
-//  }
     return array_keys($this->iterator->current());
   }
 
@@ -52,10 +49,18 @@ class TwelveStepIntergroupJSON extends SourcePluginBase {
    */
   public function initSource() {
     // Read the entire file into memory.
-    // @todo: read this in a more modern way.
-    // @todo: allow URL style paths.
-    $data = file_get_contents($this->configuration['path']);
-    $rows = new \ArrayObject(Json::decode($data));
+    if (isset($this->configuration['json-data'])) {
+      // The file was already read into memory and is in the configuration.
+      // @see twelvestepmigrate.drush.inc
+      $data = $this->configuration['json-data'];
+    }
+    else {
+      // @todo: read this in a more modern way.
+      // @todo: allow URL style paths.
+      $data = @file_get_contents($this->configuration['path']);
+      $data = Json::Decode($data);
+    }
+    $rows = new \ArrayObject($data);
     $this->iterator = $rows->getIterator();
   }
 
@@ -75,6 +80,15 @@ class TwelveStepIntergroupJSON extends SourcePluginBase {
     }, $row);
 
     return $row;
+  }
+
+  /**
+   * Change the default configuration path.
+   *
+   * @param $path
+   */
+  public function setJsonData($json_data) {
+    $this->configuration['json-data'] = $json_data;
   }
 
 }
