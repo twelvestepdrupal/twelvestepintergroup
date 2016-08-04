@@ -45,6 +45,7 @@ use Drupal\address\Plugin\Field\FieldType\AddressField;
  *     "uuid" = "uuid",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",
+ *     "status" = "status",
  *   },
  *   links = {
  *     "canonical" = "/admin/twelvesteplocation/{twelvesteplocation}",
