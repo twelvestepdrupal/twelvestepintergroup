@@ -19,15 +19,30 @@ mode: default
 content:
   field_address:
     weight: 2
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
   field_coordinates:
-    type: geolocation_latlng
+    type: geolocation_map
     weight: 4
-    label: above
-    settings: {  }
+    label: hidden
+    settings:
+      title: ''
+      info_text: ''
+      google_map_settings:
+        type: ROADMAP
+        zoom: 10
+        mapTypeControl: true
+        streetViewControl: true
+        zoomControl: true
+        scrollwheel: true
+        disableDoubleClickZoom: false
+        draggable: true
+        height: 400px
+        width: 100%
+        info_auto_display: true
+        style: ''
     third_party_settings: {  }
   field_directions:
     type: text_trimmed
@@ -37,16 +52,11 @@ content:
       trim_length: 600
     third_party_settings: {  }
   name:
-    label: above
+    label: hidden
     type: string
     weight: 0
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  user_id: true

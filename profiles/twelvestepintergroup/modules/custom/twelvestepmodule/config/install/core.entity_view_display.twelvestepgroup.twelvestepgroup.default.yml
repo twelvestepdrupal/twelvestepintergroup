@@ -43,16 +43,11 @@ content:
     third_party_settings: {  }
     type: link
   name:
-    label: above
+    label: hidden
     type: string
     weight: 0
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  user_id: true

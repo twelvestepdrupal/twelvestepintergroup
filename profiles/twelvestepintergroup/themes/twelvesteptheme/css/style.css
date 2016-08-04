@@ -17,3 +17,8 @@
   }
 
 }
+
+.view-location-meetings .views-field-field-time {
+  float: left;
+  padding-right: 1em;
+}
