@@ -9,7 +9,7 @@ third_party_settings:
       - main
     parent: 'main:'
 _core:
-  default_config_hash: IjdZONC2JqPKAWwrbcPFOPcNHS_2N-lHWNNn-olPXuc
+  default_config_hash: xX8pkTRvliAJLkGuXKKEpg5GmvSWfPitNlVPS1rdEhE
 name: Event
 type: event
 description: 'Use events to list special events, such as Birthday celebrations, Holiday parties, and Committee meetings. Do not list meetings here.'

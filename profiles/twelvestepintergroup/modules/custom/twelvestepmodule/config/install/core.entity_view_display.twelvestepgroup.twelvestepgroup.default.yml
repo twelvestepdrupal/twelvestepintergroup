@@ -1,17 +1,18 @@
+uuid: 09f4205a-bbfe-4dcf-9299-abf253668543
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.twelvestepgroup.twelvestepgroup.field_about
+    - field.field.twelvestepgroup.twelvestepgroup.field_authorized_users
     - field.field.twelvestepgroup.twelvestepgroup.field_directions
     - field.field.twelvestepgroup.twelvestepgroup.field_website
   module:
     - link
-    - telephone
     - text
-    - user
+    - twelvestepmodule
 _core:
-  default_config_hash: 6RptStV-fku3KCsIsbgT4pVneGj83NgH8qAHTsBx1rE
+  default_config_hash: cK7YkygB9wOqUGhs6sIjQcEkkMyhCfF8DiLmPm26jC4
 id: twelvestepgroup.twelvestepgroup.default
 targetEntityType: twelvestepgroup
 bundle: twelvestepgroup
@@ -24,6 +25,13 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+  field_authorized_users:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   field_directions:
     type: text_trimmed
     weight: 5

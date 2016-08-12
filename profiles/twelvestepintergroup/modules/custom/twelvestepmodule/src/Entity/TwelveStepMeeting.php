@@ -14,6 +14,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\twelvestepmodule\TwelveStepMeetingInterface;
 use Drupal\user\UserInterface;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Defines the Twelve Step Meeting entity.
@@ -218,6 +219,27 @@ class TwelveStepMeeting extends ContentEntityBase implements TwelveStepMeetingIn
       ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * Return the Group associated with the meeting.
+   *
+   * @return \Drupal\twelvestepmodule\Entity\TwelveStepGroup|null
+   */
+  public function getGroup() {
+    $group_id = $this->get('field_group')->target_id;
+    return $group_id ? entity_load('twelvestepgroup', $group_id) : NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isAccessUpdate(AccountInterface $account) {
+    if ($account->hasPermission('edit trusted twelve step meeting entities')) {
+      $group = $this->getGroup();
+      return $group && $group->isTrustedUser($account->id());
+    }
+    return FALSE;
   }
 
 }

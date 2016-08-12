@@ -30,6 +30,9 @@ class TwelveStepLocationAccessControlHandler extends EntityAccessControlHandler 
         return AccessResult::allowedIfHasPermission($account, 'view published twelve step location entities');
 
       case 'update':
+        if ($entity->isAccessUpdate($account)) {
+          return AccessResult::allowed()->cachePerPermissions()->cachePerUser()->addCacheableDependency($node);
+        }
         return AccessResult::allowedIfHasPermission($account, 'edit twelve step location entities');
 
       case 'delete':

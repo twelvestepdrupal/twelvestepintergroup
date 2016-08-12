@@ -15,6 +15,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\twelvestepmodule\TwelveStepLocationInterface;
 use Drupal\user\UserInterface;
 use Drupal\address\Plugin\Field\FieldType\AddressField;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Defines the Twelve Step Location entity.
@@ -258,4 +259,68 @@ class TwelveStepLocation extends ContentEntityBase implements TwelveStepLocation
     }
     return FALSE;
   }
+
+  /**
+   * Return the meetings held at this location.
+   *
+   * @param int $status
+   *   If set to 1, return only published entities.
+   *
+   * @return array \Drupal\twelvestepmodule\Entity\TwelveStepMeeting|null
+   */
+  public function getMeetings($status = 1) {
+    $query = \Drupal::entityQuery('twelvestepmeeting');
+    if ($status) {
+      $query->condition('status', $status);
+    }
+    $query->condition('field_location.target_id', $this->id());
+    $ids = $query->execute();
+    return $ids ? entity_load_multiple('twelvestepmeeting', $ids) : NULL;
+  }
+
+  /**
+   * Return the groups that have meetings at this location.
+   *
+   * @param int $status
+   *   If set to 1, return only published entities.
+   *
+   * @return array \Drupal\twelvestepmodule\Entity\TwelveStepGroup|null
+   */
+  public function getGroups($status = 1) {
+    // Get all meetings for this location, even unpublished ones.
+    $meetings = $this->getMeetings(0);
+
+    // Get the groups for these meetings.
+    $group_ids = [];
+    foreach ($meetings as $meeting) {
+      $group_ids[] = $meeting->get('field_group')->target_id;
+    }
+
+    // Load the group entities.
+    $groups = entity_load_multiple('twelvestepgroup', $group_ids);
+
+    // Filter group entities by status.
+    if ($status) {
+      $groups = array_filter($groups, function($group) {
+        return $group->status;
+      });
+    }
+
+    return $groups;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isAccessUpdate(AccountInterface $account) {
+    if ($account->hasPermission('edit trusted twelve step location entities')) {
+      foreach ($this->getGroups() as $group) {
+        if ($group->isTrustedUser($account->id())) {
+          return TRUE;
+        }
+      }
+    }
+    return FALSE;
+  }
+
 }

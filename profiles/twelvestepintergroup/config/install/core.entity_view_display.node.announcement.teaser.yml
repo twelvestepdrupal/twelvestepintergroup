@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.announcement.body
+    - field.field.node.announcement.field_end_date
+    - field.field.node.announcement.field_group
+    - field.field.node.announcement.field_start_date
+    - node.type.announcement
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: CI2FxVJSlzc958WvlihMoiwUKHfjway0z10SM-qpxBo
+id: node.announcement.teaser
+targetEntityType: node
+bundle: announcement
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 0
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  field_group:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_end_date: true
+  field_start_date: true

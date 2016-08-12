@@ -8,6 +8,7 @@ label: 'Central Service Representative'
 weight: 3
 is_admin: false
 permissions:
-  - 'edit twelve step group entities'
-  - 'edit twelve step location entities'
-  - 'edit twelve step meeting entities'
+  - 'edit trusted twelve step meeting entities'
+  - 'edit trusted twelve step location entities'
+  - 'edit trusted twelve step group entities'
+  - 'add trusted twelve step meeting entities'

@@ -1,0 +1,39 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.announcement.body
+    - field.field.node.announcement.field_end_date
+    - field.field.node.announcement.field_group
+    - field.field.node.announcement.field_start_date
+    - node.type.announcement
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: COgd22Nnog534Nx6X-q7Y8x3ghT_KWKZSFewQPHiYUs
+id: node.announcement.default
+targetEntityType: node
+bundle: announcement
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_group:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_end_date: true
+  field_start_date: true

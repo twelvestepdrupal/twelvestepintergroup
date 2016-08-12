@@ -14,6 +14,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\twelvestepmodule\TwelveStepGroupInterface;
 use Drupal\user\UserInterface;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Defines the Twelve Step Group entity.
@@ -218,6 +219,29 @@ class TwelveStepGroup extends ContentEntityBase implements TwelveStepGroupInterf
       ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isAccessUpdate(AccountInterface $account) {
+    if ($account->hasPermission('edit trusted twelve step group entities')) {
+      return $this->isTrustedUserId($account->id());
+    }
+    return FALSE;
+  }
+
+  public function isTrustedUserId($uid) {
+    $ids = $this->get('field_trusted_servants');
+    if ($ids) {
+      $trusted = entity_load_multiple('user', $ids);
+      foreach ($trusted as $servant) {
+        if ($servant->id() == $uid) {
+          return TRUE;
+        }
+      }
+    }
+    return FALSE;
   }
 
 }

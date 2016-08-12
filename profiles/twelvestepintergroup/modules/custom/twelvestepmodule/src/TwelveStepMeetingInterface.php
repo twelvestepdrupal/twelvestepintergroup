@@ -7,6 +7,7 @@
 
 namespace Drupal\twelvestepmodule;
 
+use Drupal\twelvestepmodule\TwelveStepEntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -17,7 +18,7 @@ use Drupal\user\EntityOwnerInterface;
  *
  * @ingroup twelvestepmodule
  */
-interface TwelveStepMeetingInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
+interface TwelveStepMeetingInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface, TwelveStepEntityInterface {
 
   /**
    * Gets the Twelve Step Meeting name.

@@ -2,13 +2,12 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: cX4ngHqbgjNmrM9vrRSdBcQD9hUn2Sbjcc1GX7z0Xsw
-id: gsr
-label: 'General Service Representative'
-weight: 4
+  default_config_hash: 0n4UehTbjjbjeyLS6gxE0CuxQFEBmUdYElDed_c7E1M
+id: trustedservant
+label: 'Group Trusted Servant'
+weight: 3
 is_admin: false
 permissions:
   - 'edit trusted twelve step meeting entities'
   - 'edit trusted twelve step location entities'
-  - 'edit trusted twelve step group entities'
   - 'add trusted twelve step meeting entities'

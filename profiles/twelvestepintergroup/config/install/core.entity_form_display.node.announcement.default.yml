@@ -2,23 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.event.body
-    - field.field.node.event.field_address
-    - field.field.node.event.field_end_date
-    - field.field.node.event.field_group
-    - field.field.node.event.field_start_date
-    - node.type.event
+    - field.field.node.announcement.body
+    - field.field.node.announcement.field_end_date
+    - field.field.node.announcement.field_group
+    - field.field.node.announcement.field_start_date
+    - node.type.announcement
   module:
-    - address
     - datetime
     - inline_entity_form
     - path
     - text
 _core:
-  default_config_hash: qwyrIkeail7zJdaqTr1-tvAfJruSHt2o3zMP0YD584g
-id: node.event.default
+  default_config_hash: XB6SuqgFQW10oGjgIgef5O8vFgEdVS_x7OyNFy5ZtgA
+id: node.announcement.default
 targetEntityType: node
-bundle: event
+bundle: announcement
 mode: default
 content:
   body:
@@ -29,19 +27,13 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-  field_address:
-    weight: 5
-    settings:
-      default_country: null
-    third_party_settings: {  }
-    type: address_default
   field_end_date:
     weight: 4
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
   field_group:
-    weight: 6
+    weight: 5
     settings:
       match_operator: CONTAINS
       form_mode: default

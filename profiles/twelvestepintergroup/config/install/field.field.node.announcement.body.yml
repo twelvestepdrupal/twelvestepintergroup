@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.event
+    - node.type.announcement
   module:
     - text
 _core:
-  default_config_hash: 5NKaKx5ZqPjBa-iLcT0EAlYGS190P5_Tks4ibCWswiY
-id: node.event.body
+  default_config_hash: xCAAeM7BYbe5vyO-H3tTOpwhFUZV3t5THdxpDCw4xsk
+id: node.announcement.body
 field_name: body
 entity_type: node
-bundle: event
+bundle: announcement
 label: Description
 description: ''
 required: false

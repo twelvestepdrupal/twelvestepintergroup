@@ -10,6 +10,7 @@ namespace Drupal\twelvestepmodule;
 use Drupal\Core\Extension\ThemeInstaller;
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Entity\EntityManager;
+use Drupal\block\Entity\Block;
 
 /**
  * Class TwelveStepModuleService.
@@ -70,6 +71,36 @@ class TwelveStepModuleService implements TwelveStepModuleServiceInterface {
       $block->setStatus(FALSE);
       $block->save();
     }
-  }
 
+    // Create Announcement blocks.
+    $block_defaults = [
+      'theme' => $default_theme,
+      'weight' => -2,
+      'status' => TRUE,
+      'region' => 'highlighted',
+      'settings' => [
+        'label_display' => 0,
+      ],
+    ];
+    Block::create([
+      'id' => 'announcements',
+      'plugin' => 'views_block:announcements-block_1',
+      'visibility' => [
+        'request_path' => [
+          'id' => 'request_path',
+          'pages' => '<front>',
+        ],
+      ],
+    ] + $block_defaults)->save();
+    Block::create([
+      'id' => 'group-announcements',
+      'plugin' => 'views_block:announcements-block_2',
+      'visibility' => [
+        'request_path' => [
+          'id' => 'request_path',
+          'pages' => 'twelvestepgroup/*',
+        ],
+      ],
+    ] + $block_defaults)->save();
+  }
 }

@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_end_date
-    - node.type.event
+    - node.type.announcement
   module:
     - datetime
 _core:
-  default_config_hash: _8OnJGUM3CDkGYwuVVhXTyhUiK_TT0Pn95nasv0p2UA
-id: node.event.field_end_date
+  default_config_hash: 8NkfgF9QCnbOs3CWnHn9hIRDk66ZhvyzR7_gL28B46A
+id: node.announcement.field_end_date
 field_name: field_end_date
 entity_type: node
-bundle: event
+bundle: announcement
 label: 'End date'
 description: ''
 required: false

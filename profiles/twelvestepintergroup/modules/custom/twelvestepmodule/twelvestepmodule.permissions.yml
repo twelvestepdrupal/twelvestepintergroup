@@ -12,11 +12,17 @@ delete twelve step meeting entities:
 edit twelve step meeting entities:
   title: 'Edit Twelve Step Meeting entities'
 
+edit trusted twelve step meeting entities:
+  title: 'Edit Twelve Step Meeting entities which user is trusted with'
+
 view published twelve step meeting entities:
   title: 'View published Twelve Step Meeting entities'
 
 view unpublished twelve step meeting entities:
   title: 'View unpublished Twelve Step Meeting entities'
+
+publish trusted twelve step meeting entities:
+  title: 'Publish Twelve Step Meeting entitites which user is trusted with'
 
 add twelve step location entities:
   title: 'Create new Twelve Step Location entities'
@@ -31,6 +37,12 @@ delete twelve step location entities:
 
 edit twelve step location entities:
   title: 'Edit Twelve Step Location entities'
+
+edit trusted twelve step location entities:
+  title: 'Edit Twelve Step Location entities which user is trusted with'
+
+publish trusted twelve step location entities:
+  title: 'Publish Twelve Step Location entitites which user is trusted with'
 
 view published twelve step location entities:
   title: 'View published Twelve Step Location entities'
@@ -51,6 +63,12 @@ delete twelve step group entities:
 
 edit twelve step group entities:
   title: 'Edit Twelve Step Group entities'
+
+edit trusted twelve step group entities:
+  title: 'Edit Twelve Step Group entities which user is trusted with'
+
+publish trusted twelve step group entities:
+  title: 'Publish Twelve Step Group entitites which user is trusted with'
 
 view published twelve step group entities:
   title: 'View published Twelve Step Group entities'

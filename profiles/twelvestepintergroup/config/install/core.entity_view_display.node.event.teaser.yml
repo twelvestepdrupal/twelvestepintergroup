@@ -14,7 +14,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: 1jJ0ioTRo0ix5AokcFmIEy2VvbRu_IzE6PuWUFQyk6k
+  default_config_hash: lcqAqbl31mt9dhfvcXYJwx7ULKwULtupWFamy9ObFDE
 id: node.event.teaser
 targetEntityType: node
 bundle: event
@@ -27,6 +27,14 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+  field_group:
+    type: entity_reference_entity_view
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   field_start_date:
     type: datetime_default
     weight: 0
@@ -36,10 +44,9 @@ content:
       timezone_override: ''
     third_party_settings: {  }
   links:
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
 hidden:
   field_address: true
   field_end_date: true
-  field_group: true

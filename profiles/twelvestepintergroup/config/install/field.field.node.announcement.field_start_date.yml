@@ -3,15 +3,15 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_start_date
-    - node.type.event
+    - node.type.announcement
   module:
     - datetime
 _core:
-  default_config_hash: xIpzLCuUBxDhlLVtFtwtrXhUUkKTzm4OgNGn72MtAog
-id: node.event.field_start_date
+  default_config_hash: 5Flv1YNS9xh1c7yT5TkPsavFEbMYzxIuYJeFBD8gPjI
+id: node.announcement.field_start_date
 field_name: field_start_date
 entity_type: node
-bundle: event
+bundle: announcement
 label: 'Start date'
 description: ''
 required: false

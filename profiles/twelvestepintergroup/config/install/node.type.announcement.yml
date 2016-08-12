@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: SUxhiKyidgt20rWF4ssYhg4TJIsY62IiOB8-ym6Uits
+name: Announcement
+type: announcement
+description: 'An announcement is a public statement about a fact or request made for a specified period of time. If the announement has an address, date and time, then it is an event, not an announcement.'
+help: ''
+new_revision: false
+preview_mode: 2
+display_submitted: false

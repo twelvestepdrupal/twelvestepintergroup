@@ -11,3 +11,5 @@ permissions:
   - 'edit twelve step group entities'
   - 'edit twelve step location entities'
   - 'edit twelve step meeting entities'
+  - 'add twelve step meeting entities'
+  - 'access administration pages'

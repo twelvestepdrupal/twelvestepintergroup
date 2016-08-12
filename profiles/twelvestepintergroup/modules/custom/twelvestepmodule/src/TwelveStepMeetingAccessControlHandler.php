@@ -30,6 +30,9 @@ class TwelveStepMeetingAccessControlHandler extends EntityAccessControlHandler {
         return AccessResult::allowedIfHasPermission($account, 'view published twelve step meeting entities');
 
       case 'update':
+        if ($entity->isAccessUpdate($account)) {
+          return AccessResult::allowed()->cachePerPermissions()->cachePerUser()->addCacheableDependency($node);
+        }
         return AccessResult::allowedIfHasPermission($account, 'edit twelve step meeting entities');
 
       case 'delete':

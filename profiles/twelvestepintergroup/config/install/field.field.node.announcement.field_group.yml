@@ -3,13 +3,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_group
-    - node.type.event
+    - node.type.announcement
 _core:
-  default_config_hash: ZWArC1a4fMqzj7y3BkOcukfCox-a6T0Qw3m6I4UaU-0
-id: node.event.field_group
+  default_config_hash: sojozfdhWzX-UcRRWg0VpBJEAKmEHkQETG3rguSIDTQ
+id: node.announcement.field_group
 field_name: field_group
 entity_type: node
-bundle: event
+bundle: announcement
 label: Group
 description: 'Optional sponsoring group'
 required: false

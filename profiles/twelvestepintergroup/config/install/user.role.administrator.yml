@@ -7,4 +7,7 @@ id: administrator
 label: Administrator
 weight: 2
 is_admin: true
-permissions: {  }
+permissions:
+  - 'edit twelve step group entities'
+  - 'edit twelve step location entities'
+  - 'edit twelve step meeting entities'
