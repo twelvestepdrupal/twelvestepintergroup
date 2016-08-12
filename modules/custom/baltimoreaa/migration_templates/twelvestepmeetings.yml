@@ -47,7 +47,7 @@ process:
   field_location:
     plugin: migration
     migration: baltimoreaa_locations
-    source: [ mAdd2, mAdd1, mCity, mZip ]
+    source: [ mAdd2, mZip ]
   field_time/time:
     plugin: meeting_time
     source: mTime
