@@ -4,7 +4,7 @@ migration_tags: [ baltimoreaa ]
 source:
   plugin: twelvestepintergroup_csv
   keys:
-    id: [ mAdd2, mAdd1, mCity, mZip ]
+    id: [ mAdd2, mZip ]
     day: mDayNo:1
   path: modules/custom/baltimoreaa/baltimoreaa.csv
 process:
